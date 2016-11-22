@@ -10,6 +10,7 @@
 
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.orders',
+    'BlurAdmin.pages.catalog',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',

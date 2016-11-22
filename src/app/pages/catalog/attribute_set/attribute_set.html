@@ -1,0 +1,49 @@
+<div ng-controller="CatalogController" ng-init="initAttributeSets()">
+
+    <div ng-if="!editAttributeSet" class="horizontal-scroll">
+        <div class="form-group select-page-size-wrap ">
+            <label>Rows on page
+                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                        ng-model="attributeSetTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                </select>
+            </label>
+        </div>
+        <table ng-if="attributeSetsReady" class="table" st-table="attributeSets">
+            <thead>
+            <tr class="sortable ">
+                <th class="table-id" st-sort="code" st-sort-default="true">#</th>
+                <th st-sort="name">Frontend Name</th>
+                <th st-sort="type">Type</th>
+            </tr>
+            <tr>
+                <th><input st-search="code" placeholder="Search Code" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th><input st-search="name" placeholder="Search Label" class="input-sm form-control search-input"
+                           type="search"/></th>
+
+                <th><input st-search="type" placeholder="Search Type" class="input-sm form-control search-input"
+                           type="search"/></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in attributeSets">
+                <td class="table-id"><a  ng-click="editSet(item.code)" href="">{{item.code}}</a></td>
+                <td>{{item.name}}</td>
+                <td>{{item.type}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-pagination="" st-items-by-page="attributeSetTablePageSize" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div ng-if="editAttributeSet">
+        <div include-with-scope="/app/pages/catalog/attribute_set/attribute_set_edit.html"></div>
+    </div>
+
+</div>

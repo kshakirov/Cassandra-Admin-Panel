@@ -1,0 +1,20 @@
+<div class="col-lg-10" ng-controller="OrderIdController" ng-init="init()">
+    <form>
+        <div class="form-group">
+            <label for="firstname">Code</label>
+            <input ng-model="attribute_set.code" type="text" class="form-control" id="code" placeholder="Code">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Frontend Name</label>
+            <input ng-model="attribute_set.name" type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+       
+        <div class="checkbox">
+            <label class="custom-checkbox">
+                <input ng-model="attribute_set.critical" type="checkbox">
+                <span>Critical</span>
+            </label>
+        </div>
+        <button ng-click="saveSet(attribute_set)" class="btn btn-danger">Save</button>
+    </form>
+</div>
