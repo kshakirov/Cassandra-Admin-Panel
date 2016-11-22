@@ -41,7 +41,10 @@
         });
     }
 
-    orders.controller("OrderController", function ($scope, $http,  $filter, editableOptions, editableThemes) {
+    orders.controller("OrderController", function ($scope, $http,
+                                                   $filter, editableOptions,
+                                                   editableThemes,
+                                                   $window) {
         $scope.test = "Test"
         $scope.smartTablePageSize = 10;
         $scope.smartTableData = [
@@ -67,6 +70,9 @@
             $http.get("/admin/customer/").then(function (promise) {
                 $scope.customers = promise.data;
                 $scope.customersReady = true;
+            }, function (error) {
+                console.log(error);
+                $window.location.href = '/auth.html';
             })
         }
 

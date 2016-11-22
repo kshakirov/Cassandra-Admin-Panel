@@ -24,30 +24,30 @@
   <!-- endinject -->
   <!-- endbuild -->
 </head>
-<body>
+<body ng-app="AuthApp">
 <main class="auth-main">
-  <div class="auth-block">
+  <div class="auth-block" ng-controller="UserLogin" ng-init="init()">
     <h1>Sign in to Blur Admin</h1>
     <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>
 
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <label for="email" class="col-sm-2 control-label">Email</label>
 
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          <input ng-model="email" type="email" class="form-control" id="email" placeholder="Email">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <label for="password" class="col-sm-2 control-label">Password</label>
 
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          <input ng-model="password" type="password" class="form-control" id="password" placeholder="Password">
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default btn-auth">Sign in</button>
+          <button ng-click="submitLogin()" class="btn btn-default btn-auth">Sign in</button>
           <a href class="forgot-pass">Forgot password?</a>
         </div>
       </div>
@@ -65,4 +65,7 @@
   </div>
 </main>
 </body>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="app/auth.js"></script>
 </html>
