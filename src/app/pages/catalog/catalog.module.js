@@ -68,13 +68,13 @@
 
         $scope.saveSet = function (set) {
             console.log(set)
-            // $http.post("/admin/attribute_set/", set).then(function (promise) {
-            //     console.log(promise)
-            //     $scope.editAttributeSet = true;
-            // }, function (error) {
-            //     console.log(error);
-            //     //$window.location.href = '/auth.html';
-            // })
+            $http.post("/admin/attribute_set/", set).then(function (promise) {
+                console.log(promise)
+                $scope.editAttributeSet = true;
+            }, function (error) {
+                console.log(error);
+                //$window.location.href = '/auth.html';
+            })
         }
 
         $scope.initAttributeSets = function () {
