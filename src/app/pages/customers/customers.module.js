@@ -101,39 +101,50 @@
         }
 
     })
-    customers.controller("CustomerIdController", function ($scope, $http, $stateParams) {
+    customers.controller("CustomerIdController", function ($scope,
+                                                           $http, $stateParams, $location) {
         $scope.test = "Test"
         $scope.smartTablePageSize = 10;
 
         $scope.init = function () {
             var id = $stateParams.id;
-            console.log(id);
-            $http.get('/admin/customer/' + id).then(function (promise) {
-                console.log(promise.data);
-                $scope.customer = promise.data;
-            });
+            if(id) {
+                console.log(id);
+                $http.get('/admin/customer/' + id).then(function (promise) {
+                    console.log(promise.data);
+                    $scope.customer = promise.data;
+                });
 
-            $http.get('/admin/customer/' + id + '/order/').then(function (promise) {
-                console.log(promise.data);
-                $scope.orders = promise.data;
-                $scope.ordersReady = true;
-            });
+                $http.get('/admin/customer/' + id + '/order/').then(function (promise) {
+                    console.log(promise.data);
+                    $scope.orders = promise.data;
+                    $scope.ordersReady = true;
+                });
+            }else{
+                $location.path('/customers/list');
+            }
         }
 
 
     })
 
-    customers.controller("CustomerOrderController", function ($scope, $http, $stateParams) {
+    customers.controller("CustomerOrderController", function ($scope, $http,
+                                                              $stateParams, $location) {
         $scope.test = "Test"
         $scope.smartTablePageSize = 10;
 
         $scope.init = function () {
             var id = $stateParams.id;
-            console.log(id);
-            $http.get('/admin/customer/order/' + id ).then(function (promise) {
-                console.log(promise.data);
-                $scope.order = promise.data;
-           })
+            if(id) {
+                console.log(id);
+                $http.get('/admin/customer/order/' + id).then(function (promise) {
+                    console.log(promise.data);
+                    $scope.order = promise.data;
+                    $scope.order.statuses =  [{name: 'pending'}, {name: 'paid'}]
+                })
+            }else{
+                $location.path('/customers/list');
+            }
         }
 
 
