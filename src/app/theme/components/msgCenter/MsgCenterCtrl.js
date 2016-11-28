@@ -38,7 +38,7 @@
       },
       {
         image: 'assets/img/shopping-cart.svg',
-        template: 'New orders received.',
+        template: 'New customers received.',
         time: '5 hrs ago'
       },
       {

@@ -9,7 +9,7 @@
     'ui.router',
 
     'BlurAdmin.pages.dashboard',
-    'BlurAdmin.pages.orders',
+    'BlurAdmin.pages.customers',
     'BlurAdmin.pages.catalog',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',

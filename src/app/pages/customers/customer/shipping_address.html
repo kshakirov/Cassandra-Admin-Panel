@@ -1,0 +1,14 @@
+<form class="form-horizontal">
+    <div class="form-group" ng-repeat="(key,value) in customer.default_shipping_address">
+        <label for="inputEmail3" class="col-lg-2 control-label">{{key}}</label>
+        <div class="col-lg-10">
+            <input ng-model="customer.default_billing_address[key]" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-warning">Sign in</button>
+        </div>
+    </div>
+</form>

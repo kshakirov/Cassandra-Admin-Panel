@@ -1,4 +1,4 @@
-<div ng-controller="OrderController" ng-init="init()">
+<div ng-controller="CustomerController" ng-init="init()">
 
     <div class="horizontal-scroll">
         <div class="form-group select-page-size-wrap ">
@@ -34,7 +34,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in customers">
-                <td class="table-id"><a ng-href="/#/orders/{{item.id}}">{{item.id}}</a></td>
+                <td class="table-id"><a ng-href="/#/customers/edit/{{item.id}}">{{item.id}}</a></td>
                 <td>{{item.firstname}}</td>
                 <td>{{item.lastname}}</td>
                 <td>{{item.username}}</td>

@@ -1,0 +1,52 @@
+<div class="horizontal-scroll">
+    <div class="form-group select-page-size-wrap ">
+        <label>Rows on page
+            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+            </select>
+        </label>
+    </div>
+    <table ng-if="ordersReady" class="table" st-table="orders">
+        <thead>
+        <tr class="sortable ">
+            <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
+            <th st-sort="subtotal">Subtotoa</th>
+            <th st-sort="grand_total">Last Name</th>
+            <th st-sort="payment_method">Username</th>
+            <th st-sort="shipping_method">Email</th>
+            <th st-sort="customer_purchase_order">Age</th>
+        </tr>
+        <tr>
+            <th><input st-search="order_id" placeholder="Search First Name" class="input-sm form-control search-input"
+                       type="search"/></th></th>
+            <th><input st-search="subtotal" placeholder="Search First Name" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="grand_total" placeholder="Search Last Name" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="payment_method" placeholder="Search Username" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="shipping_method" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
+            </th>
+            <th><input st-search="customer_purchase_order" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in orders">
+            <td class="table-id"><a ng-href="/#/customers/order/{{item.order_id}}">{{item.order_id}}</a></td>
+            <td>{{item.subtotal}}</td>
+            <td>{{item.grand_total}}</td>
+            <td>{{item.payment_method}}</td>
+            <td>{{item.shipping_method}}</a></td>
+            <td>{{item.customer_purchase_order}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6" class="text-center">
+                <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
