@@ -39,21 +39,23 @@
                 controller: 'CustomerController',
                 url: '/list',
                 templateUrl: 'app/pages/customers/customers.html',
-                title: 'List',
+                title: 'Manage Customers',
                 sidebarMeta: {
                     order: 100,
                 },
-            }).state('customers.customer', {
-            title: 'Edit',
-            controller: 'CustomerIdController',
-            url: '/edit/:id',
-            templateUrl: 'app/pages/customers/customer.html',
-            sidebarMeta: {
-                order: 200,
-            }
-
-        }).state('customers.new', {
-                title: 'New',
+             })
+                // .state('customers.customer', {
+        //     title: 'Edit',
+        //     controller: 'CustomerIdController',
+        //     url: '/edit/:id',
+        //     templateUrl: 'app/pages/customers/customer.html',
+        //     sidebarMeta: {
+        //         order: 200,
+        //     }
+        //
+        // })
+        .state('customers.new', {
+                title: 'Customer Groups',
                 controller: 'CustomerNew',
                 url: '/new/',
                 templateUrl: 'app/pages/customers/new.html',
@@ -63,7 +65,7 @@
 
             })
             .state('customers.order', {
-                title: 'Order',
+                title: 'Online Customers',
                 controller: 'CustomerOrderController',
                 url: '/order/:id',
                 templateUrl: 'app/pages/customers/order.html',

@@ -1,55 +1,66 @@
 <div ng-controller="CustomerController" ng-init="init()">
-
-    <div class="horizontal-scroll">
-        <div class="form-group select-page-size-wrap ">
-            <label>Rows on page
-                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                        ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-                </select>
-            </label>
+    <div class="row ">
+        <div class="col-lg-2">
+            <div class="form-group select-page-size-wrap ">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
         </div>
-        <table ng-if="customersReady" class="table" st-table="customers">
-            <thead>
-            <tr class="sortable ">
-                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                <th st-sort="firstName">First Name</th>
-                <th st-sort="lastName">Last Name</th>
-                <th st-sort="username">Username</th>
-                <th st-sort="email">Email</th>
-                <th st-sort="age">Age</th>
-            </tr>
-            <tr>
-                <th></th>
-                <th><input st-search="firstname" placeholder="Search First Name" class="input-sm form-control search-input"
-                           type="search"/></th>
-                <th><input st-search="lastname" placeholder="Search Last Name" class="input-sm form-control search-input"
-                           type="search"/></th>
-                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
-                           type="search"/></th>
-                <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
-                </th>
-                <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in customers">
-                <td class="table-id"><a ng-href="/#/customers/edit/{{item.id}}">{{item.id}}</a></td>
-                <td>{{item.firstname}}</td>
-                <td>{{item.lastname}}</td>
-                <td>{{item.username}}</td>
-                <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-                <td>{{item.age}}</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="6" class="text-center">
-                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+        <div class="col-lg-10">
 
+            <div class="horizontal-scroll">
+
+                <table ng-if="customersReady" class="table" st-table="customers">
+                    <thead>
+                    <tr class="sortable ">
+                        <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                        <th st-sort="firstName">First Name</th>
+                        <th st-sort="lastName">Last Name</th>
+                        <th st-sort="username">Username</th>
+                        <th st-sort="email">Email</th>
+                        <th st-sort="age">Age</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th><input st-search="firstname" placeholder="Search First Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="lastname" placeholder="Search Last Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="username" placeholder="Search Username"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="email" placeholder="Search Email"
+                                   class="input-sm form-control search-input" type="search"/>
+                        </th>
+                        <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input"
+                                   type="search"/>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in customers">
+                        <td class="table-id"><a ng-href="/#/customers/edit/{{item.id}}">{{item.id}}</a></td>
+                        <td>{{item.firstname}}</td>
+                        <td>{{item.lastname}}</td>
+                        <td>{{item.username}}</td>
+                        <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+                        <td>{{item.age}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

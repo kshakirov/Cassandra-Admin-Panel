@@ -11,6 +11,7 @@
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.customers',
     'BlurAdmin.pages.catalog',
+    'BlurAdmin.pages.sales',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',
