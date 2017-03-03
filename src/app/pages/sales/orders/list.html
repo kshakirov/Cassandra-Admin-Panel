@@ -1,0 +1,60 @@
+<div class="row" ng-if="!stage">
+    <div class="col-lg-2">
+        <h3>List</h3>
+    </div>
+    <div class="col-lg-10" ng-init="init()">
+        <div class="horizontal-scroll">
+            <div class="form-group select-page-size-wrap ">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
+            <table ng-if="ordersReady" class="table" st-table="orders">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
+                    <th st-sort="data.customer_lastname">Customer Name</th>
+                    <th st-sort="data.customer_email">Customer Email</th>
+                    <th st-sort="data.base_grand_total">Subtotal</th>
+                    <th st-sort="data.updated_at">Date</th>
+                </tr>
+                <tr>
+                    <th><input st-search="order_id" placeholder="Search ID" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    </th>
+                    <th><input st-search="data.customer_lastname" placeholder="Search  Name"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="data.customer_email" placeholder="Search Email"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="data.base_grand_total" placeholder="Search Total"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="data.updated_at" placeholder="Search Date"
+                               class="input-sm form-control search-input" type="search"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in orders">
+                    <td class="table-id"><a  ng-click="switchToEdit(item.order_id)" href="">{{item.order_id}}</a></td>
+                    <td>{{item.data.customer_lastname}}</td>
+                    <td>{{item.data.customer_email}}</td>
+                    <td>{{item.data.base_grand_total}}</td>
+                    <td>{{item.data.updated_at}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
