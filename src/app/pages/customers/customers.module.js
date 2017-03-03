@@ -52,14 +52,23 @@
                 order: 200,
             }
 
-        })
+        }).state('customers.new', {
+                title: 'New',
+                controller: 'CustomerNew',
+                url: '/new/',
+                templateUrl: 'app/pages/customers/new.html',
+                sidebarMeta: {
+                    order: 300,
+                }
+
+            })
             .state('customers.order', {
                 title: 'Order',
                 controller: 'CustomerOrderController',
                 url: '/order/:id',
                 templateUrl: 'app/pages/customers/order.html',
                 sidebarMeta: {
-                    order: 200,
+                    order: 400,
                 }
 
             })
@@ -103,7 +112,7 @@
     })
     customers.controller("CustomerIdController", function ($scope,
                                                            $http, $stateParams, $location) {
-        $scope.test = "Test"
+        $scope.test = "Test";
         $scope.smartTablePageSize = 10;
 
         $scope.init = function () {
@@ -126,6 +135,22 @@
         }
 
 
+    })
+
+    customers.controller("CustomerNew", function ($scope, $http) {
+
+
+        $scope.init= function () {
+            $scope.customer = {};
+            $scope.flag = {create: true};
+        };
+
+        $scope.createCustomer = function (customer) {
+            console.log(customer);
+            $http.post('/admin/customer/', customer).then(function (promise) {
+                console.log(promise);
+            })
+        }
     })
 
     customers.controller("CustomerOrderController", function ($scope, $http,
