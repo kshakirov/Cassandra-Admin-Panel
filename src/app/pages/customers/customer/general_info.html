@@ -2,25 +2,26 @@
 <form>
     <div class="form-group">
         <label for="firstname">First Name</label>
-        <input ng-model="customer.firstname" type="text" class="form-control" id="firstname" placeholder="Email">
+        <input ng-model="customer.firstname" type="text" class="form-control" id="firstname" placeholder="">
     </div>
     <div class="form-group">
-        <label for="lastname">Email address</label>
-        <input ng-model="customer.lastname" type="text" class="form-control" id="lastname" placeholder="Email">
+        <label for="lastname">Last Name</label>
+        <input ng-model="customer.lastname" type="text" class="form-control" id="lastname" placeholder="">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input ng-model="customer.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        <input ng-model="customer.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="">
     </div>
     <div class="form-group">
         <label for="group">Group</label>
-        <input ng-model="customer.group_id" type="text" class="form-control" id="group" placeholder="Email">
+        <input ng-model="customer.group_id" type="text" class="form-control" id="group" placeholder="">
     </div>
-    <div class="checkbox">
+    <div ng-if="flag.create" class="checkbox">
         <label class="custom-checkbox">
-            <input type="checkbox">
-            <span>Check me out</span>
+            <input type="checkbox" ng-model="confirmation">
+            <span>Confirmation</span>
         </label>
     </div>
-    <button type="submit" class="btn btn-danger">Submit</button>
+    <button ng-if="flag.create" type="submit" class="btn btn-danger" ng-click="createCustomer(customer)">Create</button>
+    <button ng-if="!flag.create" type="submit" class="btn btn-danger">Save</button>
 </form>
