@@ -37,12 +37,20 @@
             sidebarMeta: {
                 order: 101,
             },
-        }).state('sales.transactions', {
+        }).state('sales.shipments', {
+                url: '/shipments',
+                templateUrl: 'app/pages/sales/shipments/shipment_container.html',
+                title: 'Shipments',
+                controller: 'ShipmentsController',
+                sidebarMeta: {
+                    order: 103,
+                },
+            }).state('sales.transactions', {
             url: '/transactions',
             templateUrl: 'app/pages/sales/invoices/list.html',
             title: 'Transactions',
             sidebarMeta: {
-                order: 102,
+                order: 103,
             },
         });
        // $urlRouterProvider.when('/catalog','/catalog/attribute');
@@ -50,6 +58,8 @@
 
     sales.controller('OrdersController', function ($scope, $http, $stateParams,  $rootScope){
         create_controller($scope, $http, $stateParams,  $rootScope);
+    }).controller('ShipmentsController', function ($scope, $http, $stateParams,  $rootScope){
+        create_shipment_controller($scope, $http, $stateParams,  $rootScope);
     });
   })();/**
  * Created by kshakirov on 11/18/16.

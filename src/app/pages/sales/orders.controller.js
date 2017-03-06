@@ -40,3 +40,4 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
         $scope.stage=false;
     }
 }
+

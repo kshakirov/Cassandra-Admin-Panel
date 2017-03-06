@@ -1,0 +1,300 @@
+<div class="col-lg-2">
+    <h3>Edit</h3>
+    <h3><a ng-click="switchToList()" href="">List</a></h3>
+</div>
+<div class="col-lg-10" ng-controller="ShipmentsController" ng-init="">
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Order Data</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                Order Id
+                            </td>
+                            <td>
+                                {{shipment.order_id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Order Date
+                            </td>
+                            <td>
+                                {{shipment.order_date}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Account Information</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                {{shipment.customer.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Customer Email
+                            </td>
+                            <td>
+                                {{shipment.customer.email}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Billing Address</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                {{shipment.customer.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Street
+                            </td>
+                            <td>
+                                {{shipment.billing_address.street}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                {{shipment.billing_address.city}}
+                            </td>
+                        <tr>
+                            <td>
+                                Region
+                            </td>
+                            <td>
+                                {{shipment.billing_address.region}}
+                            </td>
+                        <tr>
+                            <td>
+                                Country
+                            </td>
+                            <td>
+                                {{shipment.billing_address.country_id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Postcode
+                            </td>
+                            <td>
+                                {{shipment.billing_address.postcode}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Phone
+                            </td>
+                            <td>
+                                {{shipment.billing_address.telephone}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Shipping Address</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                {{shipment.customer.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Street
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.street}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.city}}
+                            </td>
+                        <tr>
+                            <td>
+                                Region
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.region}}
+                            </td>
+                        <tr>
+                            <td>
+                                Country
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.country_id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Postcode
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.postcode}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Phone
+                            </td>
+                            <td>
+                                {{shipment.shipping_address.telephone}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Payment Information</div>
+                <div class="panel-body">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Shipping and Tracking information</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Items Shipped</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>
+                                No
+                            </th>
+                            <th>
+                                Part Number
+                            </th>
+
+                            <th>
+                                Qty
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item  in shipment.items">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+
+                            <td>
+                                {{item.name}}
+                            </td>
+
+                            <td>
+                                {{item.qty}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading">Shipments History</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <select ng-options="option.name for option in shipment.statuses" ng-model="shipment.status">
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Send</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

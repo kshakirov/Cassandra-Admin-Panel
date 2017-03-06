@@ -11,40 +11,45 @@
                     </select>
                 </label>
             </div>
-            <table ng-if="ordersReady" class="table" st-table="orders">
+            <table ng-if="shipmentsReady" class="table" st-table="shipments">
                 <thead>
                 <tr class="sortable ">
-                    <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
-                    <th st-sort="data.customer_lastname">Customer Name</th>
-                    <th st-sort="data.customer_email">Customer Email</th>
-                    <th st-sort="data.base_grand_total">Subtotal</th>
-                    <th st-sort="data.updated_at">Date</th>
+                    <th class="table-id" st-sort="id" st-sort-default="true"> Shipment Id</th>
+                    <th st-sort="updated_id">Date shipped</th>
+                    <th st-sort="order_id">Order No</th>
+                    <th st-sort="order_date">Order Date</th>
+                    <th st-sort="customer.name">Ship To Name</th>
+                    <th st-sort="total_qty">Total Qty</th>
                 </tr>
                 <tr>
-                    <th><input st-search="order_id" placeholder="Search ID" class="input-sm form-control search-input"
+                    <th><input st-search="id" placeholder="Search ID" class="input-sm form-control search-input"
                                type="search"/></th>
                     </th>
-                    <th><input st-search="data.customer_lastname" placeholder="Search  Name"
+                    <th><input st-search="updated_at" placeholder="Search  Date"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.customer_email" placeholder="Search Email"
+                    <th><input st-search="order_id" placeholder="Search Order"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.base_grand_total" placeholder="Search Total"
+                    <th><input st-search="order_date" placeholder="Search Order Date"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.updated_at" placeholder="Search Date"
+                    <th><input st-search="customer.name" placeholder="Search Customer"
+                               class="input-sm form-control search-input" type="search"/>
+                    </th>
+                    <th><input st-search="total_qty" placeholder="Search Qty"
                                class="input-sm form-control search-input" type="search"/>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in orders">
-                    <td class="table-id"><a  ng-click="switchToEdit(item.order_id)" href="">{{item.order_id}}</a></td>
-                    <td>{{item.data.customer_lastname}}</td>
-                    <td>{{item.data.customer_email}}</td>
-                    <td>{{item.data.base_grand_total}}</td>
-                    <td>{{item.data.updated_at}}</td>
+                <tr ng-repeat="item in shipments">
+                    <td class="table-id"><a  ng-click="switchToEdit(item.order_id, item.id)" href="">{{item.id}}</a></td>
+                    <td>{{item.updated_at}}</td>
+                    <td>{{item.order_id}}</td>
+                    <td>{{item.order_date}}</td>
+                    <td>{{item.customer.name}}</td>
+                    <td>{{item.total_qty}}</td>
                 </tr>
                 </tbody>
                 <tfoot>
