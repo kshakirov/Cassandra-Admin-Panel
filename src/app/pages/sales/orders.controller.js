@@ -4,13 +4,15 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     $scope.stage = false;
 
 
+
     function _init_edit(id) {
         $scope.stage = true
         console.log(id);
         $http.get('/admin/customer/order/' + id).then(function (promise) {
             console.log(promise.data);
             $scope.order = promise.data;
-            $scope.order.statuses = [{name: 'pending'}, {name: 'paid'}]
+            $scope.order.statuses = ['pending', 'paid', 'complete'];
+            
         })
     }
 

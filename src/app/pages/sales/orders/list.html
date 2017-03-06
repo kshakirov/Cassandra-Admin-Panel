@@ -15,25 +15,29 @@
                 <thead>
                 <tr class="sortable ">
                     <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
-                    <th st-sort="data.customer_lastname">Customer Name</th>
-                    <th st-sort="data.customer_email">Customer Email</th>
-                    <th st-sort="data.base_grand_total">Subtotal</th>
+                    <th st-sort="billing_address.lastname">Bill To Last Name</th>
+                    <th st-sort="shipping_address.lastname">Ship To Last Name</th>
+                    <th st-sort="data.grand_total">G.T. (based)</th>
+                    <th st-sort="data.grand_total">G.T. (purchased)</th>
                     <th st-sort="data.updated_at">Date</th>
                 </tr>
                 <tr>
                     <th><input st-search="order_id" placeholder="Search ID" class="input-sm form-control search-input"
                                type="search"/></th>
                     </th>
-                    <th><input st-search="data.customer_lastname" placeholder="Search  Name"
+                    <th><input st-search="billing_address.lastname" placeholder="Search  Name"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.customer_email" placeholder="Search Email"
+                    <th><input st-search="shipping_address.lastname" placeholder="Search Name"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.base_grand_total" placeholder="Search Total"
+                    <th><input st-search="subtotal" placeholder="Search Total"
                                class="input-sm form-control search-input"
                                type="search"/></th>
-                    <th><input st-search="data.updated_at" placeholder="Search Date"
+                    <th><input st-search="base_total" placeholder="Search Total"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="updated_at" placeholder="Search Date"
                                class="input-sm form-control search-input" type="search"/>
                     </th>
                 </tr>
@@ -41,10 +45,11 @@
                 <tbody>
                 <tr ng-repeat="item in orders">
                     <td class="table-id"><a  ng-click="switchToEdit(item.order_id)" href="">{{item.order_id}}</a></td>
-                    <td>{{item.data.customer_lastname}}</td>
-                    <td>{{item.data.customer_email}}</td>
-                    <td>{{item.data.base_grand_total}}</td>
-                    <td>{{item.data.updated_at}}</td>
+                    <td>{{item.billing_address.lastname}}</td>
+                    <td>{{item.shipping_address.lastname}}</td>
+                    <td>{{item.subtotal}}</td>
+                    <td>{{item.grand_total}}</td>
+                    <td>{{item.updated_at}}</td>
                 </tr>
                 </tbody>
                 <tfoot>
