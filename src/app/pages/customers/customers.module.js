@@ -44,16 +44,6 @@
                     order: 100,
                 },
              })
-                // .state('customers.customer', {
-        //     title: 'Edit',
-        //     controller: 'CustomerIdController',
-        //     url: '/edit/:id',
-        //     templateUrl: 'app/pages/customers/customer.html',
-        //     sidebarMeta: {
-        //         order: 200,
-        //     }
-        //
-        // })
         .state('customers.new', {
                 title: 'Customer Groups',
                 controller: 'CustomerNew',

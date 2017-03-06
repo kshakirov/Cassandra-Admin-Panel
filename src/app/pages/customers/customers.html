@@ -17,39 +17,54 @@
                     <thead>
                     <tr class="sortable ">
                         <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                        <th st-sort="firstName">First Name</th>
-                        <th st-sort="lastName">Last Name</th>
-                        <th st-sort="username">Username</th>
+                        <th st-sort="lastname">Name</th>
                         <th st-sort="email">Email</th>
-                        <th st-sort="age">Age</th>
+                        <th st-sort="default_billing_address.company">Company</th>
+                        <th st-sort="group_id">Group</th>
+                        <th st-sort="default_billing_address.telephone">Telephone</th>
+                        <th st-sort="default_billing_address.postcode">ZIP Code</th>
+                        <th st-sort="default_billing_address.country_id">Country</th>
+                        <th st-sort="default_billing_address.city">City</th>
                     </tr>
                     <tr>
                         <th></th>
-                        <th><input st-search="firstname" placeholder="Search First Name"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="lastname" placeholder="Search Last Name"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="username" placeholder="Search Username"
+                        <th><input st-search="lastname" placeholder="Search Name"
                                    class="input-sm form-control search-input"
                                    type="search"/></th>
                         <th><input st-search="email" placeholder="Search Email"
-                                   class="input-sm form-control search-input" type="search"/>
-                        </th>
-                        <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input"
-                                   type="search"/>
-                        </th>
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="default_billing_address.company" placeholder="Search Company"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="group" placeholder="Search Group"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="default_billing_address.telephone" placeholder="Search Telephone"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="default_billing_address.postcode" placeholder="Search Postcode"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="default_billing_address.country_id" placeholder="Search Country"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="default_billing_address.city" placeholder="Search City"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in customers">
                         <td class="table-id"><a ng-href="/#/customers/edit/{{item.id}}">{{item.id}}</a></td>
-                        <td>{{item.firstname}}</td>
                         <td>{{item.lastname}}</td>
-                        <td>{{item.username}}</td>
-                        <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-                        <td>{{item.age}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.default_billing_address.company}}</td>
+                        <td>{{item.group_id}}</td>
+                        <td>{{item.default_billing_address.telephone}}</td>
+                        <td>{{item.default_billing_address.postcode}}</td>
+                        <td>{{item.default_billing_address.country_id}}</td>
+                        <td>{{item.default_billing_address.city}}</td>
                     </tr>
                     </tbody>
                     <tfoot>
