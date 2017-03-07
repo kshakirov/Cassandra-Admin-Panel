@@ -19,14 +19,36 @@
                 title: 'Catalog',
                 sidebarMeta: {
                     icon: 'ion-grid',
-                    order: 300,
+                    order: 100,
+                },
+            }).state('catalog.category', {
+                url: '/category/:id',
+                templateUrl: 'app/pages/catalog/category/category_container.html',
+                title: 'Manage Categories',
+                sidebarMeta: {
+                    order: 0,
+                },
+            })      
+            .state('catalog.product', {
+                url: '/product/:id',
+                templateUrl: 'app/pages/catalog/product/product_container.html',
+                title: 'Manage Product',
+                sidebarMeta: {
+                    order: 1,
+                },
+            }).state('catalog.featured_product', {
+                url: '/featured_product/:id',
+                templateUrl: 'app/pages/catalog/featured_product/featured_product_container.html',
+                title: 'Featured Product',
+                sidebarMeta: {
+                    order: 2,
                 },
             }).state('catalog.attribute', {
             url: '/attribute',
             templateUrl: 'app/pages/catalog/attribute/attribute.html',
             title: 'Attributes',
             sidebarMeta: {
-                order: 0,
+                order: 3,
             },
         }).state('catalog.attribute_set', {
             url: '/attribute_set',
