@@ -1,80 +1,90 @@
-<div  ng-init="init()">
+<div ng-init="init()">
     <div class="row ">
-        <div class="col-lg-2">
-            <div class="form-group select-page-size-wrap ">
-                <label>Rows on page
-                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-                    </select>
-                </label>
-            </div>
+        <div class="col-lg-1">
+            <h5>List</h5>
         </div>
-        <div class="col-lg-10">
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="form-group select-page-size-wrap ">
+                        <label>Rows on page
+                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
 
-            <div class="horizontal-scroll">
+                    <div class="horizontal-scroll">
 
-                <table ng-if="customersReady" class="table" st-table="customers">
-                    <thead>
-                    <tr class="sortable ">
-                        <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                        <th st-sort="lastname">Name</th>
-                        <th st-sort="email">Email</th>
-                        <th st-sort="default_billing_address.company">Company</th>
-                        <th st-sort="group_id">Group</th>
-                        <th st-sort="default_billing_address.telephone">Telephone</th>
-                        <th st-sort="default_billing_address.postcode">ZIP Code</th>
-                        <th st-sort="default_billing_address.country_id">Country</th>
-                        <th st-sort="default_billing_address.city">City</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th><input st-search="lastname" placeholder="Search Name"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="email" placeholder="Search Email"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="default_billing_address.company" placeholder="Search Company"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="group" placeholder="Search Group"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="default_billing_address.telephone" placeholder="Search Telephone"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="default_billing_address.postcode" placeholder="Search Postcode"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="default_billing_address.country_id" placeholder="Search Country"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                        <th><input st-search="default_billing_address.city" placeholder="Search City"
-                                   class="input-sm form-control search-input"
-                                   type="search"/></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in customers">
-                        <td class="table-id"><a ng-href="/#/customer/{{item.id}}" >{{item.id}}</a></td>
-                        <td>{{item.lastname}}</td>
-                        <td>{{item.email}}</td>
-                        <td>{{item.default_billing_address.company}}</td>
-                        <td>{{item.group_id}}</td>
-                        <td>{{item.default_billing_address.telephone}}</td>
-                        <td>{{item.default_billing_address.postcode}}</td>
-                        <td>{{item.default_billing_address.country_id}}</td>
-                        <td>{{item.default_billing_address.city}}</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-                        </td>
-                    </tr>
-                    </tfoot>
-                </table>
+                        <table ng-if="customersReady" class="table" st-table="customers">
+                            <thead>
+                            <tr class="sortable ">
+                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                                <th st-sort="lastname">Name</th>
+                                <th st-sort="email">Email</th>
+                                <th st-sort="default_billing_address.company">Company</th>
+                                <th st-sort="group_id">Group</th>
+                                <th st-sort="default_billing_address.telephone">Telephone</th>
+                                <th st-sort="default_billing_address.postcode">ZIP Code</th>
+                                <th st-sort="default_billing_address.country_id">Country</th>
+                                <th st-sort="default_billing_address.city">City</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th><input st-search="lastname" placeholder="Search Name"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="email" placeholder="Search Email"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="default_billing_address.company" placeholder="Search Company"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="group" placeholder="Search Group"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="default_billing_address.telephone" placeholder="Search Telephone"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="default_billing_address.postcode" placeholder="Search Postcode"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="default_billing_address.country_id" placeholder="Search Country"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="default_billing_address.city" placeholder="Search City"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in customers">
+                                <td class="table-id"><a ng-href="/#/customer/{{item.id}}">{{item.id}}</a></td>
+                                <td>{{item.lastname}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.default_billing_address.company}}</td>
+                                <td>{{item.group_id}}</td>
+                                <td>{{item.default_billing_address.telephone}}</td>
+                                <td>{{item.default_billing_address.postcode}}</td>
+                                <td>{{item.default_billing_address.country_id}}</td>
+                                <td>{{item.default_billing_address.city}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize"
+                                         st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
