@@ -16,7 +16,14 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
 
     function _init_list() {
         $http.get('/admin/shipment/').then(function (promise) {
-            console.log(promise.data);
+            $scope.shipments = promise.data;
+            $rootScope.shipment = promise.data;
+            $scope.shipmentsReady = true;
+        })
+    }
+
+    function _init_list_by_order_id(order_id) {
+        $http.get('/admin/shipment/order/' + order_id).then(function (promise) {
             $scope.shipments = promise.data;
             $rootScope.shipment = promise.data;
             $scope.shipmentsReady = true;
@@ -26,20 +33,25 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
 
     $scope.init = function () {
         if ($stateParams.id && $stateParams.order) {
-            _init_edit($stateParams.order, $stateParams.id)
-            $scope.stage=true
+            if ($stateParams.id == 'all') {
+                $scope.stage = false;
+                _init_list_by_order_id($stateParams.order)
+            } else {
+                _init_edit($stateParams.order, $stateParams.id)
+                $scope.stage = true
+            }
 
         } else {
-            $scope.stage=false;
+            $scope.stage = false;
             _init_list();
         }
     }
-    
 
-    $scope.switchToEdit = function (order_id, id) {
-        return _init_edit(order_id, id)
+
+    $scope.switchToEdit = function () {
+
     }
+
     $scope.switchToList = function (id) {
-        $scope.stage=false;
     }
 }

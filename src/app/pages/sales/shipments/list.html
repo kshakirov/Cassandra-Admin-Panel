@@ -46,7 +46,7 @@
                 <tr ng-repeat="item in shipments">
                     <td class="table-id"><a  ng-href="/#/sales/shipment/{{item.id}}?order={{item.order_id}}" >{{item.id}}</a></td>
                     <td>{{item.updated_at}}</td>
-                    <td>{{item.order_id}}</td>
+                    <td><a ng-href="/#/sales/orders/{{item.order_id}}">{{item.order_id}}</a></td>
                     <td>{{item.order_date}}</td>
                     <td>{{item.customer.name}}</td>
                     <td>{{item.total_qty}}</td>

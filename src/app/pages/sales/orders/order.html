@@ -1,411 +1,417 @@
-<div class="col-lg-2">
-        <h3>Edit</h3>
-        <h3><a ng-href="/#/sales/orders/">List</a></h3>
-</div>
-<div class="col-lg-10"  ng-init="">
-
+<div  ng-init="init()">
     <div class="row">
-        <div class="col-lg-6">
-
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Order Data</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-
-                        <tbody>
-                        <tr>
-                            <td>
-                                Order Id
-                            </td>
-                            <td>
-                                {{order.order_id}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Order Date
-                            </td>
-                            <td>
-                                {{order.updated_at}}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
+        <div class="col-lg-1">
+            <h5>Edit</h5>
+            <h5><a ng-href="/#/sales/orders/">List</a></h5>
+            <h5><a ng-href="/#/sales/shipment/all?order={{order_id}}">Shipments</a></h5>
+            <h5><a ng-href="/#/sales/orders/">Invoices</a></h5>
+            <h5><a ng-href="/#/sales/orders/">Transactions</a></h5>
         </div>
+        <div class="col-lg-11">
 
-        <div class="col-lg-6">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Account Information</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
+            <div class="row">
+                <div class="col-lg-6">
 
-                        <tbody>
-                        <tr>
-                            <td>
-                                Customer Name
-                            </td>
-                            <td>
-                                {{order.data.customer_name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Customer Email
-                            </td>
-                            <td>
-                                {{order.data.customer_email}}
-                            </td>
-                        </tr>
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Order Data</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Billing Address</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td>
-                                Customer Name
-                            </td>
-                            <td>
-                                {{order.billing_address.firstname}}  {{order.billing_address.lastname}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Street
-                            </td>
-                            <td>
-                                {{order.billing_address.street}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                City
-                            </td>
-                            <td>
-                                {{order.billing_address.city}}
-                            </td>
-                        <tr>
-                            <td>
-                                Region
-                            </td>
-                            <td>
-                                {{order.billing_address.region}}
-                            </td>
-                        <tr>
-                            <td>
-                                Country
-                            </td>
-                            <td>
-                                {{order.billing_address.country_id}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Postcode
-                            </td>
-                            <td>
-                                {{order.billing_address.postcode}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Phone
-                            </td>
-                            <td>
-                                {{order.billing_address.telephone}}
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Shipping Address</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td>
-                                Customer Name
-                            </td>
-                            <td>
-                                {{order.shipping_address.firstname}}  {{order.shipping_address.lastname}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Street
-                            </td>
-                            <td>
-                                {{order.shipping_address.street}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                City
-                            </td>
-                            <td>
-                                {{order.shipping_address.city}}
-                            </td>
-                        <tr>
-                            <td>
-                                Region
-                            </td>
-                            <td>
-                                {{order.shipping_address.region}}
-                            </td>
-                        <tr>
-                            <td>
-                                Country
-                            </td>
-                            <td>
-                                {{order.shipping_address.country_id}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Postcode
-                            </td>
-                            <td>
-                                {{order.shipping_address.postcode}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Phone
-                            </td>
-                            <td>
-                                {{order.shipping_address.telephone}}
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-lg-6">
-
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Payment Method</div>
-                <div class="panel-body">
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Shipping Method</div>
-                <div class="panel-body">
-                       {{order.shipping_method}}
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-lg-6">
-
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Special Instructions</div>
-                <div class="panel-body">
-                    {{order.special_instructions}}
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Customer Purchase Order</div>
-                <div class="panel-body">
-                    {{order.customer_purchase_order}}
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Products</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <th>
-                                Part Type
-                            </th>
-                            <th>
-                                Part Number
-                            </th>
-
-                            <th>
-                                Item Status
-                            </th>
-                            <th>
-                                Original Price
-                            </th>
-                            <th>
-                                Price
-                            </th>
-                            <th>
-                                Qty
-                            </th>
-                            <th>
-                                SubTotal
-                            </th>
-                            <th>
-                                Tax Amount
-                            </th>
-                            <th>
-                                Tax Percent
-                            </th>
-                            <th>
-                                Discount Amoun
-                            </th>
-                            <th>
-                                Row Total
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item  in order.products">
-                            <td>
-                                {{$index + 1}}
-                            </td>
-                            <td>
-                                {{item.part_type}}
-                            </td>
-                            <td>
-                                {{item.name}}
-                            </td>
-                            <td>
-                                {{item.item_status}}
-                            </td>
-                            <td>
-                                {{item.original_price}}
-                            </td>
-                            <td>
-                                {{item.price}}
-                            </td>
-                            <td>
-                                {{item.quantity}}
-                            </td>
-                            <td>
-                                {{item.subtotal}}
-                            </td>
-                            <td>
-                                {{item.tax_amout}}
-                            </td>
-                            <td>
-                                {{item.tax_percent}}
-                            </td>
-                            <td>
-                                {{item.discount_amount}}
-                            </td>
-                            <td>
-                                {{item.row_total}}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Comments History</div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <select ng-options="option for option in order.statuses" ng-model="order.status">
-
-                            </select>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Order Id
+                                    </td>
+                                    <td>
+                                        {{order.order_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Order Date
+                                    </td>
+                                    <td>
+                                        {{order.updated_at}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Comment"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Account Information</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{order.data.customer_name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Customer Email
+                                    </td>
+                                    <td>
+                                        {{order.data.customer_email}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
                         </div>
-                        <button type="submit" class="btn btn-success">Send</button>
-                    </form>
-                </div>
+                    </div>
 
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="panel panel-primary  bootstrap-panel">
-                <div class="panel-heading">Order Total</div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td>
-                                SubTotal:
-                            </td>
-                            <td>
-                                {{order.subtotal}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Shipping Handling:
-                            </td>
-                            <td>
-                                {{order.shipping_handling}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Grand Total:
-                            </td>
-                            <td>
-                                {{order.grand_total}}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Billing Address</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.firstname}} {{order.billing_address.lastname}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Street
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.street}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        City
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.city}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Region
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.region}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Country
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.country_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.postcode}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone
+                                    </td>
+                                    <td>
+                                        {{order.billing_address.telephone}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Shipping Address</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.firstname}} {{order.shipping_address.lastname}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Street
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.street}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        City
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.city}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Region
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.region}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Country
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.country_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.postcode}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone
+                                    </td>
+                                    <td>
+                                        {{order.shipping_address.telephone}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Payment Method</div>
+                        <div class="panel-body">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Shipping Method</div>
+                        <div class="panel-body">
+                            {{order.shipping_method}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Special Instructions</div>
+                        <div class="panel-body">
+                            {{order.special_instructions}}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Customer Purchase Order</div>
+                        <div class="panel-body">
+                            {{order.customer_purchase_order}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Products</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <th>
+                                        Part Type
+                                    </th>
+                                    <th>
+                                        Part Number
+                                    </th>
+
+                                    <th>
+                                        Item Status
+                                    </th>
+                                    <th>
+                                        Original Price
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Qty
+                                    </th>
+                                    <th>
+                                        SubTotal
+                                    </th>
+                                    <th>
+                                        Tax Amount
+                                    </th>
+                                    <th>
+                                        Tax Percent
+                                    </th>
+                                    <th>
+                                        Discount Amoun
+                                    </th>
+                                    <th>
+                                        Row Total
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item  in order.products">
+                                    <td>
+                                        {{$index + 1}}
+                                    </td>
+                                    <td>
+                                        {{item.part_type}}
+                                    </td>
+                                    <td>
+                                        {{item.name}}
+                                    </td>
+                                    <td>
+                                        {{item.item_status}}
+                                    </td>
+                                    <td>
+                                        {{item.original_price}}
+                                    </td>
+                                    <td>
+                                        {{item.price}}
+                                    </td>
+                                    <td>
+                                        {{item.quantity}}
+                                    </td>
+                                    <td>
+                                        {{item.subtotal}}
+                                    </td>
+                                    <td>
+                                        {{item.tax_amout}}
+                                    </td>
+                                    <td>
+                                        {{item.tax_percent}}
+                                    </td>
+                                    <td>
+                                        {{item.discount_amount}}
+                                    </td>
+                                    <td>
+                                        {{item.row_total}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Comments History</div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <select ng-options="option for option in order.statuses" ng-model="order.status">
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Comment"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success">Send</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Order Total</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        SubTotal:
+                                    </td>
+                                    <td>
+                                        {{order.subtotal}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Shipping Handling:
+                                    </td>
+                                    <td>
+                                        {{order.shipping_handling}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Grand Total:
+                                    </td>
+                                    <td>
+                                        {{order.grand_total}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

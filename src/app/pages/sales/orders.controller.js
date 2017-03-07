@@ -3,13 +3,13 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
 
-
+  
+    
 
     function _init_edit(id) {
         $scope.stage = true
-        console.log(id);
+        $scope.order_id = id;
         $http.get('/admin/customer/order/' + id).then(function (promise) {
-            console.log(promise.data);
             $scope.order = promise.data;
             $scope.order.statuses = ['pending', 'paid', 'complete'];
             
@@ -37,11 +37,6 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
         }
     }
 
-    $scope.switchToEdit = function (id) {
-        return _init_edit(id)
-    }
-    $scope.switchToList = function (id) {
-        $scope.stage=false;
-    }
+
 }
 
