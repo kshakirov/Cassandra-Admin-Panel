@@ -45,21 +45,21 @@
                     order: 100,
                 },
             })
-            .state('customers.new', {
+            .state('customers.groups', {
                 title: 'Customer Groups',
                 //controller: 'CustomerNew',
-                url: '/new/',
-                templateUrl: 'app/pages/customers/new.html',
+                url: '/group/',
+                templateUrl: 'app/pages/customers/group.html',
                 sidebarMeta: {
                     order: 300,
                 }
 
             })
-            .state('customers.order', {
+            .state('customers.online', {
                 title: 'Online Customers',
                 //  controller: 'CustomerOrderController',
-                url: '/order/:id',
-                templateUrl: 'app/pages/customers/order.html',
+                url: '/online/',
+                templateUrl: 'app/pages/customers/online.html',
                 sidebarMeta: {
                     order: 400,
                 }
