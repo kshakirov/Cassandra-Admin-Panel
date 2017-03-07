@@ -16,10 +16,16 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
         })
     }
 
+    function _init_list_by_customer(customer) {
+        $http.get('/admin/customer/' + customer + '/order/').then(function (promise) {
+            $scope.orders = promise.data;
+            $rootScope.orders = promise.data;
+            $scope.ordersReady = true;
+        });
+    }
 
     function _init_list() {
         $http.get('/admin/order/').then(function (promise) {
-            console.log(promise.data);
             $scope.orders = promise.data;
             $rootScope.orders = promise.data;
             $scope.ordersReady = true;
@@ -28,8 +34,13 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
 
     $scope.init = function () {
         if ($stateParams.id) {
-           _init_edit($stateParams.id)
-            $scope.stage=true
+            if($stateParams.id=='all' && $stateParams.customer){
+                _init_list_by_customer($stateParams.customer);
+                $scope.stage = false
+            }else {
+                _init_edit($stateParams.id)
+                $scope.stage = true
+            }
 
         } else {
             $scope.stage=false;

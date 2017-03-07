@@ -2,6 +2,7 @@
     <div class="col-lg-1">
         <h5>Edit</h5>
         <h5><a  ng-href="/#/customer/">List</a></h5>
+        <h5><a  ng-href="/#/sales/orders/all?customer={{customer_id}}">Orders</a></h5>
     </div>
     <div class="col-lg-11" ng-init="">
         <uib-accordion>
@@ -13,9 +14,6 @@
             </uib-accordion-group>
             <uib-accordion-group heading="Shipping Address" panel-class="panel-info bootstrap-panel accordion-panel">
                 <div ng-include="'app/pages/customers/customer/shipping_address.html'"></div>
-            </uib-accordion-group>
-            <uib-accordion-group heading="Orders" panel-class="panel-info bootstrap-panel accordion-panel">
-                <div ng-include="'app/pages/customers/customer/orders.html'"></div>
             </uib-accordion-group>
         </uib-accordion>
 
