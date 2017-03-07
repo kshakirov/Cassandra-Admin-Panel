@@ -24,10 +24,10 @@
     reports.config(routeConfig);
 
     /** @ngInject */
-    function routeConfig($stateProvider) {
+    function routeConfig($stateProvider, baSidebarServiceProvider) {
         $stateProvider
             .state('reports', {
-                url: '/customer',
+                url: '/reports',
                 template: '<ui-view></ui-view>',
                 abstract: true,
                 //controller: 'CustomerController',
@@ -39,34 +39,68 @@
             })
             .state('reports.carts', {
                 //controller: 'CustomerController',
-                url: '/:id',
-                template: '<ui-view></ui-view>',
-                //templateUrl: 'app/pages/customers/customer_container.html',
+                url: '/carts/:id',
+               //templateUrl: 'app/pages/customers/customer_container.html',
                 title: 'Shopping Cart',
                 sidebarMeta: {
                     order: 500,
                 },
             })
-            .state('report.carts.carts', {
-                title: 'Product in Carts',
-                //controller: 'CustomerNew',
-                url: '/group/',
-                templateUrl: 'app/pages/customers/group.html',
+            .state('reports.products', {
+                //controller: 'CustomerController',
+                url: '/products/:id',
+               //templateUrl: 'app/pages/customers/customer_container.html',
+                title: 'Products',
                 sidebarMeta: {
                     order: 600,
-                }
-
+                },
             })
-            .state('report.carts.abandoned', {
-                title: 'Abandoned Carts',
-                //  controller: 'CustomerOrderController',
-                url: '/online/',
-                templateUrl: 'app/pages/customers/online.html',
-                sidebarMeta: {
-                    order: 700,
-                }
-
-            })
+        //     .state('report.carts.carts', {
+        //         title: 'Product in Carts',
+        //         //controller: 'CustomerNew',
+        //         url: '/group/',
+        //         templateUrl: 'app/pages/customers/group.html',
+        //         sidebarMeta: {
+        //             order: 600,
+        //         }
+        //
+        //     })
+        //     .state('report.carts.abandoned', {
+        //         title: 'Abandoned Carts',
+        //         //  controller: 'CustomerOrderController',
+        //         url: '/online/',
+        //         templateUrl: 'app/pages/customers/online.html',
+        //         sidebarMeta: {
+        //             order: 700,
+        //         }
+        //
+        //     })
+        // baSidebarServiceProvider.addStaticItem({
+        //     state: 'reports',
+        //     url: '/report',
+        //     title: 'Reports',
+        //     icon: 'ion-ios-more',
+        //     subMenu: [{
+        //         title: 'Orders',
+        //         disabled: true
+        //     }, {
+        //         title: "Shopping Cart",
+        //         subMenu: [{
+        //             state: 'reports.cart.carts',
+        //             url: '/group/',
+        //             templateUrl: 'app/pages/customers/group.html',
+        //             title: 'Product in Carts',
+        //             disabled: false
+        //         },
+        //             {
+        //                 title: 'Abandoned Carts',
+        //                 url: '/online/',
+        //                 templateUrl: 'app/pages/customers/online.html',
+        //                 disabled: false
+        //             }
+        //         ]
+        //     }]
+        // });
     };
 
     // reports.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
