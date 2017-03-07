@@ -1,3 +1,4 @@
+
 (function () {
     'use strict';
 
@@ -25,10 +26,10 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('customers', {
-                url: '/customers',
-                template : '<ui-view></ui-view>',
+                url: '/customer',
+                template: '<ui-view></ui-view>',
                 abstract: true,
-                controller: 'CustomerController',
+                //controller: 'CustomerController',
                 title: 'Customers',
                 sidebarMeta: {
                     icon: 'ion-grid',
@@ -37,16 +38,16 @@
             })
             .state('customers.list', {
                 controller: 'CustomerController',
-                url: '/list',
-                templateUrl: 'app/pages/customers/customers.html',
+                url: '/:id',
+                templateUrl: 'app/pages/customers/customer_container.html',
                 title: 'Manage Customers',
                 sidebarMeta: {
                     order: 100,
                 },
-             })
-        .state('customers.new', {
+            })
+            .state('customers.new', {
                 title: 'Customer Groups',
-                controller: 'CustomerNew',
+                //controller: 'CustomerNew',
                 url: '/new/',
                 templateUrl: 'app/pages/customers/new.html',
                 sidebarMeta: {
@@ -56,7 +57,7 @@
             })
             .state('customers.order', {
                 title: 'Online Customers',
-                controller: 'CustomerOrderController',
+                //  controller: 'CustomerOrderController',
                 url: '/order/:id',
                 templateUrl: 'app/pages/customers/order.html',
                 sidebarMeta: {
@@ -64,108 +65,76 @@
                 }
 
             })
-    }
+    };
 
-    customers.controller("CustomerController", function ($scope, $http,
-                                                   $filter, editableOptions,
-                                                   editableThemes,
-                                                   $window) {
-        $scope.test = "Test"
-        $scope.smartTablePageSize = 10;
-        $scope.smartTableData = [
-            {
-                id: 1,
-                firstName: 'Mark',
-                lastName: 'Otto',
-                username: '@mdo',
-                email: 'mdo@gmail.com',
-                age: '28'
-            },
-            {
-                id: 2,
-                firstName: 'Jacob',
-                lastName: 'Thornton',
-                username: '@fat',
-                email: 'fat@yandex.ru',
-                age: '45'
-            }
-
-        ];
-        $scope.init = function () {
-            $http.get("/admin/customer/").then(function (promise) {
-                $scope.customers = promise.data;
-                $scope.customersReady = true;
-            }, function (error) {
-                console.log(error);
-                $window.location.href = '/auth.html';
-            })
-        }
-
-    })
-    customers.controller("CustomerIdController", function ($scope,
-                                                           $http, $stateParams, $location) {
-        $scope.test = "Test";
-        $scope.smartTablePageSize = 10;
-
-        $scope.init = function () {
-            var id = $stateParams.id;
-            if(id) {
-                console.log(id);
-                $http.get('/admin/customer/' + id).then(function (promise) {
-                    console.log(promise.data);
-                    $scope.customer = promise.data;
-                });
-
-                $http.get('/admin/customer/' + id + '/order/').then(function (promise) {
-                    console.log(promise.data);
-                    $scope.orders = promise.data;
-                    $scope.ordersReady = true;
-                });
-            }else{
-                $location.path('/customers/list');
-            }
-        }
-
-
+    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
+        _create_customers_controller($scope, $http, $window, $stateParams)
     })
 
-    customers.controller("CustomerNew", function ($scope, $http) {
+    // customers.controller("CustomerIdController", function ($scope,
+    //                                                        $http, $stateParams, $location) {
+    //     $scope.test = "Test";
+    //     $scope.smartTablePageSize = 10;
+    //
+    //     $scope.init = function () {
+    //         var id = $stateParams.id;
+    //         if(id) {
+    //             console.log(id);
+    //             $http.get('/admin/customer/' + id).then(function (promise) {
+    //                 console.log(promise.data);
+    //                 $scope.customer = promise.data;
+    //             });
+    //
+    //             $http.get('/admin/customer/' + id + '/order/').then(function (promise) {
+    //                 console.log(promise.data);
+    //                 $scope.orders = promise.data;
+    //                 $scope.ordersReady = true;
+    //             });
+    //         }else{
+    //             $location.path('/customers/list');
+    //         }
+    //     }
+    //
+    //
+    // })
 
+    // customers.controller("CustomerNew", function ($scope, $http) {
+    //
+    //
+    //     $scope.init= function () {
+    //         $scope.customer = {};
+    //         $scope.flag = {create: true};
+    //     };
+    //
+    //     $scope.createCustomer = function (customer) {
+    //         console.log(customer);
+    //         $http.post('/admin/customer/', customer).then(function (promise) {
+    //             console.log(promise);
+    //         })
+    //     }
+    // })
 
-        $scope.init= function () {
-            $scope.customer = {};
-            $scope.flag = {create: true};
-        };
-
-        $scope.createCustomer = function (customer) {
-            console.log(customer);
-            $http.post('/admin/customer/', customer).then(function (promise) {
-                console.log(promise);
-            })
-        }
-    })
-
-    customers.controller("CustomerOrderController", function ($scope, $http,
-                                                              $stateParams, $location) {
-        $scope.test = "Test"
-        $scope.smartTablePageSize = 10;
-
-        $scope.init = function () {
-            var id = $stateParams.id;
-            if(id) {
-                console.log(id);
-                $http.get('/admin/customer/order/' + id).then(function (promise) {
-                    console.log(promise.data);
-                    $scope.order = promise.data;
-                    $scope.order.statuses =  [{name: 'pending'}, {name: 'paid'}]
-                })
-            }else{
-                $location.path('/customers/list');
-            }
-        }
-
-
-    })
+    // customers.controller("CustomerOrderController", function ($scope, $http,
+    //                                                           $stateParams, $location) {
+    //     $scope.test = "Test"
+    //     $scope.smartTablePageSize = 10;
+    //
+    //     $scope.init = function () {
+    //         var id = $stateParams.id;
+    //         if(id) {
+    //             console.log(id);
+    //             $http.get('/admin/customer/order/' + id).then(function (promise) {
+    //                 console.log(promise.data);
+    //                 $scope.order = promise.data;
+    //                 $scope.order.statuses =  [{name: 'pending'}, {name: 'paid'}]
+    //             })
+    //         }else{
+    //             $location.path('/customers/list');
+    //         }
+    //     }
+    //
+    //
+    // })
 
 })();
 /**

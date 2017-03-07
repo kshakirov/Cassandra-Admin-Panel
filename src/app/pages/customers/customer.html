@@ -1,23 +1,25 @@
-<div class="col-lg-10" ng-controller="CustomerIdController" ng-init="init()">
-    <uib-accordion>
-        <uib-accordion-group heading="General Info" panel-class="panel-primary bootstrap-panel accordion-panel">
-           <div ng-include="'app/pages/customers/customer/general_info.html'"></div>
-        </uib-accordion-group>
-        <uib-accordion-group heading="Billing Address" panel-class="panel-success bootstrap-panel accordion-panel">
-            <div ng-include="'app/pages/customers/customer/billing_address.html'"></div>
-        </uib-accordion-group>
-        <uib-accordion-group heading="Shipping Address" panel-class="panel-info bootstrap-panel accordion-panel">
-            <div ng-include="'app/pages/customers/customer/shipping_address.html'"></div>
-        </uib-accordion-group>
-        <uib-accordion-group heading="Orders" panel-class="panel-warning bootstrap-panel accordion-panel">
-            <div ng-include="'app/pages/customers/customer/orders.html'"></div>
-        </uib-accordion-group>
-        <uib-accordion-group  heading="Danger"  panel-class="panel-danger bootstrap-panel accordion-panel">
-            Danger <i class="ion-nuclear"></i>
-        </uib-accordion-group>
-    </uib-accordion>
+<div class="row">
+    <div class="col-lg-2">
+        <h3>Edit</h3>
+        <h3><a  ng-href="/#/customer/">List</a></h3>
+    </div>
+    <div class="col-lg-10" ng-init="">
+        <uib-accordion>
+            <uib-accordion-group heading="General Info" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/customers/customer/general_info.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Billing Address" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/customers/customer/billing_address.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Shipping Address" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/customers/customer/shipping_address.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Orders" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/customers/customer/orders.html'"></div>
+            </uib-accordion-group>
+        </uib-accordion>
 
 
-
+    </div>
 </div>
 

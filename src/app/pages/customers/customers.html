@@ -1,4 +1,4 @@
-<div ng-controller="CustomerController" ng-init="init()">
+<div  ng-init="init()">
     <div class="row ">
         <div class="col-lg-2">
             <div class="form-group select-page-size-wrap ">
@@ -56,7 +56,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in customers">
-                        <td class="table-id"><a ng-href="/#/customers/edit/{{item.id}}">{{item.id}}</a></td>
+                        <td class="table-id"><a ng-href="/#/customer/{{item.id}}" >{{item.id}}</a></td>
                         <td>{{item.lastname}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.default_billing_address.company}}</td>

@@ -1,4 +1,4 @@
-<div class="horizontal-scroll">
+<div class="horizontal-scroll" >
     <div class="form-group select-page-size-wrap ">
         <label>Rows On Page
             <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
@@ -33,7 +33,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in orders">
-            <td class="table-id"><a ng-href="/#/customers/order/{{item.order_id}}">{{item.order_id}}</a></td>
+            <td class="table-id"><a ng-href="/#/sales/orders/{{item.order_id}}">{{item.order_id}}</a></td>
             <td>{{item.subtotal}}</td>
             <td>{{item.grand_total}}</td>
             <td>{{item.payment_method}}</td>

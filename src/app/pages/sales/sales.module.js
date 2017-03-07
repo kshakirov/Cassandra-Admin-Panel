@@ -23,7 +23,7 @@
                     order: 300,
                 },
             }).state('sales.orders', {
-            url: '/orders',
+            url: '/orders/:id',
             templateUrl: 'app/pages/sales/orders/order_container.html',
             controller: 'OrdersController',
             title: 'Orders',
@@ -38,7 +38,7 @@
                 order: 101,
             },
         }).state('sales.shipments', {
-                url: '/shipments',
+                url: '/shipment/:id?order=:order_id',
                 templateUrl: 'app/pages/sales/shipments/shipment_container.html',
                 title: 'Shipments',
                 controller: 'ShipmentsController',

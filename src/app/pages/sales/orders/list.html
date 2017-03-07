@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in orders">
-                    <td class="table-id"><a  ng-click="switchToEdit(item.order_id)" href="">{{item.order_id}}</a></td>
+                    <td class="table-id"><a  ng-href="/#/sales/orders/{{item.order_id}}" >{{item.order_id}}</a></td>
                     <td>{{item.billing_address.lastname}}</td>
                     <td>{{item.shipping_address.lastname}}</td>
                     <td>{{item.subtotal}}</td>

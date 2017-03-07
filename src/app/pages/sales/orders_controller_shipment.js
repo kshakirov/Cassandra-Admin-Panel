@@ -23,14 +23,18 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
         })
     }
 
+
     $scope.init = function () {
-        if ($rootScope  && $rootScope.shipments  && $rootScope.shipments.length > 0) {
-            $scope.shipments = $rootScope.shipments;
-            $scope.shipmentsReady = true;
+        if ($stateParams.id && $stateParams.order) {
+            _init_edit($stateParams.order, $stateParams.id)
+            $scope.stage=true
+
         } else {
+            $scope.stage=false;
             _init_list();
         }
     }
+    
 
     $scope.switchToEdit = function (order_id, id) {
         return _init_edit(order_id, id)

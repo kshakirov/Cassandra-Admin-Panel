@@ -27,10 +27,12 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     }
 
     $scope.init = function () {
-        if ($rootScope  && $rootScope.orders  && $rootScope.orders.length > 0) {
-            $scope.orders = $rootScope.orders;
-            $scope.ordersReady = true;
+        if ($stateParams.id) {
+           _init_edit($stateParams.id)
+            $scope.stage=true
+
         } else {
+            $scope.stage=false;
             _init_list();
         }
     }
