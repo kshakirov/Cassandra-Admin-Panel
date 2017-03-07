@@ -2,9 +2,9 @@
 (function () {
     'use strict';
 
-    var customers = angular.module('BlurAdmin.pages.customers', ['ngCookies']);
+    var reports = angular.module('BlurAdmin.pages.reports', ['ngCookies']);
 
-    customers.factory('sessionInjector', function ($cookies) {
+    reports.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
             request: function (config) {
 
@@ -15,61 +15,63 @@
         };
         return sessionInjector;
     });
-    customers.config(['$httpProvider', function ($httpProvider) {
+
+    reports.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('sessionInjector');
     }]);
 
 
-    customers.config(routeConfig);
+    reports.config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('customers', {
+            .state('reports', {
                 url: '/customer',
                 template: '<ui-view></ui-view>',
                 abstract: true,
                 //controller: 'CustomerController',
-                title: 'Customers',
+                title: 'Reports',
                 sidebarMeta: {
                     icon: 'ion-grid',
-                    order: 300
+                    order: 400
                 }
             })
-            .state('customers.list', {
-                controller: 'CustomerController',
+            .state('reports.carts', {
+                //controller: 'CustomerController',
                 url: '/:id',
-                templateUrl: 'app/pages/customers/customer_container.html',
-                title: 'Manage Customers',
+                template: '<ui-view></ui-view>',
+                //templateUrl: 'app/pages/customers/customer_container.html',
+                title: 'Shopping Cart',
                 sidebarMeta: {
-                    order: 100,
+                    order: 500,
                 },
             })
-            .state('customers.groups', {
-                title: 'Customer Groups',
+            .state('report.carts.carts', {
+                title: 'Product in Carts',
                 //controller: 'CustomerNew',
                 url: '/group/',
                 templateUrl: 'app/pages/customers/group.html',
                 sidebarMeta: {
-                    order: 300,
+                    order: 600,
                 }
 
             })
-            .state('customers.online', {
-                title: 'Online Customers',
+            .state('report.carts.abandoned', {
+                title: 'Abandoned Carts',
                 //  controller: 'CustomerOrderController',
                 url: '/online/',
                 templateUrl: 'app/pages/customers/online.html',
                 sidebarMeta: {
-                    order: 400,
+                    order: 700,
                 }
 
             })
     };
 
-    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
-        _create_customers_controller($scope, $http, $window, $stateParams)
-    })
+    // reports.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
+    //     _create_customers_controller($scope, $http, $window, $stateParams)
+    // })
 
 
 })();
