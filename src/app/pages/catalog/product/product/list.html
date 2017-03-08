@@ -1,0 +1,53 @@
+<div class="row" ng-init="init()">
+    <div class="col-lg-1">
+        <h5><a ng-click="nextPage()" href="">NEXT</a></h5>
+    </div>
+    <div class="col-lg-11">
+        <div class="row">
+            <div class="col-lg-2">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="input01" placeholder="SEARCH ID">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group select-page-size-wrap ">
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="page_size" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-11">
+            <div class="horizontal-scroll">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>PART TYPE</th>
+                        <th>PART NUMBER</th>
+                        <th>NAME</th>
+                        <th>MANUFACTURER</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in products">
+                        <td><a ng-href="/#/catalog/product/{{item.sku}}">{{item.sku}}</a></td>
+                        <td>{{item.part_type}}</td>
+                        <td>{{item.part_number}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.manufacturer}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

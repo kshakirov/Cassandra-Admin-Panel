@@ -1,0 +1,6 @@
+<div  ng-if="!stage">
+    <div ng-include="'app/pages/catalog/product/product/list.html'" ></div>
+</div>
+<div class="row" ng-if="stage">
+    <div ng-include="'app/pages/catalog/product/product/item.html'"></div>
+</div>

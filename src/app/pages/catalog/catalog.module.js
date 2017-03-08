@@ -32,6 +32,7 @@
             .state('catalog.product', {
                 url: '/product/:id',
                 templateUrl: 'app/pages/catalog/product/product_container.html',
+                controller: 'ProductController',
                 title: 'Manage Product',
                 sidebarMeta: {
                     order: 1,
@@ -60,7 +61,9 @@
         });
         $urlRouterProvider.when('/catalog','/catalog/attribute');
     };
-
+    catalog.controller("ProductController", function ($scope, $http, $stateParams) {
+        _create_product_controller($scope, $http, $stateParams)
+    })
     catalog.controller('CatalogController', function ($scope, $http, $window) {
 
         $scope.attributeTablePageSize = 10;
