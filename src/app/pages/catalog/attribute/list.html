@@ -1,0 +1,56 @@
+<div ng-init="init()">
+    <div class="col-lg-1">
+        <h5>LIST </h5>
+    </div>
+    <div class="col-lg-11">
+
+        <div class="horizontal-scroll">
+            <div class="form-group select-page-size-wrap ">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="attributeTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
+            <table ng-if="attributesReady" class="table" st-table="attributes">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="code" st-sort-default="true">#</th>
+                    <th st-sort="label">Frontend Name</th>
+                    <th st-sort="attribute_set">Attribute Set</th>
+                    <th st-sort="type">Type</th>
+                </tr>
+                <tr>
+                    <th><input st-search="code" placeholder="Search Code" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="label" placeholder="Search Label"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="attribute_set" placeholder="Search Set"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="type" placeholder="Search Type" class="input-sm form-control search-input"
+                               type="search"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in attributes">
+                    <td class="table-id"><a ng-href="/#/catalog/attribute/{{item.code}}">{{item.code}}</a></td>
+                    <td>{{item.label}}</td>
+                    <td>{{item.attribute_set}}</td>
+                    <td>{{item.type}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="attributeTablePageSize"
+                             st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>

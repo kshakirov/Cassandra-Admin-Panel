@@ -3,6 +3,20 @@
 
     var catalog = angular.module('BlurAdmin.pages.catalog', ['ngCookies']);
 
+    catalog.factory('sessionInjector', function ($cookies) {
+        var sessionInjector = {
+            request: function (config) {
+
+                config.headers['Authorization'] = "Bearer " + $cookies.getObject('token');
+
+                return config;
+            }
+        };
+        return sessionInjector;
+    });
+    catalog.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('sessionInjector');
+    }]);
 
 
 
@@ -15,7 +29,6 @@
                 url: '/catalog',
                 template : '<ui-view></ui-view>',
                 abstract: true,
-                controller: 'CatalogController',
                 title: 'Catalog',
                 sidebarMeta: {
                     icon: 'ion-grid',
@@ -45,15 +58,17 @@
                     order: 2,
                 },
             }).state('catalog.attribute', {
-            url: '/attribute',
-            templateUrl: 'app/pages/catalog/attribute/attribute.html',
+            url: '/attribute/:id',
+            controller: 'AttributeController',
+            templateUrl: 'app/pages/catalog/attribute/attribute_container.html',
             title: 'Attributes',
             sidebarMeta: {
                 order: 3,
             },
         }).state('catalog.attribute_set', {
-            url: '/attribute_set',
-            templateUrl: 'app/pages/catalog/attribute_set/attribute_set.html',
+            url: '/attribute_set/:id',
+            controller: 'AttributeSetController',
+            templateUrl: 'app/pages/catalog/attribute_set/attribute_set_container.html',
             title: 'Attribute Sets',
             sidebarMeta: {
                 order: 100,
@@ -64,56 +79,14 @@
     catalog.controller("ProductController", function ($scope, $http, $stateParams) {
         _create_product_controller($scope, $http, $stateParams)
     })
-    catalog.controller('CatalogController', function ($scope, $http, $window) {
 
-        $scope.attributeTablePageSize = 10;
-        $scope.attributeSetTablePageSize = 10;
+    catalog.controller("AttributeController", function ($scope, $http, $stateParams, $window) {
+        _create_attribute_controller($scope, $http, $stateParams,$window)
+    })
 
-        $scope.initAttributes = function () {
-            console.log("INIT");
-            $http.get("/admin/attribute/").then(function (promise) {
-                $scope.attributes = promise.data;
-                $scope.attributesReady = true;
-            }, function (error) {
-                console.log(error);
-                //$window.location.href = '/auth.html';
-            })
+    catalog.controller('AttributeSetController', function ($scope, $http, $window, $stateParams) {
 
-        };
-
-        $scope.editSet = function (code) {
-            $http.get("/admin/attribute_set/" + code).then(function (promise) {
-                $scope.attribute_set = promise.data[0];
-                $scope.editAttributeSet = true;
-            }, function (error) {
-                console.log(error);
-                //$window.location.href = '/auth.html';
-            })
-        }
-
-        $scope.saveSet = function (set) {
-            console.log(set)
-            $http.post("/admin/attribute_set/", set).then(function (promise) {
-                console.log(promise)
-                $scope.editAttributeSet = true;
-            }, function (error) {
-                console.log(error);
-                //$window.location.href = '/auth.html';
-            })
-        }
-
-        $scope.initAttributeSets = function () {
-            console.log("INIT as");
-            $http.get("/admin/attribute_set/").then(function (promise) {
-                $scope.attributeSets = promise.data;
-                $scope.attributeSetsReady = true;
-                $scope.editAttributeSet = false;
-            }, function (error) {
-                console.log(error);
-                //$window.location.href = '/auth.html';
-            })
-
-        }
+       _create_attribte_set_controller($scope, $http, $window, $stateParams)
     })
 
 

@@ -1,0 +1,23 @@
+<div ng-init="init()">
+    <div class="col-lg-1">
+        <h5><a ng-href="/#/catalog/attribute/">LIST</a> </h5>
+    </div>
+    <div class="col-lg-11">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ATTRIBUTE</th>
+                <th>VALUE</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key, value) in attribute">
+                <td width="20%"><b>{{key}}</b></td>
+                <td width="80%">{{value}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

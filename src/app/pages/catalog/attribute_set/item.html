@@ -1,0 +1,41 @@
+<div class="col-lg-1">
+    <h5><a ng-href="/#/catalog/attribute_set/">LIST</a></h5>
+</div>
+<div class="col-lg-11" ng-init="init()">
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ATTRIBUTE</th>
+                    <th>VALUE</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key, value) in attribute_set" ng-if="key!='attributes'">
+                    <td width="20%"><b>{{key}}</b></td>
+                    <td width="80%">{{value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ATTRIBUTE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="value in attribute_set.attributes">
+                    <td>{{$index}}</td>
+                    <td>{{value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
