@@ -1,8 +1,6 @@
-
 function _create_attribte_set_controller($scope, $http, $window, $stateParams) {
     $scope.attributeSetTablePageSize = 10;
     $scope.stage = false;
-
 
 
     function _init_list() {
@@ -14,27 +12,35 @@ function _create_attribte_set_controller($scope, $http, $window, $stateParams) {
             $window.location.href = '/auth.html';
         })
     }
-    function  _init_item(id) {
+
+    function _init_item(id) {
         $http.get("/admin/attribute_set/" + id).then(function (promise) {
-            $scope.attribute_set = promise.data[0];
+            $scope.attribute_set = promise.data;
             $scope.editAttributeSet = true;
+            return promise.data.attributes;
         }, function (error) {
             $window.location.href = '/auth.html';
+        }).then(function (attributes) {
+            var data = attributes;
+            $http.post('/admin/attribute/list/', data).then(function (promise) {
+                console.log(promise.data);
+                $scope.attributes = promise.data;
+            })
         })
     }
 
 
-
-    $scope.init= function () {
-        if($stateParams.id){
+    $scope.init = function () {
+        if ($stateParams.id) {
             _init_item(($stateParams.id))
             $scope.stage = true
-        }else{
+        } else {
             _init_list();
             $scope.stage = false
         }
 
     }
-}/**
+}
+/**
  * Created by kshakirov on 3/8/17.
  */

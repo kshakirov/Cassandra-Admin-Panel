@@ -30,9 +30,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="value in attribute_set.attributes">
+                <tr ng-repeat="attribute in attributes">
                     <td>{{$index}}</td>
-                    <td>{{value}}</td>
+                    <td><a ng-href="/#/catalog/attribute/{{attribute.code}}">{{attribute.label}}</a></td>
                 </tr>
                 </tbody>
             </table>
