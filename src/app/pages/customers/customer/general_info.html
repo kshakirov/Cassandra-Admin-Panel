@@ -1,5 +1,5 @@
-<h1>Customer</h1>
-<form>
+<h4>Customer</h4>
+<form ng-if="!customer_saved_data">
     <div class="form-group">
         <label for="firstname">First Name</label>
         <input ng-model="customer.firstname" type="text" class="form-control" id="firstname" placeholder="">
@@ -24,7 +24,34 @@
     </div>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button type="submit" class="btn btn-info" disabled>UPDATE</button>
+            <button ng-if="!customer_new"   class="btn btn-info" disabled>UPDATE</button>
+            <button ng-if="customer_new"  ng-click="create_customer(customer)" class="btn btn-info">CREATE</button>
         </div>
     </div>
 </form>
+
+<div class="col-lg-6 col-lg-offset-3" ng-if="customer_saved_data">
+            <table class="table table-bordered">
+
+                <tbody>
+                <tr>
+                    <td>
+                        Password: Copy It!!!
+                    </td>
+                    <td>
+                        {{customer_saved_data.password}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Customer
+                    </td>
+                    <td>
+                        <a ng-href="/#/customer/{{customer_saved_data.cid}}">{{customer_saved_data.email}}</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+</div>

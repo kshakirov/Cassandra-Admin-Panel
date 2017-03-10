@@ -1,23 +1,32 @@
 function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
-    $scope.test = "Test"
     $scope.smartTablePageSize = 10;
-    $scope.ordersReady = false;
-
     $scope.stage = false;
+    var url_prefix = '/admin/'
 
     function _init_edit(id) {
         $scope.stage = true;
         $scope.customer_id = id;
-        $http.get('/admin/customer/' + id).then(function (promise) {
+        $http.get(url_prefix + 'customer/' + id).then(function (promise) {
             console.log(promise.data);
             $scope.customer = promise.data;
 
         })
     }
 
+    function _init_new() {
+        this.customer_new = true;
+        this.stage = true;
+    }
+
+    function save_customer(customer_data) {
+        return $http.post(url_prefix + "customer/new/", customer_data).then(function (promise) {
+            return promise;
+        })
+    }
+
     function _init_list() {
-        return $http.get("/admin/customer/").then(function (promise) {
+        return $http.get(url_prefix + "customer/").then(function (promise) {
             $scope.customers = promise.data;
             $scope.customersReady = true;
         }, function (error) {
@@ -28,28 +37,26 @@ function _create_customers_controller($scope, $http,
 
 
     $scope.init = function () {
-        if ($stateParams.id) {
-            this.customer_id = $stateParams.id;
-            _init_edit($stateParams.id);
-            $scope.stage = true
+        var id = $stateParams.id;
+        if (id && id == 'new') {
+            _init_new.bind($scope)();
 
+        }
+        else if (id) {
+            this.customer_id = id;
+            _init_edit(id);
+            $scope.stage = true
         } else {
             $scope.stage = false;
             _init_list();
         }
     }
 
-
-    $scope.loadOrders = function () {
-
+    $scope.create_customer = function (customer_data) {
+        save_customer(customer_data).then(function (promise) {
+            $scope.customer_saved_data = promise.data;
+        })
     }
 
-
-    $scope.switchToEdit = function (id) {
-        return _init_edit(id)
-    }
-    $scope.switchToList = function (id) {
-        $scope.stage = false;
-    }
 
 }

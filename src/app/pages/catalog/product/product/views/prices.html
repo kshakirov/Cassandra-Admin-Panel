@@ -1,0 +1,39 @@
+<div class="row">
+<div class="col-lg-6">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Attributes</th>
+            <th>Values</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, value) in prices" ng-if="key!=prices">
+            <td width="20%">{{key}}</td>
+            <td width="80%">{{value}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <div class="col-lg-1"></div>
+<div class="col-lg-4">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Group</th>
+            <th>Price</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, value) in prices.prices">
+            <td width="20%">{{key}}</td>
+            <td width="80%">{{value}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

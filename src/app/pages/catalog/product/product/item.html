@@ -1,23 +1,21 @@
 <div class="row" ng-init="init()">
     <div class="col-lg-1">
-        <h5><a  ng-href="/#/catalog/product/">LIST</a></h5>
+        <h5><a ng-href="/#/catalog/product/">LIST</a></h5>
     </div>
     <div class="col-lg-11">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>ATTRIBUTE</th>
-                <th>VALUE</th>
-
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="(key, value) in product">
-               <td width="20%">{{key}}</td>
-                <td width="80%">{{value}}</td>
-            </tr>
-            </tbody>
-        </table>
+        <uib-accordion>
+            <uib-accordion-group heading="Attributes" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/catalog/product/product/views/attributes.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Price" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/catalog/product/product/views/prices.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Inventory" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/catalog/product/product/views/stock.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Images" panel-class="panel-info bootstrap-panel accordion-panel">
+                <div ng-include="'app/pages/catalog/product/product/views/images.html'"></div>
+            </uib-accordion-group>
+        </uib-accordion>
     </div>
 </div>
