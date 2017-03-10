@@ -25,6 +25,15 @@ function _create_customers_controller($scope, $http,
         })
     }
 
+
+    function reset_password(email) {
+        var data = {email: email};
+        return $http.put(url_prefix + "customer/password/reset/", data).then(function (promise) {
+            return promise;
+        })
+    }
+
+
     function _init_list() {
         return $http.get(url_prefix + "customer/").then(function (promise) {
             $scope.customers = promise.data;
@@ -57,6 +66,12 @@ function _create_customers_controller($scope, $http,
             $scope.customer_saved_data = promise.data;
         })
     }
+    $scope.reset_password = function (email) {
+        reset_password(email).then(function (promise) {
+            $scope.customer_reset_password = promise.data;
+        })
+    }
+    
 
 
 }

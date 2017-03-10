@@ -15,6 +15,9 @@
             <uib-accordion-group heading="Shipping Address" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
                 <div ng-include="'app/pages/customers/customer/shipping_address.html'"></div>
             </uib-accordion-group>
+            <uib-accordion-group heading="Manage Passwords" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
+                <div ng-include="'app/pages/customers/customer/password_managment.html'"></div>
+            </uib-accordion-group>
         </uib-accordion>
 
 

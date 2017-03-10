@@ -24,34 +24,32 @@
     </div>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button ng-if="!customer_new"   class="btn btn-info" disabled>UPDATE</button>
-            <button ng-if="customer_new"  ng-click="create_customer(customer)" class="btn btn-info">CREATE</button>
+            <button ng-if="!customer_new" class="btn btn-info" disabled>UPDATE</button>
+            <button ng-if="customer_new" ng-click="create_customer(customer)" class="btn btn-info">CREATE</button>
         </div>
     </div>
 </form>
 
 <div class="col-lg-6 col-lg-offset-3" ng-if="customer_saved_data">
-            <table class="table table-bordered">
+    <table class="table table-bordered">
 
-                <tbody>
-                <tr>
-                    <td>
-                        Password: Copy It!!!
-                    </td>
-                    <td>
-                        {{customer_saved_data.password}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Customer
-                    </td>
-                    <td>
-                        <a ng-href="/#/customer/{{customer_saved_data.cid}}">{{customer_saved_data.email}}</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
+        <tbody>
+        <tr>
+            <td>
+                Password: Copy It!!!
+            </td>
+            <td>
+                {{customer_saved_data.password}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Customer
+            </td>
+            <td>
+                <a ng-href="/#/customer/{{customer_saved_data.cid}}">{{customer_saved_data.email}}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
