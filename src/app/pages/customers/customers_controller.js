@@ -82,7 +82,15 @@ function _create_customers_controller($scope, $http,
     $scope.create_order = function (customer_id) {
         create_order(customer_id).then(function (promise) {
             $scope.customer_created_order = promise.data;
+            if($scope.customer_created_order.length==0){
+                $scope.emptyCart = true;
+            }
         })
+    }
+
+    $scope.cancel_empty_cart = function () {
+        $scope.emptyCart = false;
+        $scope.customer_created_order = null;
     }
     
 

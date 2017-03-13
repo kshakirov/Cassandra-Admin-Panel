@@ -8,7 +8,7 @@
     </div>
 </form>
 
-<table class="table table-bordered" ng-if="customer_created_order">
+<table class="table table-bordered" ng-if="customer_created_order&& !emptyCart">
     <tbody>
     <tr>
         <td style="color: #9d261d">
@@ -22,3 +22,7 @@
 
     </tbody>
 </table>
+<div class="alert bg-danger closeable" role="alert" ng-if="emptyCart">
+    <button type="button" class="close" aria-label="Close" ng-click="cancel_empty_cart()"><span aria-hidden="true">&times;</span></button>
+    <center> <strong>Cart Is Empty!</strong> </center>
+</div>
