@@ -1,0 +1,24 @@
+<h5 style="color: #6f1400">You are about to create the order for the current Customer. To manage it, the Customer's cart must not be empty</h5>
+<form class="form-horizontal" ng-if="!customer_order">
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button ng-click="create_order(customer.id)" class="btn btn-info" >CREATE ORDER</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered" ng-if="customer_created_order">
+    <tbody>
+    <tr>
+        <td style="color: #9d261d">
+            <b> ORDER ID</b>
+        </td>
+        <td><a ng-href="/#/sales/orders/{{customer_created_order.order_id}}">
+            {{customer_created_order.order_id}}
+        </a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
