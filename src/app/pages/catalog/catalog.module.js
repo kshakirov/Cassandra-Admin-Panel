@@ -52,6 +52,7 @@
                 },
             }).state('catalog.featured_product', {
                 url: '/featured_product/:id',
+                controller: 'FeaturedProductController',
                 templateUrl: 'app/pages/catalog/featured_product/featured_product_container.html',
                 title: 'Featured Product',
                 sidebarMeta: {
@@ -79,7 +80,7 @@
     catalog.controller("ProductController", function ($scope, $http, $stateParams) {
         _create_product_controller($scope, $http, $stateParams)
     })
-
+    
     catalog.controller("AttributeController", function ($scope, $http, $stateParams, $window) {
         _create_attribute_controller($scope, $http, $stateParams,$window)
     })
@@ -87,6 +88,9 @@
     catalog.controller('AttributeSetController', function ($scope, $http, $window, $stateParams) {
 
        _create_attribte_set_controller($scope, $http, $window, $stateParams)
+    })
+    catalog.controller("FeaturedProductController", function ($scope, $http, $stateParams) {
+        _create_featured_product_controller($scope, $http, $stateParams)
     })
 
 

@@ -1,0 +1,88 @@
+<div ng-init="init()">
+    <div class="row ">
+        <div class="col-lg-1">
+            <h5>List</h5>
+        </div>
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text"  ng-model="sku" class="form-control with-warning-addon" placeholder="Product Sku" aria-describedby="basic-addon2">
+                        <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2" ng-click="addProduct(sku)">Add Product By Sku</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-lg-offset-4">
+                    <div class="form-group select-page-size-wrap ">
+                        <label>Rows on page
+                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-3">
+                    <div class="alert bg-danger closeable" role="alert" ng-if="error.add">
+                        <button type="button" class="close" aria-label="Close" ng-click="cancel_add_error()"><span aria-hidden="true">&times;</span></button>
+                        <center> <strong>No Product with Such a Sku!</strong> </center>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+
+                    <div class="horizontal-scroll">
+
+                        <table ng-if="featuredProductsReady" class="table" st-table="featuredProducts">
+                            <thead>
+                            <tr class="sortable ">
+                                <th class="table-id" st-sort="sku">SKU</th>
+                                <th st-sort="part_number">Name</th>
+                                <th st-sort="part_type">Part Type</th>
+                                <th st-sort="order"  >Order</th>
+                                <th st-sort="visibility">Visibility</th>
+                                <th st-sort="visibility">Update</th>
+                                <th st-sort="visibility">Delete</th>
+                            </tr>
+                            <tr>
+                                <th><input st-search="sku" placeholder="Search Sku"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="part_number" placeholder="Search Number"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="part_type" placeholder="Search Type"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in featuredProducts">
+                                <td class="table-id"><a ng-href="/#/catalog/product/{{item.sku}}">{{item.sku}}</a></td>
+                                <td>{{item.part_number}}</td>
+                                <td>{{item.part_type}}</td>
+                                <td width="10%">
+                                    <input type="number" ng-model = "item.order" class="form-control with-warning-addon" placeholder="" aria-describedby="basic-addon2">
+                                </td>
+                                <td> <input type="checkbox" id=""  value="option3" ng-model="item.visible"></td>
+                                 <td><button type="button"  ng-click="updateProduct(item)" class="btn btn-success">Update</button></td>
+                                <td><button type="button" class="btn btn-danger" ng-click="deleteProduct(item.sku)">Delete</button></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize"
+                                         st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

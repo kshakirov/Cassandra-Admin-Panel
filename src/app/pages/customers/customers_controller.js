@@ -2,7 +2,7 @@ function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
-    var url_prefix = '/admin/'
+    var url_prefix = '/admin/';
 
     function _init_edit(id) {
         $scope.stage = true;
