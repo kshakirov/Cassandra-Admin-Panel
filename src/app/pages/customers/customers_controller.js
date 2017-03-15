@@ -2,7 +2,10 @@ function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
-
+    
+    $scope.future_products = [
+        {name: '', quantity: 1}
+    ]
 
     var url_prefix = '/admin/';
 
@@ -19,6 +22,13 @@ function _create_customers_controller($scope, $http,
     function _init_new() {
         this.customer_new = true;
         this.stage = true;
+    }
+
+    function calculate_derived_fields(item) {
+        item.subtotal = item.quantity * item.price;
+        item.tax_amount = item.tax_percent /100 * item.price;
+        item.row_total  = item.subtotal + item.tax_amount - item.discount_amount
+
     }
 
     function save_customer(customer_data) {
@@ -56,6 +66,14 @@ function _create_customers_controller($scope, $http,
         }, function (error) {
             console.log(error);
             $window.location.href = '/auth.html';
+        })
+    }
+
+
+    function load_product(sku, customer_group_id) {
+        var data = {sku: sku, customer_group_id: customer_group_id};
+        return $http.get(url_prefix + "customer/group/" +  customer_group_id +"/product/" + sku).then(function (promise) {
+            return promise.data;
         })
     }
 
@@ -118,6 +136,18 @@ function _create_customers_controller($scope, $http,
     $scope.cancel_password_changed = function () {
         $scope.customer_change_password = false;
         $scope.password = null;
+    }
+
+    $scope.load_future_product = function ( sku, customer_group_id, index) {
+        load_product(sku, customer_group_id).then(function (promise) {
+            console.log(promise);
+            $scope.future_products[index] = promise;
+            calculate_derived_fields($scope.future_products[index])
+        })
+    }
+    
+    $scope.changed_qty = function (index) {
+        calculate_derived_fields($scope.future_products[index ])
     }
 
 

@@ -1,0 +1,411 @@
+<div  ng-init="init()">
+
+
+
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Data</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Order Id
+                                    </td>
+                                    <td>
+                                        {{order.order_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Order Date
+                                    </td>
+                                    <td>
+                                        {{order.updated_at}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Account Information</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{customer.firstname}} {{customer.lastname}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Customer Email
+                                    </td>
+                                    <td>
+                                        {{customer.email}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br/> <br/>
+
+        <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Billing Address</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.firstname}} {{customer.billing_address.lastname}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Street
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.street}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        City
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.city}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Region
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.region}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Country
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.country_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.postcode}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone
+                                    </td>
+                                    <td>
+                                        {{customer.default_billing_address.telephone}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Address</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Customer Name
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.firstname}} {{customer.default_shipping_address.lastname}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Street
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.street}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        City
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.city}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Region
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.region}}
+                                    </td>
+                                <tr>
+                                    <td>
+                                        Country
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.country_id}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.postcode}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone
+                                    </td>
+                                    <td>
+                                        {{customer.default_shipping_address.telephone}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Payment Method</div>
+                        <div class="panel-body">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Method</div>
+                        <div class="panel-body">
+                            {{order.shipping_method}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                <br/>
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Special Instructions</div>
+                        <div class="panel-body">
+                            {{order.special_instructions}}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading">Customer Purchase Order</div>
+                        <div class="panel-body">
+                            {{order.customer_purchase_order}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Products</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>
+                                       
+                                    </td>
+                                    <th>
+                                        Part Type
+                                    </th>
+                                    <th>
+                                        Part Number
+                                    </th>
+
+                                    <th>
+                                        Item Status
+                                    </th>
+                                    <th ng-if="false">
+                                        Original Price
+                                    </th>
+                                    <th >
+                                        Price
+                                    </th>
+                                    <th>
+                                        Qty
+                                    </th>
+                                    <th>
+                                        SubTotal
+                                    </th>
+                                    <th>
+                                        Tax Amount
+                                    </th>
+                                    <th>
+                                        Tax Percent
+                                    </th>
+                                    <th>
+                                        Discount Amoun
+                                    </th>
+                                    <th>
+                                        Row Total
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item  in future_products">
+                                    <td>
+                                        {{$index + 1}}
+                                    </td>
+                                    <td>
+                                        {{item.part_type}}
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control " id="input03" ng-blur="load_future_product(item.name, customer.group_id, $index)" placeholder="Sku" ng-model="item.name">
+                                    </td>
+                                    <td>
+                                        {{item.item_status}}
+                                    </td>
+                                    <td ng-if="false">
+                                        {{item.original_price}}
+                                    </td>
+                                    <td>
+                                        {{item.price}}
+                                    </td>
+                                    <td width="12%">
+                                        <input type="number" class="form-control" id="input04" placeholder="" ng-model="item.quantity" ng-change="changed_qty($index)">
+                                    </td>
+                                    <td>
+                                        {{item.subtotal}}
+                                    </td>
+                                    <td>
+                                        {{item.tax_amout}}
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" id="input05" placeholder="" ng-model="item.tax_percent" ng-change="changed_qty($index)">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" id="input06" placeholder="" ng-model="item.discount_amount" ng-change="changed_qty($index)">
+                                    </td>
+                                    <td>
+                                        {{item.row_total}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Comments History</div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <select ng-options="option for option in order.statuses" ng-model="order.status">
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Comment"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success">Send</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="panel panel-primary  bootstrap-panel">
+                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Total</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        SubTotal:
+                                    </td>
+                                    <td>
+                                        {{order.subtotal}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Shipping Handling:
+                                    </td>
+                                    <td>
+                                        {{order.shipping_handling}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Grand Total:
+                                    </td>
+                                    <td>
+                                        {{order.grand_total}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>

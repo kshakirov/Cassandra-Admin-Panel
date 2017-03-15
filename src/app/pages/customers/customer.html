@@ -18,8 +18,11 @@
             <uib-accordion-group heading="Manage Passwords" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
                 <div ng-include="'app/pages/customers/customer/password_managment.html'"></div>
             </uib-accordion-group>
-            <uib-accordion-group heading="Create Order" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
+            <uib-accordion-group heading="Create Order From Cart" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
                 <div ng-include="'app/pages/customers/customer/create_order.html'"></div>
+            </uib-accordion-group>
+            <uib-accordion-group heading="Create Order From Scratch" panel-class="panel-info bootstrap-panel accordion-panel" ng-if="!customer_new">
+                <div ng-include="'app/pages/customers/customer/new_order.html'"></div>
             </uib-accordion-group>
         </uib-accordion>
 
