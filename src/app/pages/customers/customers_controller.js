@@ -2,6 +2,8 @@ function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
+
+
     var url_prefix = '/admin/';
 
     function _init_edit(id) {
@@ -35,6 +37,13 @@ function _create_customers_controller($scope, $http,
     function reset_password(email) {
         var data = {email: email};
         return $http.put(url_prefix + "customer/password/reset/", data).then(function (promise) {
+            return promise;
+        })
+    }
+
+    function change_password(email, password) {
+        var data = {email: email, password: password};
+        return $http.put(url_prefix + "customer/password/change/", data).then(function (promise) {
             return promise;
         })
     }
@@ -78,21 +87,38 @@ function _create_customers_controller($scope, $http,
             $scope.customer_reset_password = promise.data;
         })
     };
+    $scope.change_password = function (email, password) {
+        change_password(email, password).then(function (promise) {
+            $scope.customer_change_password = promise.data;
+            $scope.password = "";
+        })
+    };
 
     $scope.create_order = function (customer_id) {
         create_order(customer_id).then(function (promise) {
             $scope.customer_created_order = promise.data;
-            if($scope.customer_created_order.length==0){
+            if ($scope.customer_created_order.length == 0) {
                 $scope.emptyCart = true;
             }
         })
+    };
+
+    $scope.checkPassword = function (password) {
+        if(password.length > 6)
+            return false;
+        return true;
     }
+
 
     $scope.cancel_empty_cart = function () {
         $scope.emptyCart = false;
         $scope.customer_created_order = null;
     }
-    
+
+    $scope.cancel_password_changed = function () {
+        $scope.customer_change_password = false;
+        $scope.password = null;
+    }
 
 
 }
