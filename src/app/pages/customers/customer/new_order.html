@@ -264,7 +264,7 @@
                                 <thead>
                                 <tr>
                                     <td>
-                                       
+                                        <a href="" ng-click="addProductItem()"><i class="ion-plus-round"></i></a>
                                     </td>
                                     <th>
                                         Part Type
@@ -382,7 +382,7 @@
                                         SubTotal:
                                     </td>
                                     <td>
-                                        {{order.subtotal}}
+                                        {{future_order.subtotal}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -390,7 +390,7 @@
                                         Shipping Handling:
                                     </td>
                                     <td>
-                                        {{order.shipping_handling}}
+                                        {{future_order.shipping_handling}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -398,7 +398,7 @@
                                         Grand Total:
                                     </td>
                                     <td>
-                                        {{order.grand_total}}
+                                        {{future_order.grand_total}}
                                     </td>
                                 </tr>
                                 </tbody>
