@@ -2,30 +2,19 @@ function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
-    $scope.future_order = {
-        subtotal: 0,
-        shipping_handling: 0,
-        grand_total: 0
-    }
-
+    $scope.statuses = ['Pending', 'Complete'];
     $scope.future_products = [
         {name: '', quantity: 1}
     ]
 
     var url_prefix = '/admin/';
 
-    function _add_empty_product_item() {
-        return {
-            name: '', quantity: 1
-        }
-    }
-
     function _init_edit(id) {
         $scope.stage = true;
         $scope.customer_id = id;
-        $http.get(url_prefix + 'customer/' + id).then(function (promise) {
-            console.log(promise.data);
+        return $http.get(url_prefix + 'customer/' + id).then(function (promise) {
             $scope.customer = promise.data;
+            return $scope.customer;
 
         })
     }
@@ -35,21 +24,18 @@ function _create_customers_controller($scope, $http,
         this.stage = true;
     }
     
-
-   
-
     function save_customer(customer_data) {
         return $http.post(url_prefix + "customer/new/", customer_data).then(function (promise) {
             return promise;
         })
     }
 
-    function create_order(customer_id) {
-        return $http.put(url_prefix + "customer/" + customer_id + "/order/new/", {}).then(function (promise) {
+    function create_order(future_order, future_products) {
+        future_order['products'] = future_products;
+        return $http.post(url_prefix + "customer/" + future_order.customer_id + "/order/new/", future_order ).then(function (promise) {
             return promise;
         })
     }
-
 
     function reset_password(email) {
         var data = {email: email};
@@ -93,7 +79,9 @@ function _create_customers_controller($scope, $http,
         }
         else if (id) {
             this.customer_id = id;
-            _init_edit(id);
+            _init_edit(id).then(function (promise) {
+                $scope.future_order = create_future_order(promise)
+            });
             $scope.stage = true
         } else {
             $scope.stage = false;
@@ -119,12 +107,9 @@ function _create_customers_controller($scope, $http,
         })
     };
 
-    $scope.create_order = function (customer_id) {
-        create_order(customer_id).then(function (promise) {
+    $scope.create_order = function (future_order, future_products) {
+        create_order(future_order, future_products).then(function (promise) {
             $scope.customer_created_order = promise.data;
-            if ($scope.customer_created_order.length == 0) {
-                $scope.emptyCart = true;
-            }
         })
     };
 
@@ -156,7 +141,8 @@ function _create_customers_controller($scope, $http,
 
     $scope.changed_qty = function (index) {
         calculate_derived_fields($scope.future_products[index]);
-        $scope.future_order.grand_total = calculate_total($scope.future_products);
+        $scope.future_order.subtotal = calculate_total($scope.future_products);
+        $scope.future_order.grand_total =  $scope.future_order.subtotal + $scope.future_order.shipping_handling;
     }
 
     $scope.addProductItem = function () {

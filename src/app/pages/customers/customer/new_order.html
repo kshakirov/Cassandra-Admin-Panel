@@ -1,411 +1,453 @@
-<div  ng-init="init()">
+<div ng-init="init()">
+    <div class="row">
+        <div class="col-lg-5">
 
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Data</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
 
-
-            <div class="row">
-                <div class="col-lg-5">
-
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Data</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Order Id
-                                    </td>
-                                    <td>
-                                        {{order.order_id}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Order Date
-                                    </td>
-                                    <td>
-                                        {{order.updated_at}}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
+                        <tbody>
+                        <tr>
+                            <td>
+                                Order Id
+                            </td>
+                            <td>
+                                {{order.order_id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Order Date
+                            </td>
+                            <td>
+                                {{order.updated_at}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="col-lg-5">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Account Information</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Customer Name
-                                    </td>
-                                    <td>
-                                        {{customer.firstname}} {{customer.lastname}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Customer Email
-                                    </td>
-                                    <td>
-                                        {{customer.email}}
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
             </div>
-            <br/> <br/>
+        </div>
 
-        <div class="row">
-                <div class="col-lg-5">
+        <div class="col-lg-5">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Account Information</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
 
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Billing Address</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Customer Name
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.firstname}} {{customer.billing_address.lastname}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Street
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.street}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        City
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.city}}
-                                    </td>
-                                <tr>
-                                    <td>
-                                        Region
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.region}}
-                                    </td>
-                                <tr>
-                                    <td>
-                                        Country
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.country_id}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Postcode
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.postcode}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Phone
-                                    </td>
-                                    <td>
-                                        {{customer.default_billing_address.telephone}}
-                                    </td>
-                                </tr>
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                {{customer.firstname}} {{customer.lastname}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Customer Email
+                            </td>
+                            <td>
+                                {{customer.email}}
+                            </td>
+                        </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Address</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Customer Name
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.firstname}} {{customer.default_shipping_address.lastname}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Street
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.street}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        City
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.city}}
-                                    </td>
-                                <tr>
-                                    <td>
-                                        Region
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.region}}
-                                    </td>
-                                <tr>
-                                    <td>
-                                        Country
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.country_id}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Postcode
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.postcode}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Phone
-                                    </td>
-                                    <td>
-                                        {{customer.default_shipping_address.telephone}}
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <br/>
-
-            <div class="row">
-                <div class="col-lg-5">
-
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Payment Method</div>
-                        <div class="panel-body">
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Method</div>
-                        <div class="panel-body">
-                            {{order.shipping_method}}
-                        </div>
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-                <br/>
-            <div class="row">
-                <div class="col-lg-5">
+        </div>
+    </div>
+    <br/> <br/>
 
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Special Instructions</div>
-                        <div class="panel-body">
-                            {{order.special_instructions}}
-                        </div>
+    <div class="row">
+        <div class="col-lg-5">
 
-                    </div>
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Billing Address</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.customer_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Street
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.street">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.city">
+                            </td>
+                        <tr>
+                            <td>
+                                Region
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.region">
+                            </td>
+                        <tr>
+                            <td>
+                                Country
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.country_id">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Postcode
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.postcode">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Phone
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.billing_address.telephone">
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="col-lg-5">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading">Customer Purchase Order</div>
-                        <div class="panel-body">
-                            {{order.customer_purchase_order}}
-                        </div>
-                    </div>
+            </div>
+        </div>
 
+        <div class="col-lg-5">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Address</div>
+                <div class="panel-body">
+                    <table class="table ">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Customer Name
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.customer_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Street
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.street">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.city">
+                            </td>
+                        <tr>
+                            <td>
+                                Region
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.region">
+                            </td>
+                        <tr>
+                            <td>
+                                Country
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.country_id">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Postcode
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.postcode">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Phone
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_address.telephone">
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <br/>
 
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Products</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <td>
-                                        <a href="" ng-click="addProductItem()"><i class="ion-plus-round"></i></a>
-                                    </td>
-                                    <th>
-                                        Part Type
-                                    </th>
-                                    <th>
-                                        Part Number
-                                    </th>
+        </div>
+    </div>
+    <br/>
 
-                                    <th>
-                                        Item Status
-                                    </th>
-                                    <th ng-if="false">
-                                        Original Price
-                                    </th>
-                                    <th >
-                                        Price
-                                    </th>
-                                    <th>
-                                        Qty
-                                    </th>
-                                    <th>
-                                        SubTotal
-                                    </th>
-                                    <th>
-                                        Tax Amount
-                                    </th>
-                                    <th>
-                                        Tax Percent
-                                    </th>
-                                    <th>
-                                        Discount Amoun
-                                    </th>
-                                    <th>
-                                        Row Total
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="item  in future_products">
-                                    <td>
-                                        {{$index + 1}}
-                                    </td>
-                                    <td>
-                                        {{item.part_type}}
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control " id="input03" ng-blur="load_future_product(item.name, customer.group_id, $index)" placeholder="Sku" ng-model="item.name">
-                                    </td>
-                                    <td>
-                                        {{item.item_status}}
-                                    </td>
-                                    <td ng-if="false">
-                                        {{item.original_price}}
-                                    </td>
-                                    <td>
-                                        {{item.price}}
-                                    </td>
-                                    <td width="12%">
-                                        <input type="number" class="form-control" id="input04" placeholder="" ng-model="item.quantity" ng-change="changed_qty($index)">
-                                    </td>
-                                    <td>
-                                        {{item.subtotal}}
-                                    </td>
-                                    <td>
-                                        {{item.tax_amout}}
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" id="input05" placeholder="" ng-model="item.tax_percent" ng-change="changed_qty($index)">
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" id="input06" placeholder="" ng-model="item.discount_amount" ng-change="changed_qty($index)">
-                                    </td>
-                                    <td>
-                                        {{item.row_total}}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-lg-5">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Payment Method</div>
+                <div class="panel-body">
+                    <input type="text" class="form-control " placeholder="" ng-model="future_order.payment_method">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Method</div>
+                <div class="panel-body">
+                    <input type="text" class="form-control " placeholder="" ng-model="future_order.shipping_method">
                 </div>
             </div>
-            <br/>
-            <div class="row">
-                <div class="col-lg-5">
 
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Comments History</div>
-                        <div class="panel-body">
-                            <form>
-                                <div class="form-group">
-                                    <select ng-options="option for option in order.statuses" ng-model="order.status">
+        </div>
+    </div>
 
-                                    </select>
-                                </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-5">
 
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Comment"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-success">Send</button>
-                            </form>
-                        </div>
-
-                    </div>
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Special Instructions</div>
+                <div class="panel-body">
+                    <input type="text" class="form-control " placeholder=""
+                           ng-model="future_order.special_instructions">
                 </div>
 
-                <div class="col-lg-5">
-                    <div class="panel panel-primary  bootstrap-panel">
-                        <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Total</div>
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        SubTotal:
-                                    </td>
-                                    <td>
-                                        {{future_order.subtotal}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Shipping Handling:
-                                    </td>
-                                    <td>
-                                        {{future_order.shipping_handling}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Grand Total:
-                                    </td>
-                                    <td>
-                                        {{future_order.grand_total}}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            </div>
+        </div>
 
+        <div class="col-lg-5">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Customer Purchase Order</div>
+                <div class="panel-body">
+                    <input type="text" class="form-control " placeholder=""
+                           ng-model="future_order.customer_purchase_order">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Products</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td>
+                                <a href="" ng-click="addProductItem()"><i class="ion-plus-round"></i></a>
+                            </td>
+                            <th>
+                                Part Type
+                            </th>
+                            <th>
+                                Part Number
+                            </th>
+
+                            <th>
+                                Item Status
+                            </th>
+                            <th ng-if="false">
+                                Original Price
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Qty
+                            </th>
+                            <th>
+                                SubTotal
+                            </th>
+                            <th>
+                                Tax Amount
+                            </th>
+                            <th>
+                                Tax Percent
+                            </th>
+                            <th>
+                                Discount Amoun
+                            </th>
+                            <th>
+                                Row Total
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item  in future_products">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                {{item.part_type}}
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " id="input03"
+                                       ng-blur="load_future_product(item.name, customer.group_id, $index)"
+                                       placeholder="Sku" ng-model="item.name">
+                            </td>
+                            <td>
+                                {{item.item_status}}
+                            </td>
+                            <td ng-if="false">
+                                {{item.original_price}}
+                            </td>
+                            <td>
+                                {{item.price}}
+                            </td>
+                            <td width="12%">
+                                <input type="number" class="form-control" id="input04" placeholder=""
+                                       ng-model="item.quantity" ng-change="changed_qty($index)">
+                            </td>
+                            <td>
+                                {{item.subtotal}}
+                            </td>
+                            <td>
+                                {{item.tax_amout}}
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="input05" placeholder=""
+                                       ng-model="item.tax_percent" ng-change="changed_qty($index)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="input06" placeholder=""
+                                       ng-model="item.discount_amount" ng-change="changed_qty($index)">
+                            </td>
+                            <td>
+                                {{item.row_total}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-5">
+
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Comments History</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <select ng-options="option for option in statuses" ng-model="future_order.status">
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" ng-model=future_order.data.comment
+                                      placeholder="Comment"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="panel panel-primary  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Order Total</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>
+                                SubTotal:
+                            </td>
+                            <td>
+                                {{future_order.subtotal}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Shipping Handling:
+                            </td>
+                            <td>
+                                <input type="number" class="form-control " placeholder=""
+                                       ng-model="future_order.shipping_handling">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Grand Total:
+                            </td>
+                            <td>
+                                {{future_order.grand_total}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-danger  bootstrap-panel">
+                <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">MANAGE ORDER</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" ng-if="!customer_order">
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button ng-click="create_order(future_order, future_products)" class="btn btn-info">CREATE ORDER
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
