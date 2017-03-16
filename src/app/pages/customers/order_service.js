@@ -31,13 +31,15 @@ function create_future_order(customer) {
     future_order.subtotal = 0;
     future_order.shipping_handling = 0.00;
     future_order.grand_total = 0;
-    future_order.status = "Pending";
+    future_order.status = "pending";
     return future_order;
 }
 
 
 
 
-function prepare_future_order(future_order) {
+function calcullate_all(future_order, future_products) {
+    future_order.subtotal = calculate_total(future_products);
+    future_order.grand_total =  future_order.subtotal + future_order.shipping_handling;
     
 }

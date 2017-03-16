@@ -287,7 +287,7 @@
                             </th>
 
                             <th>
-                                Item Status
+                               OEM
                             </th>
                             <th ng-if="false">
                                 Original Price
@@ -329,7 +329,7 @@
                                        placeholder="Sku" ng-model="item.name">
                             </td>
                             <td>
-                                {{item.item_status}}
+                                {{item.oem_part}}
                             </td>
                             <td ng-if="false">
                                 {{item.original_price}}
@@ -409,7 +409,7 @@
                             </td>
                             <td>
                                 <input type="number" class="form-control " placeholder=""
-                                       ng-model="future_order.shipping_handling">
+                                       ng-model="future_order.shipping_handling" ng-change="add_shipping_handling(future_order.shipping_handling)">
                             </td>
                         </tr>
                         <tr>

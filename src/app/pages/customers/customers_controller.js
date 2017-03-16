@@ -2,7 +2,7 @@ function _create_customers_controller($scope, $http,
                                       $window, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
-    $scope.statuses = ['Pending', 'Complete'];
+    $scope.statuses = ['pending', 'complete', 'paid'];
     $scope.future_products = [
         {name: '', quantity: 1}
     ]
@@ -135,14 +135,17 @@ function _create_customers_controller($scope, $http,
             console.log(promise);
             $scope.future_products[index] = promise;
             calculate_derived_fields($scope.future_products[index])
-            $scope.future_order.grand_total = calculate_total($scope.future_products);
+            calcullate_all($scope.future_order, $scope.future_products)
         })
     }
 
     $scope.changed_qty = function (index) {
         calculate_derived_fields($scope.future_products[index]);
-        $scope.future_order.subtotal = calculate_total($scope.future_products);
-        $scope.future_order.grand_total =  $scope.future_order.subtotal + $scope.future_order.shipping_handling;
+        calcullate_all($scope.future_order, $scope.future_products)
+    }
+
+    $scope.add_shipping_handling = function (shipping_handling) {
+        calcullate_all($scope.future_order, $scope.future_products)
     }
 
     $scope.addProductItem = function () {
