@@ -27,7 +27,7 @@ function create_future_order(customer) {
         future_order.billing_address);
     future_order.billing_address.customer_name = customer.firstname + "  " + customer.lastname;
     future_order.shipping_address.customer_name = customer.firstname + "  " + customer.lastname;
-    future_order.data ={
+    future_order.data = {
         customer_name: customer.firstname + "  " + customer.lastname,
         customer_email: customer.email
     };
@@ -40,10 +40,17 @@ function create_future_order(customer) {
 }
 
 
-
-
 function calcullate_all(future_order, future_products) {
     future_order.subtotal = calculate_total(future_products);
-    future_order.grand_total =  future_order.subtotal + future_order.shipping_handling;
-    
+    future_order.grand_total = future_order.subtotal + future_order.shipping_handling;
+
+}
+
+function _check_products(future_products) {
+    checked = future_products.reduce(function (result, item) {
+        if (!item.row_total && !item.price && !item.subtotal) {
+            return false;
+        }
+    }, true)
+    return angular.isUndefined(checked);
 }

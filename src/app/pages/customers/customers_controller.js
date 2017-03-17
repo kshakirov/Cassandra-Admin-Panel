@@ -111,18 +111,24 @@ function _create_customers_controller($scope, $http,
     };
 
     $scope.create_order = function (future_order, future_products) {
-        create_order(future_order, future_products).then(function (promise) {
+        if(_check_products(future_products)) {
+            create_order(future_order, future_products).then(function (promise) {
 
-            $scope.success = {
-                order_create: {
-                    flag: true,
-                    id: promise.data
-                }
-            };
+                $scope.success = {
+                    order_create: {
+                        flag: true,
+                        id: promise.data
+                    }
+                };
 
-        }, function (error) {
+            }, function (error) {
 
-        })
+            })
+        }else{
+            $scope.errors.product_table ={
+                flag: true
+            }
+        }
     };
 
     $scope.checkPassword = function (password) {
@@ -136,6 +142,12 @@ function _create_customers_controller($scope, $http,
         $scope.errors.product_load = {
             flag: false,
             message: ""
+        }
+    }
+
+    $scope.cancel_product_table_error = function () {
+        $scope.errors.product_table = {
+            flag: false
         }
     }
 

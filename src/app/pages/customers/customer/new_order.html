@@ -70,7 +70,7 @@
             <div class="panel panel-primary  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Billing Address</div>
                 <div class="panel-body">
-                    <table class="table table-bordered">
+                    <table class="table table-hover">
                         <tbody>
                         <tr>
                             <td>
@@ -145,7 +145,7 @@
             <div class="panel panel-primary  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Shipping Address</div>
                 <div class="panel-body">
-                    <table class="table ">
+                    <table class="table table-hover">
                         <tbody>
                         <tr>
                             <td>
@@ -279,6 +279,11 @@
                 <button type="button" class="close" aria-label="Close" ng-click="cancel_product_error()"><span
                         aria-hidden="true">&times;</span></button>
                 <center><strong>{{errors.product_load.message}}</strong></center>
+            </div>
+            <div class="alert bg-danger closeable" role="alert" ng-if="errors.product_table.flag">
+                <button type="button" class="close" aria-label="Close" ng-click="cancel_product_table_error()"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>You have empty rows in your table</strong></center>
             </div>
             <div class="panel panel-primary  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Products</div>
