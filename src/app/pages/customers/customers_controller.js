@@ -3,9 +3,12 @@ function _create_customers_controller($scope, $http,
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.statuses = ['pending', 'complete', 'paid'];
+    $scope.payment_methods = ['Credit Card', 'Paypal', 'Cache'];
     $scope.future_products = [
         {name: '', quantity: 1}
     ]
+    $scope.errors = {}
+    $scope.success = {}
 
     var url_prefix = '/admin/';
 
@@ -109,7 +112,16 @@ function _create_customers_controller($scope, $http,
 
     $scope.create_order = function (future_order, future_products) {
         create_order(future_order, future_products).then(function (promise) {
-            $scope.customer_created_order = promise.data;
+
+            $scope.success = {
+                order_create: {
+                    flag: true,
+                    id: promise.data
+                }
+            };
+
+        }, function (error) {
+
         })
     };
 
@@ -120,9 +132,11 @@ function _create_customers_controller($scope, $http,
     }
 
 
-    $scope.cancel_empty_cart = function () {
-        $scope.emptyCart = false;
-        $scope.customer_created_order = null;
+    $scope.cancel_product_error = function () {
+        $scope.errors.product_load = {
+            flag: false,
+            message: ""
+        }
     }
 
     $scope.cancel_password_changed = function () {
@@ -132,10 +146,16 @@ function _create_customers_controller($scope, $http,
 
     $scope.load_future_product = function (sku, customer_group_id, index) {
         load_product(sku, customer_group_id).then(function (promise) {
-            console.log(promise);
-            $scope.future_products[index] = promise;
-            calculate_derived_fields($scope.future_products[index])
-            calcullate_all($scope.future_order, $scope.future_products)
+            if(!promise.hasOwnProperty('error')) {
+                $scope.future_products[index] = promise;
+                calculate_derived_fields($scope.future_products[index])
+                calcullate_all($scope.future_order, $scope.future_products)
+            }else {
+                $scope.errors.product_load = {
+                    flag: true,
+                    message: promise.error
+                }
+            }
         })
     }
 

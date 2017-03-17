@@ -281,7 +281,7 @@
                                     <th>
                                         Item Status
                                     </th>
-                                    <th>
+                                    <th ng-if="false">
                                         Original Price
                                     </th>
                                     <th>
@@ -321,7 +321,7 @@
                                     <td>
                                         {{item.item_status}}
                                     </td>
-                                    <td>
+                                    <td ng-if="false">
                                         {{item.original_price}}
                                     </td>
                                     <td>
@@ -331,7 +331,7 @@
                                         {{item.quantity}}
                                     </td>
                                     <td>
-                                        {{item.subtotal}}
+                                        {{item.subtotal | number:2}}
                                     </td>
                                     <td>
                                         {{item.tax_amout}}
@@ -343,7 +343,7 @@
                                         {{item.discount_amount}}
                                     </td>
                                     <td>
-                                        {{item.row_total}}
+                                        {{item.row_total | number:2}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -386,7 +386,7 @@
                                         SubTotal:
                                     </td>
                                     <td>
-                                        {{order.subtotal}}
+                                        {{order.subtotal | number:2}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -402,7 +402,7 @@
                                         Grand Total:
                                     </td>
                                     <td>
-                                        {{order.grand_total}}
+                                        {{order.grand_total | number:2}}
                                     </td>
                                 </tr>
                                 </tbody>

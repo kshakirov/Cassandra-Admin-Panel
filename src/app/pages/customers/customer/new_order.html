@@ -224,7 +224,12 @@
             <div class="panel panel-primary  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Payment Method</div>
                 <div class="panel-body">
-                    <input type="text" class="form-control " placeholder="" ng-model="future_order.payment_method">
+                    <div class="form-group">
+                        <select
+                                ng-options="option for option in payment_methods" ng-model="future_order.payment_method"
+                                class="form-control selectpicker" title="Disabled Select" selectpicker>
+                        </select>
+                    </div>
                 </div>
 
             </div>
@@ -270,6 +275,11 @@
 
     <div class="row">
         <div class="col-lg-10">
+            <div class="alert bg-danger closeable" role="alert" ng-if="errors.product_load.flag">
+                <button type="button" class="close" aria-label="Close" ng-click="cancel_product_error()"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>{{errors.product_load.message}}</strong></center>
+            </div>
             <div class="panel panel-primary  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Products</div>
                 <div class="panel-body">
@@ -287,7 +297,7 @@
                             </th>
 
                             <th>
-                               OEM
+                                OEM
                             </th>
                             <th ng-if="false">
                                 Original Price
@@ -312,6 +322,9 @@
                             </th>
                             <th>
                                 Row Total
+                            </th>
+                            <th>
+                                DEL
                             </th>
                         </tr>
                         </thead>
@@ -342,7 +355,7 @@
                                        ng-model="item.quantity" ng-change="changed_qty($index)">
                             </td>
                             <td>
-                                {{item.subtotal}}
+                                {{item.subtotal | number:2}}
                             </td>
                             <td>
                                 {{item.tax_amout}}
@@ -356,8 +369,9 @@
                                        ng-model="item.discount_amount" ng-change="changed_qty($index)">
                             </td>
                             <td>
-                                {{item.row_total}}
+                                {{item.row_total | number:2}}
                             </td>
+                            <td><a href="">-</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -373,8 +387,12 @@
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">Comments History</div>
                 <div class="panel-body">
                     <form>
+
                         <div class="form-group">
-                            <select ng-options="option for option in statuses" ng-model="future_order.status">
+                            <select
+                                    ng-options="option for option in statuses" ng-model="future_order.status"
+                                    class="form-control selectpicker"
+                                    title="Disabled Select" selectpicker>
 
                             </select>
                         </div>
@@ -400,7 +418,7 @@
                                 SubTotal:
                             </td>
                             <td>
-                                {{future_order.subtotal}}
+                                {{future_order.subtotal | number:2}}
                             </td>
                         </tr>
                         <tr>
@@ -409,7 +427,8 @@
                             </td>
                             <td>
                                 <input type="number" class="form-control " placeholder=""
-                                       ng-model="future_order.shipping_handling" ng-change="add_shipping_handling(future_order.shipping_handling)">
+                                       ng-model="future_order.shipping_handling"
+                                       ng-change="add_shipping_handling(future_order.shipping_handling)">
                             </td>
                         </tr>
                         <tr>
@@ -417,7 +436,7 @@
                                 Grand Total:
                             </td>
                             <td>
-                                {{future_order.grand_total}}
+                                {{future_order.grand_total | number:2}}
                             </td>
                         </tr>
                         </tbody>
@@ -430,6 +449,17 @@
     <br/>
     <div class="row">
         <div class="col-lg-4">
+            <div class="alert bg-danger closeable" role="alert" ng-if="errors.order_create.flag">
+                <button type="button" class="close" aria-label="Close" ng-click="cancel_product_error()"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>{{errors.order_create.message}}</strong></center>
+            </div>
+            <div class="alert bg-success closeable" role="alert" ng-if="success.order_create.flag">
+                <button type="button" class="close" aria-label="Close" ng-click="cancel_product_error()"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>Order <a ng-href="/#/sales/orders/{{success.order_create.id.order_id}}">{{success.order_create.id.order_id}}</a>
+                    Created</strong></center>
+            </div>
             <div class="panel panel-danger  bootstrap-panel">
                 <div class="panel-heading" style="padding: 10px 20px 20px 20px  ">MANAGE ORDER</div>
                 <div class="panel-body">
@@ -437,7 +467,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button ng-click="create_order(future_order, future_products)" class="btn btn-info">CREATE ORDER
+                                <button ng-click="create_order(future_order, future_products)" class="btn btn-info">
+                                    CREATE ORDER
                                 </button>
                             </div>
                         </div>

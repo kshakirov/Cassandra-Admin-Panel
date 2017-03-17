@@ -34,8 +34,8 @@
         <tbody>
         <tr ng-repeat="item in orders">
             <td class="table-id"><a ng-href="/#/sales/orders/{{item.order_id}}">{{item.order_id}}</a></td>
-            <td>{{item.subtotal}}</td>
-            <td>{{item.grand_total}}</td>
+            <td>{{item.subtotal | number:2}}</td>
+            <td>{{item.grand_total | number:2 }}</td>
             <td>{{item.payment_method}}</td>
             <td>{{item.shipping_method}}</a></td>
             <td>{{item.customer_purchase_order}}</td>
