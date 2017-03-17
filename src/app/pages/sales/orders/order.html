@@ -1,4 +1,4 @@
-<div  ng-init="init()">
+<div ng-init="init()">
     <div class="row">
         <div class="col-lg-1">
             <h5>Edit</h5>
@@ -53,7 +53,7 @@
                                         Customer Name
                                     </td>
                                     <td>
-                                        {{order.data.customer_name}}
+                                        <a ng-href="/#/customer/{{order.customer_id}}">{{order.data.customer_name}}</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,7 +86,7 @@
                                         Customer Name
                                     </td>
                                     <td>
-                                        {{order.billing_address.firstname}} {{order.billing_address.lastname}}
+                                        {{order.billing_address.firstname}} {{order.billing_address.customer_name}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,7 +154,7 @@
                                         Customer Name
                                     </td>
                                     <td>
-                                        {{order.shipping_address.firstname}} {{order.shipping_address.lastname}}
+                                        {{order.shipping_address.firstname}} {{order.shipping_address.customer_name}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -219,7 +219,13 @@
                     <div class="panel panel-primary  bootstrap-panel">
                         <div class="panel-heading">Payment Method</div>
                         <div class="panel-body">
-
+                            <div class="form-group">
+                                <select
+                                        ng-options="option for option in payment_methods"
+                                        ng-model="order.payment_method"
+                                        class="form-control selectpicker" title="Disabled Select" selectpicker>
+                                </select>
+                            </div>
                         </div>
 
                     </div>
@@ -274,8 +280,12 @@
                                     <th>
                                         Part Type
                                     </th>
+
                                     <th>
                                         Part Number
+                                    </th>
+                                    <th>
+                                        OEM
                                     </th>
 
                                     <th>
@@ -319,6 +329,9 @@
                                         {{item.name}}
                                     </td>
                                     <td>
+                                        {{item.oem_part}}
+                                    </td>
+                                    <td>
                                         {{item.item_status}}
                                     </td>
                                     <td ng-if="false">
@@ -358,10 +371,12 @@
                     <div class="panel panel-primary  bootstrap-panel">
                         <div class="panel-heading">Comments History</div>
                         <div class="panel-body">
+
                             <form>
                                 <div class="form-group">
-                                    <select ng-options="option for option in order.statuses" ng-model="order.status">
-
+                                    <select
+                                            ng-options="option for option in order.statuses" ng-model="order.status"
+                                            class="form-control selectpicker" title="Disabled Select" selectpicker>
                                     </select>
                                 </div>
 

@@ -2,6 +2,7 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     $scope.test = "Test"
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
+    $scope.payment_methods = ['Credit Card', 'Paypal', 'Cache'];
 
   
     

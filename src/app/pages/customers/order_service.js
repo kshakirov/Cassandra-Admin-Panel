@@ -27,6 +27,10 @@ function create_future_order(customer) {
         future_order.billing_address);
     future_order.billing_address.customer_name = customer.firstname + "  " + customer.lastname;
     future_order.shipping_address.customer_name = customer.firstname + "  " + customer.lastname;
+    future_order.data ={
+        customer_name: customer.firstname + "  " + customer.lastname,
+        customer_email: customer.email
+    };
     future_order.customer_id = customer.id;
     future_order.subtotal = 0;
     future_order.shipping_handling = 0.00;

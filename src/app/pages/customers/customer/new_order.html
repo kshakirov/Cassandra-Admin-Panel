@@ -43,7 +43,7 @@
                                 Customer Name
                             </td>
                             <td>
-                                {{customer.firstname}} {{customer.lastname}}
+                                {{future_order.data.customer_name}}
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +51,7 @@
                                 Customer Email
                             </td>
                             <td>
-                                {{customer.email}}
+                                {{future_order.data.customer_email}}
                             </td>
                         </tr>
 
@@ -371,7 +371,7 @@
                             <td>
                                 {{item.row_total | number:2}}
                             </td>
-                            <td><a href="">-</a></td>
+                            <td><a ng-click="remove_product($index)" ng-href=""><i class="ion-close-round"></i></a></td>
                         </tr>
                         </tbody>
                     </table>

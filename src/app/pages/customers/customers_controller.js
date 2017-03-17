@@ -5,7 +5,7 @@ function _create_customers_controller($scope, $http,
     $scope.statuses = ['pending', 'complete', 'paid'];
     $scope.payment_methods = ['Credit Card', 'Paypal', 'Cache'];
     $scope.future_products = [
-        {name: '', quantity: 1}
+        {name: '', quantity: 1, item_status: 'Ordered'}
     ]
     $scope.errors = {}
     $scope.success = {}
@@ -170,6 +170,11 @@ function _create_customers_controller($scope, $http,
 
     $scope.addProductItem = function () {
         $scope.future_products.push(_add_empty_product_item());
+    }
+
+    $scope.remove_product = function (index) {
+        $scope.future_products.splice(index, 1);
+        calcullate_all($scope.future_order, $scope.future_products)
     }
 
 
