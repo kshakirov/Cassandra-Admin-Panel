@@ -12,7 +12,8 @@
     'BlurAdmin.pages.customers',
     'BlurAdmin.pages.catalog',
 	'BlurAdmin.pages.sales',
-    'BlurAdmin.pages.reports'
+    'BlurAdmin.pages.reports',
+    'BlurAdmin.pages.system'
 
   ])
       .config(routeConfig);
