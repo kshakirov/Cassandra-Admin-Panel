@@ -6,7 +6,7 @@ function calculate_total(items) {
 
 function calculate_derived_fields(item) {
     item.subtotal = item.quantity * item.price;
-    item.tax_amount = item.tax_percent / 100 * item.price;
+    item.tax_amount = item.tax_percent / 100 * item.subtotal;
     item.row_total = item.subtotal + item.tax_amount - item.discount_amount
 
 }
