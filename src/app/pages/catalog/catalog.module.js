@@ -57,8 +57,16 @@
                 title: 'Featured Product',
                 sidebarMeta: {
                     order: 2,
-                },
-            }).state('catalog.attribute', {
+                }
+            }).state('catalog.new_product', {
+            url: '/new_product/:id',
+            controller: 'NewProductController',
+            templateUrl: 'app/pages/catalog/new_product/new_product_container.html',
+            title: 'New Product',
+            sidebarMeta: {
+                order: 3,
+            }
+        }).state('catalog.attribute', {
             url: '/attribute/:id',
             controller: 'AttributeController',
             templateUrl: 'app/pages/catalog/attribute/attribute_container.html',
@@ -91,6 +99,10 @@
     })
     catalog.controller("FeaturedProductController", function ($scope, $http, $stateParams) {
         _create_featured_product_controller($scope, $http, $stateParams)
+    })
+
+    catalog.controller("NewProductController", function ($scope, $http, $stateParams) {
+        _create_new_product_controller($scope, $http, $stateParams)
     })
 
 

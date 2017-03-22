@@ -34,12 +34,11 @@
 
                     <div class="horizontal-scroll">
 
-                        <table ng-if="newProductsReady" class="table" st-table="featuredProducts">
+                        <table ng-if="newProductsReady" class="table" st-table="newProducts">
                             <thead>
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="sku">SKU</th>
                                 <th st-sort="part_number">Name</th>
-                                <th st-sort="part_type">Part Type</th>
                                 <th st-sort="order"  >Order</th>
                                 <th st-sort="visibility">Visibility</th>
 
@@ -51,10 +50,6 @@
                                 <th><input st-search="part_number" placeholder="Search Number"
                                            class="input-sm form-control search-input"
                                            type="search"/></th>
-                                <th><input st-search="part_type" placeholder="Search Type"
-                                           class="input-sm form-control search-input"
-                                           type="search"/></th>
-
 
                             </tr>
                             </thead>
@@ -62,9 +57,8 @@
                             <tr ng-repeat="item in newProducts">
                                 <td class="table-id"><a ng-href="/#/catalog/product/{{item.sku}}">{{item.sku}}</a></td>
                                 <td>{{item.part_number}}</td>
-                                <td>{{item.part_type}}</td>
                                 <td width="10%">
-                                    <input type="number" ng-model = "item.order" class="form-control with-warning-addon" placeholder="" aria-describedby="basic-addon2">
+                                    <input type="number" ng-model = "item.ord" class="form-control with-warning-addon" placeholder="" aria-describedby="basic-addon2">
                                 </td>
                                 <td> <input type="checkbox" id=""  value="option3" ng-model="item.visible"></td>
                                  <td><button type="button"  ng-click="updateProduct(item)" class="btn btn-success">Update</button></td>

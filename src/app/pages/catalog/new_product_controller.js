@@ -1,10 +1,10 @@
 /**
  * Created by kshakirov on 3/8/17.
  */
-function _create_featured_product_controller($scope, $http, $stateParams) {
+function _create_new_product_controller($scope, $http, $stateParams) {
     $scope.smartTablePageSize = 10;
     $scope.newProductsReady = false;
-    var url_prefix = '/admin/'
+    var url_prefix = '/admin/';
     $scope.error = {
         add: false
     };
@@ -12,7 +12,7 @@ function _create_featured_product_controller($scope, $http, $stateParams) {
 
     function _init_list() {
         $scope.newProductsReady = false;
-        $http.get(url_prefix + 'featured_product/').then(function (promise) {
+        $http.get(url_prefix + 'new_product/').then(function (promise) {
             $scope.newProducts = promise.data;
             $scope.newProductsReady = true;
         })
@@ -22,31 +22,31 @@ function _create_featured_product_controller($scope, $http, $stateParams) {
         return{
             sku: item.sku,
             visible: item.visible|| false,
-            ord: item.order || 100
+            ord: item.ord || 100
         }
     }
 
     function _update(item) {
         var data = _prepare_product(item);
-    return    $http.post(url_prefix + 'featured_product/', data).then(function (promise) {
+        return    $http.post(url_prefix + 'new_product/', data).then(function (promise) {
             return promise;
         })
     }
 
     function _add(sku) {
-        return $http.get(url_prefix + 'featured_product/' + sku).then(function (promise) {
+        return $http.get(url_prefix + 'new_product/' + sku).then(function (promise) {
             return promise.data.result;
         })
     }
 
     function _delete(sku) {
-        return $http.delete(url_prefix + 'featured_product/' + sku).then(function (promise) {
+        return $http.delete(url_prefix + 'new_product/' + sku).then(function (promise) {
             return promise;
         })
     }
 
     $scope.init = function () {
-            _init_list();
+        _init_list();
     }
 
     $scope.updateProduct = function (product) {
