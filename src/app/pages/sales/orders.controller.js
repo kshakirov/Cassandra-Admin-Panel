@@ -3,9 +3,15 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.payment_methods = ['Credit Card', 'Paypal', 'Cache'];
-
+    var currencies = {
+        'USD' :  '$',
+        'EUR' : '€',
+        'GBP' : '£'
+    }
   
-    
+    $scope.render_currency = function (currency_code) {
+        return currencies[currency_code];
+    }
 
     function _init_edit(id) {
         $scope.stage = true

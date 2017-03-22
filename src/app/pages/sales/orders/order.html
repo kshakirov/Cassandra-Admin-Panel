@@ -34,6 +34,14 @@
                                         {{order.updated_at}}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Order Currency
+                                    </td>
+                                    <td>
+                                        {{order.currency_code}}
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -338,16 +346,16 @@
                                         {{item.original_price}}
                                     </td>
                                     <td>
-                                        {{item.price}}
+                                        {{render_currency(order.currency_code)}} {{item.price}}
                                     </td>
                                     <td>
                                         {{item.quantity}}
                                     </td>
                                     <td>
-                                        {{item.subtotal | number:2}}
+                                        {{render_currency(order.currency_code)}}   {{item.subtotal | number:2}}
                                     </td>
                                     <td>
-                                        {{item.tax_amount | number:2}}
+                                        {{item.tax_amount | number:2  }}
                                     </td>
                                     <td>
                                         {{item.tax_percent}}
@@ -356,7 +364,7 @@
                                         {{item.discount_amount}}
                                     </td>
                                     <td>
-                                        {{item.row_total | number:2}}
+                                        {{render_currency(order.currency_code)}} {{item.row_total | number:2}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -401,7 +409,7 @@
                                         SubTotal:
                                     </td>
                                     <td>
-                                        {{order.subtotal | number:2}}
+                                        {{render_currency(order.currency_code)}} {{order.subtotal | number:2}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -417,7 +425,7 @@
                                         Grand Total:
                                     </td>
                                     <td>
-                                        {{order.grand_total | number:2}}
+                                        {{render_currency(order.currency_code)}} {{order.grand_total | number:2}}
                                     </td>
                                 </tr>
                                 </tbody>

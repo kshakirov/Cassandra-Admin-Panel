@@ -47,8 +47,8 @@
                     <td class="table-id"><a  ng-href="/#/sales/orders/{{item.order_id}}" >{{item.order_id}}</a></td>
                     <td>{{item.billing_address.lastname}}</td>
                     <td>{{item.shipping_address.lastname}}</td>
-                    <td>{{item.subtotal}}</td>
-                    <td>{{item.grand_total}}</td>
+                    <td>{{render_currency(item.currency_code)}}  {{item.subtotal}}</td>
+                    <td>{{render_currency(item.currency_code)}} {{item.grand_total}}</td>
                     <td>{{item.updated_at}}</td>
                 </tr>
                 </tbody>
