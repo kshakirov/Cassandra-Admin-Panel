@@ -1,6 +1,6 @@
 <div class="row" ng-init="init()">
     <div class="col-lg-1">
-        <h5><a ng-click="nextPage()" href="">NEXT</a></h5>
+        <h5><a ng-click="nextPage('manufacturer', productManufacturer, 'part_type', productPartType)" href="">NEXT</a></h5>
     </div>
     <div class="col-lg-11">
         <div class="row">
@@ -21,7 +21,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <select class="form-control selectpicker" title="Disabled Select" selectpicker
-                            ng-click="filterChange('manufacturer', productManufacturer)"
+                            ng-click="filterChange('manufacturer', productManufacturer, 'part_type', productPartType)"
                             ng-model="productManufacturer" ng-options="i for i in productManufacturers">
 
                     </select>
@@ -31,7 +31,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <select class="form-control selectpicker" title="Disabled Select" selectpicker
-                            ng-click="filterChange('part_type', productPartType)"
+                            ng-click="filterChange('part_type', productPartType, 'manufacturer', productManufacturer)"
                             ng-model="productPartType" ng-options="i for i in productPartTypes">
 
                     </select>

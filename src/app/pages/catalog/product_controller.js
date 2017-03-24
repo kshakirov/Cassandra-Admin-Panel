@@ -29,8 +29,27 @@ function _create_product_controller($scope, $http, $stateParams) {
     }
 
 
+    function _get_manufacturers() {
+        return $http.get(url_prefix + 'manufacturer/').then(function (promise) {
+            var manufacturers = promise.data[0].map(function (m) {
+                return m[0]
+            })
+            return manufacturers;
+        })
+    }
+
+    function _get_parts() {
+        return $http.get(url_prefix + 'part_type/').then(function (promise) {
+            var parts = promise.data.map(function (p) {
+                return p[0]
+            })
+            return parts;
+        })
+    }
+
+
     function _get_price(id) {
-        $http.get( url_prefix + 'price/' + id + '/group/').then(function (promise) {
+        $http.get(url_prefix + 'price/' + id + '/group/').then(function (promise) {
             $scope.prices = promise.data;
         })
     }
@@ -52,20 +71,23 @@ function _create_product_controller($scope, $http, $stateParams) {
         })
     }
 
-    $scope.filterChange = function (filter_key, filter_value) {
+    $scope.filterChange = function (filter_key, filter_value, other_key, other_value) {
         var request = _create_request($scope.productManufacturer,
             $scope.productPartType, $scope.productPageSize, null);
         request[filter_key] = [filter_value];
+        request[other_key] = [other_value];
         _init_list(request);
     }
 
-    $scope.nextPage = function () {
+    $scope.nextPage = function (filter_key, filter_value, other_key, other_value) {
         console.log(this.paging_state);
         var request = _create_request($scope.productManufacturer,
             $scope.productPartType, $scope.productPageSize, $scope.paging_state);
+        request[filter_key] = [filter_value];
+        request[other_key] = [other_value];
         _init_list(request);
     }
-    
+
     $scope.addToNewProduct = function (sku) {
         _add_new_product(sku).then(function () {
             $scope.success.new_product = true;
@@ -80,10 +102,19 @@ function _create_product_controller($scope, $http, $stateParams) {
             $scope.stage = false;
             var request = _create_request($scope.productManufacturer,
                 $scope.productPartType, $scope.productPageSize, null);
-            _init_list(request);
+            _get_manufacturers().then(function (promise) {
+                $scope.productManufacturers = promise;
+            }).then(function (promise) {
+                _get_parts().then(function (promise) {
+                    $scope.productPartTypes = promise;
+                })
+            }).then(function (promise) {
+                _init_list(request);
+            })
+
         }
     }
-    
+
     $scope.cancel_alert = function (object, property) {
         $scope[object][property] = false;
     }
