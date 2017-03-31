@@ -85,8 +85,8 @@
         });
         $urlRouterProvider.when('/catalog','/catalog/attribute');
     };
-    catalog.controller("ProductController", function ($scope, $http, $stateParams) {
-        _create_product_controller($scope, $http, $stateParams)
+    catalog.controller("ProductController", function ($scope, $http, $stateParams, $location) {
+        _create_product_controller($scope, $http, $stateParams, $location)
     })
     
     catalog.controller("AttributeController", function ($scope, $http, $stateParams, $window) {

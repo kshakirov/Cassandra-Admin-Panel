@@ -1,14 +1,14 @@
 /**
  * Created by kshakirov on 3/8/17.
  */
-function _create_product_controller($scope, $http, $stateParams) {
+function _create_product_controller($scope, $http, $stateParams, $location) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.productPageSize = 10;
-    $scope.productManufacturer = "Turbo International";
-    $scope.productManufacturers = ["Turbo International", "Garret", 'Holset', 'Mitsubishi', 'I.H.I', 'KKK', 'Schwitzer', 'Toyota'];
-    $scope.productPartType = "Cartridge";
-    $scope.productPartTypes = ["Turbo", "Cartridge"];
+    $scope.manufacturer = "Turbo International";
+    $scope.manufacturers = ["Turbo International", "Garret", 'Holset', 'Mitsubishi', 'I.H.I', 'KKK', 'Schwitzer', 'Toyota'];
+    $scope.part_type = "Cartridge";
+    $scope.part_types = ["Turbo", "Cartridge"];
     $scope.success = {};
     var url_prefix = '/admin/'
 
@@ -71,20 +71,38 @@ function _create_product_controller($scope, $http, $stateParams) {
         })
     }
 
+
+    function _base_search(filter_key, filter_value, other_key, other_value, request) {
+        if (filter_value != 'ALL' && other_value != 'ALL') {
+            request[filter_key] = [filter_value];
+            request[other_key] = [other_value];
+            _init_list(request);
+        } else if (filter_value == 'ALL' && other_value == 'ALL') {
+            request[filter_key] = $scope[filter_key + 's'];
+            request[other_key] = $scope[other_key + 's'];
+        }
+        else if (filter_value == 'ALL') {
+            request[filter_key] = $scope[filter_key + 's'];
+            request[other_key] = [other_value];
+        }
+        else if ( other_value == 'ALL') {
+            request[filter_key] = [filter_value];
+            request[other_key] = $scope[other_key + 's'];
+        }
+    }
+
     $scope.filterChange = function (filter_key, filter_value, other_key, other_value) {
-        var request = _create_request($scope.productManufacturer,
+        var request = _create_request($scope.manufacturer,
             $scope.productPartType, $scope.productPageSize, null);
-        request[filter_key] = [filter_value];
-        request[other_key] = [other_value];
+        _base_search(filter_key, filter_value, other_key, other_value, request);
         _init_list(request);
+
     }
 
     $scope.nextPage = function (filter_key, filter_value, other_key, other_value) {
-        console.log(this.paging_state);
-        var request = _create_request($scope.productManufacturer,
+        var request = _create_request($scope.manufacturer,
             $scope.productPartType, $scope.productPageSize, $scope.paging_state);
-        request[filter_key] = [filter_value];
-        request[other_key] = [other_value];
+        _base_search(filter_key, filter_value, other_key, other_value, request);
         _init_list(request);
     }
 
@@ -100,13 +118,15 @@ function _create_product_controller($scope, $http, $stateParams) {
             $scope.stage = true
         } else {
             $scope.stage = false;
-            var request = _create_request($scope.productManufacturer,
-                $scope.productPartType, $scope.productPageSize, null);
+            var request = _create_request($scope.manufacturer,
+                $scope.part_type, $scope.productPageSize, null);
             _get_manufacturers().then(function (promise) {
-                $scope.productManufacturers = promise;
+                $scope.manufacturers = promise;
+                $scope.manufacturers.push("ALL")
             }).then(function (promise) {
                 _get_parts().then(function (promise) {
-                    $scope.productPartTypes = promise;
+                    $scope.part_types = promise;
+                    $scope.part_types.push("ALL")
                 })
             }).then(function (promise) {
                 _init_list(request);
@@ -118,7 +138,7 @@ function _create_product_controller($scope, $http, $stateParams) {
     $scope.cancel_alert = function (object, property) {
         $scope[object][property] = false;
     }
-    $scope.search = function (manufacturers, part_types, page_size) {
-
+    $scope.loadBySku = function (sku) {
+        $location.path("/catalog/product/" + sku)
     }
 }

@@ -1,13 +1,13 @@
 <div class="row" ng-init="init()">
     <div class="col-lg-1">
-        <h5><a ng-click="nextPage('manufacturer', productManufacturer, 'part_type', productPartType)" href="">NEXT</a></h5>
+        <h5><a ng-click="nextPage('manufacturer', manufacturer, 'part_type', part_type)" href="">NEXT</a></h5>
     </div>
     <div class="col-lg-11">
         <div class="row">
             <div class="col-lg-2">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="input01" placeholder="SEARCH ID">
+                        <input type="text" class="form-control" ng-model="searched_sku" id="input01" ng-blur="loadBySku(searched_sku)" placeholder="SEARCH ID">
                     </div>
                 </form>
             </div>
@@ -21,8 +21,8 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <select class="form-control selectpicker" title="Disabled Select" selectpicker
-                            ng-click="filterChange('manufacturer', productManufacturer, 'part_type', productPartType)"
-                            ng-model="productManufacturer" ng-options="i for i in productManufacturers">
+                            ng-click="filterChange('manufacturer', manufacturer, 'part_type', part_type)"
+                            ng-model="manufacturer" ng-options="i for i in manufacturers">
 
                     </select>
                 </div>
@@ -31,8 +31,8 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     <select class="form-control selectpicker" title="Disabled Select" selectpicker
-                            ng-click="filterChange('part_type', productPartType, 'manufacturer', productManufacturer)"
-                            ng-model="productPartType" ng-options="i for i in productPartTypes">
+                            ng-click="filterChange('part_type', part_type, 'manufacturer', manufacturer)"
+                            ng-model="part_type" ng-options="i for i in part_types">
 
                     </select>
                 </div>
