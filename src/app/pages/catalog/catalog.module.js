@@ -85,8 +85,8 @@
         });
         $urlRouterProvider.when('/catalog','/catalog/attribute');
     };
-    catalog.controller("ProductController", function ($scope, $http, $stateParams, $location) {
-        _create_product_controller($scope, $http, $stateParams, $location)
+    catalog.controller("ProductController", function ($scope, $http, $stateParams, $location, $window, $q) {
+        _create_product_controller($scope, $http, $stateParams, $location, $window, $q)
     })
     
     catalog.controller("AttributeController", function ($scope, $http, $stateParams, $window) {
@@ -97,12 +97,12 @@
 
        _create_attribte_set_controller($scope, $http, $window, $stateParams)
     })
-    catalog.controller("FeaturedProductController", function ($scope, $http, $stateParams) {
-        _create_featured_product_controller($scope, $http, $stateParams)
+    catalog.controller("FeaturedProductController", function ($scope, $http, $window) {
+        _create_featured_product_controller($scope, $http, $window)
     })
 
-    catalog.controller("NewProductController", function ($scope, $http, $stateParams) {
-        _create_new_product_controller($scope, $http, $stateParams)
+    catalog.controller("NewProductController", function ($scope, $http, $window) {
+        _create_new_product_controller($scope, $http, $window)
     })
 
 

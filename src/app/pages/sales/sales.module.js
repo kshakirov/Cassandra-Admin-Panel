@@ -56,10 +56,10 @@
        // $urlRouterProvider.when('/catalog','/catalog/attribute');
     };
 
-    sales.controller('OrdersController', function ($scope, $http, $stateParams,  $rootScope){
-        create_controller($scope, $http, $stateParams,  $rootScope);
-    }).controller('ShipmentsController', function ($scope, $http, $stateParams,  $rootScope){
-        create_shipment_controller($scope, $http, $stateParams,  $rootScope);
+    sales.controller('OrdersController', function ($scope, $http, $stateParams,  $rootScope, $window){
+        create_controller($scope, $http, $stateParams,  $rootScope, $window);
+    }).controller('ShipmentsController', function ($scope, $http, $stateParams,  $rootScope, $window){
+        create_shipment_controller($scope, $http, $stateParams,  $rootScope, $window);
     });
   })();/**
  * Created by kshakirov on 11/18/16.

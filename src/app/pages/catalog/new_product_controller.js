@@ -1,7 +1,7 @@
 /**
  * Created by kshakirov on 3/8/17.
  */
-function _create_new_product_controller($scope, $http, $stateParams) {
+function _create_new_product_controller($scope, $http, $window) {
     $scope.smartTablePageSize = 10;
     $scope.newProductsReady = false;
     var url_prefix = '/admin/';
@@ -9,10 +9,15 @@ function _create_new_product_controller($scope, $http, $stateParams) {
         add: false
     };
 
+    function not_authorized (error) {
+        if (error.status == 401) {
+            $window.location.href = '/auth.html';
+        }
+    }
 
     function _init_list() {
         $scope.newProductsReady = false;
-        $http.get(url_prefix + 'new_product/').then(function (promise) {
+        return $http.get(url_prefix + 'new_product/').then(function (promise) {
             $scope.newProducts = promise.data;
             $scope.newProductsReady = true;
         })
@@ -46,7 +51,11 @@ function _create_new_product_controller($scope, $http, $stateParams) {
     }
 
     $scope.init = function () {
-        _init_list();
+        _init_list().then(function () {
+            
+        }, function (error) {
+            not_authorized(error);
+        });
     }
 
     $scope.updateProduct = function (product) {

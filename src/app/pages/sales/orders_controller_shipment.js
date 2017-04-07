@@ -1,12 +1,17 @@
-function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
+function create_shipment_controller($scope, $http, $stateParams, $rootScope, $window) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
 
+    function not_authorized (error) {
+        if (error.status == 401) {
+            $window.location.href = '/auth.html';
+        }
+    }
 
     function _init_edit(order_id, id) {
         $scope.stage = true
         console.log(id);
-        $http.get('/admin/shipment/' + id + '/order/' + order_id).then(function (promise) {
+      return  $http.get('/admin/shipment/' + id + '/order/' + order_id).then(function (promise) {
             console.log(promise.data);
             $scope.shipment = promise.data;
             $scope.shipment.statuses = [{name: 'pending'}, {name: 'paid'}]
@@ -15,7 +20,7 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
 
 
     function _init_list() {
-        $http.get('/admin/shipment/').then(function (promise) {
+        return $http.get('/admin/shipment/').then(function (promise) {
             $scope.shipments = promise.data;
             $rootScope.shipment = promise.data;
             $scope.shipmentsReady = true;
@@ -23,7 +28,7 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
     }
 
     function _init_list_by_order_id(order_id) {
-        $http.get('/admin/shipment/order/' + order_id).then(function (promise) {
+        return $http.get('/admin/shipment/order/' + order_id).then(function (promise) {
             $scope.shipments = promise.data;
             $rootScope.shipment = promise.data;
             $scope.shipmentsReady = true;
@@ -35,7 +40,11 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
         if ($stateParams.id && $stateParams.order) {
             if ($stateParams.id == 'all') {
                 $scope.stage = false;
-                _init_list_by_order_id($stateParams.order)
+                _init_list_by_order_id($stateParams.order).then(function () {
+
+                }, function (error) {
+                    not_authorized(error);
+                })
             } else {
                 _init_edit($stateParams.order, $stateParams.id)
                 $scope.stage = true
@@ -43,7 +52,11 @@ function create_shipment_controller($scope, $http, $stateParams, $rootScope) {
 
         } else {
             $scope.stage = false;
-            _init_list();
+            _init_list().then(function () {
+
+            }, function (error) {
+                not_authorized(error)
+            });
         }
     }
 

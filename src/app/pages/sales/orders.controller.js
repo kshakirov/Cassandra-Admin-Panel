@@ -1,4 +1,4 @@
-function create_controller($scope, $http, $stateParams, $rootScope) {
+function create_controller($scope, $http, $stateParams, $rootScope, $window) {
     $scope.test = "Test"
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
@@ -8,6 +8,12 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
         'EUR' : '€',
         'GBP' : '£'
     }
+
+    function not_authorized (error) {
+        if (error.status == 401) {
+            $window.location.href = '/auth.html';
+        }
+    }
   
     $scope.render_currency = function (currency_code) {
         return currencies[currency_code];
@@ -16,7 +22,7 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     function _init_edit(id) {
         $scope.stage = true
         $scope.order_id = id;
-        $http.get('/admin/customer/order/' + id).then(function (promise) {
+        return $http.get('/admin/customer/order/' + id).then(function (promise) {
             $scope.order = promise.data;
             $scope.order.statuses = ['pending', 'paid', 'complete'];
             
@@ -24,7 +30,7 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     }
 
     function _init_list_by_customer(customer) {
-        $http.get('/admin/customer/' + customer + '/order/').then(function (promise) {
+        return $http.get('/admin/customer/' + customer + '/order/').then(function (promise) {
             $scope.orders = promise.data;
             $rootScope.orders = promise.data;
             $scope.ordersReady = true;
@@ -32,7 +38,7 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     }
 
     function _init_list() {
-        $http.get('/admin/order/').then(function (promise) {
+        return $http.get('/admin/order/').then(function (promise) {
             $scope.orders = promise.data;
             $rootScope.orders = promise.data;
             $scope.ordersReady = true;
@@ -42,16 +48,28 @@ function create_controller($scope, $http, $stateParams, $rootScope) {
     $scope.init = function () {
         if ($stateParams.id) {
             if($stateParams.id=='all' && $stateParams.customer){
-                _init_list_by_customer($stateParams.customer);
+                _init_list_by_customer($stateParams.customer).then(function () {
+
+                }, function (error) {
+                    not_authorized(error)
+                })
                 $scope.stage = false
             }else {
-                _init_edit($stateParams.id)
+                _init_edit($stateParams.id).then(function () {
+
+                }, function (error) {
+                    not_authorized(error)
+                })
                 $scope.stage = true
             }
 
         } else {
             $scope.stage=false;
-            _init_list();
+            _init_list().then(function () {
+
+            }, function (error) {
+                not_authorized(error);
+            });
         }
     }
 

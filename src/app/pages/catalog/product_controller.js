@@ -1,7 +1,10 @@
 /**
  * Created by kshakirov on 3/8/17.
  */
-function _create_product_controller($scope, $http, $stateParams, $location) {
+
+
+
+function _create_product_controller($scope, $http, $stateParams, $location, $window, $q) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.productPageSize = 10;
@@ -12,6 +15,11 @@ function _create_product_controller($scope, $http, $stateParams, $location) {
     $scope.success = {};
     var url_prefix = '/admin/'
 
+    function not_authorized (error) {
+        if (error.status == 401) {
+            $window.location.href = '/auth.html';
+        }
+    }
 
     function _create_request(manufacturer, part_type, page_size, paging_state) {
         return {
@@ -33,6 +41,8 @@ function _create_product_controller($scope, $http, $stateParams, $location) {
         return $http.get(url_prefix + 'manufacturer/').then(function (promise) {
             var manufacturers = promise.data[0].map(function (m) {
                 return m[0]
+            }, function (error) {
+                not_authorized(error, $window)
             })
             return manufacturers;
         })
@@ -42,6 +52,8 @@ function _create_product_controller($scope, $http, $stateParams, $location) {
         return $http.get(url_prefix + 'part_type/').then(function (promise) {
             var parts = promise.data.map(function (p) {
                 return p[0]
+            }, function (error) {
+                not_authorized(error)
             })
             return parts;
         })
@@ -123,6 +135,8 @@ function _create_product_controller($scope, $http, $stateParams, $location) {
             _get_manufacturers().then(function (promise) {
                 $scope.manufacturers = promise;
                 $scope.manufacturers.push("ALL")
+            },function (error) {
+               not_authorized(error);
             }).then(function (promise) {
                 _get_parts().then(function (promise) {
                     $scope.part_types = promise;

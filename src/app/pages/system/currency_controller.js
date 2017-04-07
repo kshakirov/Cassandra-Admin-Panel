@@ -5,6 +5,12 @@ function create_currency_controller($scope, $http, $window, $stateParams) {
     }
     var prefix = '/admin/';
 
+    function not_authorized (error) {
+        if (error.status == 401) {
+            $window.location.href = '/auth.html';
+        }
+    }
+
     function _get_current_currency() {
         return $http.get(prefix + '/currency/current').then(function (promise) {
             return promise.data;
@@ -26,6 +32,8 @@ function create_currency_controller($scope, $http, $window, $stateParams) {
         }else{
             _get_current_currency().then(function (promise) {
                 $scope.current_currency = promise;
+            }, function (error) {
+                not_authorized(error);
             })
         }
     }
