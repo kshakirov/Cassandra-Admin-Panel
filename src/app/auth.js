@@ -8,10 +8,10 @@ auth_app.controller("UserLogin", function ($scope, $http,
     
     $scope.submitLogin = function () {
         var data = {
-            customer_email: $scope.email,
+            login: $scope.email,
             password: $scope.password
         };
-        return $http.post("/frontend/customer/login", data)
+        return $http.post("/authorize/login", data)
             .then(function (promise) {
                 if (promise.data.result == 'success') {
                     console.log(promise);
