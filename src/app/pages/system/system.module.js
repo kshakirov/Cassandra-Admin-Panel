@@ -43,13 +43,24 @@
                 title: 'Manage Currencies',
                 sidebarMeta: {
                     order: 100,
-                },
-            })
+                }
+            }).state('system.message', {
+            controller: 'MessageController',
+            url: '/message',
+            templateUrl: 'app/pages/system/message_container.html',
+            title: 'Manage Messages',
+            sidebarMeta: {
+                order: 200,
+            }
+        })
            
     };
 
     system.controller("CurrencyController", function ($scope, $http, $window, $stateParams) {
         create_currency_controller($scope, $http, $window, $stateParams)
+    })
+    system.controller("MessageController", function ($scope, $http, $window, $stateParams) {
+        create_message_controller($scope, $http, $window, $stateParams)
     })
 
 
