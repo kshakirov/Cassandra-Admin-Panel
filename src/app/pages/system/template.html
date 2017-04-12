@@ -1,0 +1,19 @@
+<div class="row" ng-init="init()">
+    <div class="col-lg-8">
+        <div ui-ace="{
+        useWrapMode : true,
+        showGutter: false,
+        theme: 'chrome',
+        mode: fileObject.type,
+        firstLineNumber: 5,
+        onLoad: aceLoaded,
+        onChange: aceChanged
+        }" style="height: 800px; font-size: 12pt" ng-model="fileObject.file"></div>
+    </div>
+
+    <div class="col-lg-2">
+        <button ng-click="save(fileObject)"
+                class="btn btn-info">SAVE TEMPLATE
+        </button>
+    </div>
+</div>

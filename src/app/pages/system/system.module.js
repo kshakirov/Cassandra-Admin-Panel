@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var system = angular.module('BlurAdmin.pages.system', ['ngCookies']);
+    var system = angular.module('BlurAdmin.pages.system', ['ngCookies', 'ui.ace']);
 
     system.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
@@ -52,6 +52,14 @@
             sidebarMeta: {
                 order: 200,
             }
+        }).state('system.templates', {
+            controller: 'TemplatesController',
+            url: '/templates',
+            templateUrl: 'app/pages/system/template_container.html',
+            title: 'Edit Templates',
+            sidebarMeta: {
+                order: 200,
+            }
         })
            
     };
@@ -61,6 +69,9 @@
     })
     system.controller("MessageController", function ($scope, $http, $window, $stateParams) {
         create_message_controller($scope, $http, $window, $stateParams)
+    })
+    system.controller("TemplatesController", function ($scope, $http, $window, $stateParams) {
+        create_template_controller($scope, $http, $window, $stateParams)
     })
 
 
