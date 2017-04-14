@@ -8,23 +8,23 @@
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="sender"
-                                placeholder="SENDER">
+                                placeholder="EMAIL">
                     </div>
                 </form>
             </div>
-            <div class="col-lg-4">
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="recepient"
-                                placeholder="RECIPIENT">
-                    </div>
-                </form>
-            </div>
+            <!--<div class="col-lg-4">-->
+                <!--<form>-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" ng-model="status"-->
+                                <!--placeholder="STATUS">-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
 
 
 
             <div class="col-lg-3">
-                <button ng-click="search(sender, recepient)"  ng-disabled="notSearchCritiria(sender, recepient)" class="btn btn-info">SEARCH BY ALL FIELDS</button>
+                <button ng-click="search(sender)"   class="btn btn-info">SEARCH </button>
             </div>
 
         </div>
@@ -49,9 +49,10 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>SENDER</th>
-                    <th>RECIPIENT</th>
-                    <th>DATE</th>
+                    <th>CUSTOMER EMAIL</th>
+                    <th>STATUS</th>
+                    <th>DATE START</th>
+                    <th>DATE END</th>
                     <th>MESSAGE</th>
 
 
@@ -59,9 +60,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in messages">
-                    <td><a ng-href="/#/catalog/product/{{item.sku}}">{{item.sender_email}}</a></td>
-                    <td>{{item.recepient_email}}</td>
-                    <td>{{item.date}}</td>
+                    <td><a ng-href="/#/catalog/product/{{item.sku}}">{{item.customer_email}}</a></td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.date_start}}</td>
+                    <td>{{item.date_end}}</td>
                     <td>{{item.message}}</td>
                 </tr>
                 </tbody>

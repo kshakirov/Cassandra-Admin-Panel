@@ -1,6 +1,6 @@
 <div class="row" ng-init="init()">
-    <div class="col-lg-8">
-        <div ui-ace="{
+    <div class="col-lg-10">
+        <div ng-if="!previewFlag" ui-ace="{
         useWrapMode : true,
         showGutter: false,
         theme: 'chrome',
@@ -12,8 +12,30 @@
     </div>
 
     <div class="col-lg-2">
-        <button ng-click="save(fileObject)"
-                class="btn btn-info">SAVE TEMPLATE
-        </button>
+        <div class="row">
+            <button ng-click="save(fileObject)"
+                    class="btn btn-info">UPDATE     TEMPLATE
+            </button>
+            <br/><br/>
+        </div>
+
+
+
+        <div ng-if="!previewFlag" class="row">
+            <button ng-click="preview(fileObject)"
+                    class="btn btn-info">PREVIEW TEMPLATE
+            </button>
+        </div>
+        <div ng-if="previewFlag" class="row">
+            <button ng-click="edit()"
+                    class="btn btn-info">EDIT    TEMPLATE
+            </button>
+            <br/><br/>
+        </div>
+    </div>
+</div>
+<div ng-if="previewFlag" class="row">
+    <div class="col-lg-10">
+        <div ng-bind-html="previewObject.file"></div>
     </div>
 </div>

@@ -12,6 +12,12 @@ function create_template_controller($scope, $http, $window, $stateParams) {
             return promise;
         })
     }
+
+    function preview_file(fileObject) {
+        return $http.put(prefix + 'template/preview', fileObject).then(function (promise) {
+            return promise.data;
+        })
+    }
     
     $scope.init = function () {
         load_file('place_order.html.erb').then(function (promise) {
@@ -28,6 +34,17 @@ function create_template_controller($scope, $http, $window, $stateParams) {
     $scope.save = function (fileObject) {
         save_file(fileObject).then(function (promise) {
             console.log(promise)
+        })
+    }
+
+    $scope.edit = function () {
+        $scope.previewFlag = false;
+    }
+
+    $scope.preview = function (fileObject) {
+        preview_file(fileObject).then(function (promise) {
+             $scope.previewObject = promise;
+            $scope.previewFlag= true;
         })
     }
 }

@@ -20,16 +20,14 @@ function create_message_controller($scope, $http, $window, $stateParams) {
     }
 
 
-    $scope.search = function (sender, recepient) {
+    $scope.search = function (sender) {
         $scope.sender = sender;
-        $scope.recepient = recepient;
         $scope.nextPage();
     }
 
     $scope.nextPage = function () {
         var filters = {
             sender: $scope.sender,
-            recipient: $scope.recepient,
             paging_state: $scope.paging_state,
             page_size: $scope.page_size
         };
