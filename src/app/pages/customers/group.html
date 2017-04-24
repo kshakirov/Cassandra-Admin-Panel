@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-1" ng-init="init()">
+        <table ng-if="customerGroupsReady" class="table" st-table="customerGroups">
+            <thead>
+
+            <tr class="sortable ">
+                <th>No</th>
+                <th class="table-id" st-sort="sku">Group</th>
+                <th st-sort="part_number">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="group in customerGroups">
+                    <td>
+                        {{$index + 1}}
+                    </td>
+                    <td>
+                        <input type="text" ng-model = "group.code" class="form-control with-warning-addon" placeholder="" aria-describedby="basic-addon2">
+                    </td>
+                    <td>
+                        <input type="text" ng-model = "group.description" class="form-control with-warning-addon" placeholder="" aria-describedby="basic-addon2">
+                    </td>
+                    <td><button type="button"  ng-click="updateGroup(group)" class="btn btn-success">Update</button></td>
+                    <td><button type="button" class="btn btn-danger" ng-click="deleteGroup(group)">Delete</button></td>
+                </tr>
+            </tbody>
+            </table>
+    </div>
+</div>

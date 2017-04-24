@@ -74,8 +74,27 @@ function _create_customers_controller($scope, $http,
     }
 
 
+    function _init_customer_groups() {
+        return $http.get(url_prefix + "customer_group/").then(function (promise) {
+            return promise.data;
+        }, function (error) {
+            console.log(error);
+            $window.location.href = '/auth.html';
+        })
+    }
+
+    function _group_objs_2_str(groups) {
+        return groups.map(function (group) {
+            return group.code
+        })
+    }
+
+
     $scope.init = function () {
         var id = $stateParams.id;
+        _init_customer_groups().then(function (promise) {
+            $scope.customerGroups = _group_objs_2_str( promise);
+        })
         if (id && id == 'new') {
             _init_new.bind($scope)();
 

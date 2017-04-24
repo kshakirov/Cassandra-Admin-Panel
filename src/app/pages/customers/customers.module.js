@@ -47,7 +47,7 @@
             })
             .state('customers.groups', {
                 title: 'Customer Groups',
-                //controller: 'CustomerNew',
+                controller: 'CustomerGroupController',
                 url: '/group/',
                 templateUrl: 'app/pages/customers/group.html',
                 sidebarMeta: {
@@ -69,6 +69,10 @@
 
     customers.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
         _create_customers_controller($scope, $http, $window, $stateParams)
+    })
+
+    customers.controller("CustomerGroupController", function ($scope, $http, $window, $stateParams) {
+        _create_customer_group_controller($scope, $http, $window, $stateParams)
     })
 
 

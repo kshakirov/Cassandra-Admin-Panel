@@ -14,7 +14,8 @@
     </div>
     <div class="form-group">
         <label for="group">Group</label>
-        <input ng-model="customer.group_id" type="text" class="form-control" id="group" placeholder="">
+        <select name="group" id ="group" class="form-control selectpicker"     ng-options="option for option in customerGroups"      ng-model="customer.group_id" >
+        </select>
     </div>
     <div ng-if="flag.create" class="checkbox">
         <label class="custom-checkbox">
