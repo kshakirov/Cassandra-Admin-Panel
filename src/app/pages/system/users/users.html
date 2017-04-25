@@ -1,0 +1,70 @@
+<div class="col-lg-2">
+    <h5>List</h5>
+    <h5><a ng-href="/#/system/user/new">New</a></h5>
+</div>
+<div class="col-lg-10" ng-init="init()">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="form-group select-page-size-wrap ">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="horizontal-scroll">
+
+            <table ng-if="customersReady" class="table" st-table="customers">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th st-sort="login">Login</th>
+                    <th st-sort="email">Email</th>
+                    <th st-sort="authentication_node">Auth Node</th>
+                    <th st-sort="must_change">Must Change</th>
+                    <th st-sort="name">Name</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input st-search="login" placeholder="Search Login"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="email" placeholder="Search Email"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="authentication_node" placeholder="Search Node"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="must_change" placeholder="Search Change"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="name" placeholder="Search Name"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in customers">
+                    <td class="table-id"><a ng-href="/#/system/user/{{item.login}}">{{$index + 1}}</a></td>
+                    <td>{{item.login}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.authentication_node}}</td>
+                    <td>{{item.must_change}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="smartTablePageSize"
+                             st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

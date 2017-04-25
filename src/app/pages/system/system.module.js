@@ -58,7 +58,15 @@
             templateUrl: 'app/pages/system/template_container.html',
             title: 'Edit Templates',
             sidebarMeta: {
-                order: 200,
+                order: 400,
+            }
+        }).state('system.users', {
+            controller: 'UsersController',
+            url: '/user/:login',
+            templateUrl: 'app/pages/system/users_container.html',
+            title: 'Manage Users',
+            sidebarMeta: {
+                order: 300,
             }
         })
            
@@ -72,6 +80,9 @@
     })
     system.controller("TemplatesController", function ($scope, $http, $window, $stateParams) {
         create_template_controller($scope, $http, $window, $stateParams)
+    })
+    system.controller("UsersController", function ($scope, $http, $window, $stateParams) {
+        create_users_controller($scope, $http, $window, $stateParams)
     })
 
 
