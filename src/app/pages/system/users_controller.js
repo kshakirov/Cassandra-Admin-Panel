@@ -49,12 +49,16 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
     }
 
     function flatten_nodes(nodes) {
-        return nodes.map(function (node) {
+        var nodes = nodes.map(function (node) {
             return node.name
         })
+        nodes.push('Internal')
+        return nodes;
     }
 
     $scope.create_user = function (user) {
+        var user = user;
+        delete user.confirmation;
         _create_user(user).then(function (promise) {
 
         }, function (error) {
@@ -63,6 +67,8 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
     }
 
     $scope.update_user = function (user) {
+        var user = user;
+        delete user.confirmation;
         _create_user(user).then(function (promise) {
 
         }, function (error) {
