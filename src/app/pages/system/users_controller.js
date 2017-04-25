@@ -39,6 +39,21 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
     }
 
 
+    function _init_nodes() {
+        return $http.get(url_prefix + "authentication_node/").then(function (promise) {
+            return promise.data;
+        }, function (error) {
+            console.log(error);
+            // $window.location.href = '/auth.html';
+        })
+    }
+
+    function flatten_nodes(nodes) {
+        return nodes.map(function (node) {
+            return node.name
+        })
+    }
+
     $scope.create_user = function (user) {
         _create_user(user).then(function (promise) {
 
@@ -69,9 +84,15 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
         if (login && login == 'new') {
             $scope.user_new = true;
             $scope.stage = true
+            _init_nodes().then(function (promise) {
+                $scope.authentication_nodes = flatten_nodes(promise);
+            })
         }
         else if (login) {
             this.customer_id = login;
+            _init_nodes().then(function (promise) {
+                $scope.authentication_nodes = flatten_nodes(promise);
+            })
             _init_edit(login).then(function (promise) {
                 $scope.user = promise;
             });
