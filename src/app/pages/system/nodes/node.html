@@ -1,0 +1,56 @@
+<div class="col-lg-2">
+    <h5><a ng-href="/#/system/node/">LIST</a></h5>
+    <h5><a ng-href="/#/system/node/new">New</a></h5>
+</div>
+<div class="col-lg-6">
+    <h3>{{node.name}}</h3>
+    <form ng-if="!node_saved_data">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input ng-model="node.name" type="text" class="form-control" id="name" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="account">Account</label>
+            <input ng-model="node.account" type="text" class="form-control" id="account" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="base_dn">Base DN</label>
+            <input ng-model="node.base_dn" type="email" class="form-control" id="base_dn" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="host">Host</label>
+            <input ng-model="node.host" type="text" class="form-control" id="host" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="ldap_filter">LDAP Filter</label>
+            <input ng-model="node.ldap_filter" type="text" class="form-control" id="ldap_filter" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input ng-model="node.password" type="text" class="form-control" id="password" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="port">Port</label>
+            <input ng-model="node.port" type="text" class="form-control" id="port" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="timeout">Timeout</label>
+            <input ng-model="node.timeout" type="text" class="form-control" id="timeout" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-2">
+                <button ng-if="!node_new" ng-click="update_node(node)"  class="btn btn-info" >UPDATE</button>
+                <button ng-if="node_new" ng-click="create_node(node)" class="btn btn-info">CREATE</button>
+            </div>
+            <div class="col-lg-2">
+                <button ng-if="!user_new" ng-click="delete_node(node)"  class="btn btn-danger" >DELETE</button>
+            </div>
+        </div>
+    </form>
+
+</div>

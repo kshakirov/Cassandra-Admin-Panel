@@ -68,6 +68,14 @@
             sidebarMeta: {
                 order: 300,
             }
+        }).state('system.nodes', {
+            controller: 'NodesController',
+            url: '/node/:name',
+            templateUrl: 'app/pages/system/nodes_container.html',
+            title: 'Manage Auth Nodes',
+            sidebarMeta: {
+                order: 500,
+            }
         })
            
     };
@@ -83,6 +91,9 @@
     })
     system.controller("UsersController", function ($scope, $http, $window, $stateParams) {
         create_users_controller($scope, $http, $window, $stateParams)
+    })
+    system.controller("NodesController", function ($scope, $http, $window, $stateParams) {
+        create_nodes_controller($scope, $http, $window, $stateParams)
     })
 
 

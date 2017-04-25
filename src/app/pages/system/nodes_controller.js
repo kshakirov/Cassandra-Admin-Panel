@@ -1,20 +1,20 @@
-function  create_users_controller($scope, $http, $window, $stateParams) {
-    
-    $scope.table_size = 5;
+function  create_nodes_controller($scope, $http, $window, $stateParams) {
+
+    $scope.test = "Users Controller"
 
     var url_prefix = '/superuser/';
 
     function _init_list() {
-        return $http.get(url_prefix + "user/").then(function (promise) {
+        return $http.get(url_prefix + "authentication_node/").then(function (promise) {
             return promise.data
         }, function (error) {
             console.log(error);
-           // $window.location.href = '/auth.html';
+            // $window.location.href = '/auth.html';
         })
     }
 
-    function _init_edit(login) {
-        return $http.get(url_prefix + "user/" + login).then(function (promise) {
+    function _init_edit(name) {
+        return $http.get(url_prefix + "authentication_node/" + name).then(function (promise) {
             return promise.data;
         }, function (error) {
             console.log(error);
@@ -22,8 +22,8 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
         })
     }
 
-    function _create_user(user) {
-        return $http.post(url_prefix + "user/", user).then(function (promise) {
+    function _create_node(user) {
+        return $http.post(url_prefix + "authentication_node/", user).then(function (promise) {
         }, function (error) {
             console.log(error);
             // $window.location.href = '/auth.html';
@@ -54,8 +54,8 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
         })
     }
 
-    $scope.create_user = function (user) {
-        _create_user(user).then(function (promise) {
+    $scope.create_node = function (user) {
+        _create_node(user).then(function (promise) {
 
         }, function (error) {
 
@@ -69,7 +69,7 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
 
         })
     }
-    
+
     $scope.delete_user = function (user) {
         return $http.delete(url_prefix + "user/" + user.login).then(function (promise) {
         }, function (error) {
@@ -80,30 +80,26 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
 
 
     $scope.init = function () {
-        var login = $stateParams.login;
-        if (login && login == 'new') {
-            $scope.user_new = true;
+        var name = $stateParams.name;
+        if (name && name == 'new') {
+            $scope.node_new = true;
             $scope.stage = true
-            _init_nodes().then(function (promise) {
-                $scope.authentication_nodes = flatten_nodes(promise);
-            })
         }
-        else if (login) {
-            this.customer_id = login;
-            _init_nodes().then(function (promise) {
-                $scope.authentication_nodes = flatten_nodes(promise);
-            })
-            _init_edit(login).then(function (promise) {
-                $scope.user = promise;
+        else if (name) {
+            this.customer_id = name;
+            _init_edit(name).then(function (promise) {
+                $scope.node = promise;
             });
             $scope.stage = true
         } else {
             $scope.stage = false;
             _init_list().then(function (promise) {
-                $scope.customers = promise;
-                $scope.customersReady = true;
+                $scope.nodes = promise;
+                $scope.nodesReady = true;
             })
         }
     }
-    
-}
+
+}/**
+ * Created by kshakirov on 4/25/17.
+ */
