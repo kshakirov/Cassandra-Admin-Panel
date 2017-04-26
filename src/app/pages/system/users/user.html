@@ -22,7 +22,7 @@
             <select name="group" id ="group" class="form-control selectpicker"     ng-options="option for option in authentication_nodes"      ng-model="user.authentication_node" >
             </select>
         </div>
-        <div ng-if="user.authentication_node=='Internal' && user_new">
+        <div ng-if="user.authentication_node=='Internal'">
             <div class="form-group">
                 <label for="password">Password</label>
                 <input ng-model="user.password" type="password" class="form-control" id="password" placeholder="">

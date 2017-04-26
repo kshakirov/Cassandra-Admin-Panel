@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="base_dn">Base DN</label>
-            <input ng-model="node.base_dn" type="email" class="form-control" id="base_dn" placeholder="">
+            <input ng-model="node.base_dn" type="text" class="form-control" id="base_dn" placeholder="">
         </div>
         <div class="form-group">
             <label for="host">Host</label>
@@ -44,13 +44,38 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
-                <button ng-if="!node_new" ng-click="update_node(node)"  class="btn btn-info" >UPDATE</button>
+                <button ng-if="!node_new" ng-click="create_node(node)" class="btn btn-info">UPDATE</button>
                 <button ng-if="node_new" ng-click="create_node(node)" class="btn btn-info">CREATE</button>
             </div>
             <div class="col-lg-2">
-                <button ng-if="!user_new" ng-click="delete_node(node)"  class="btn btn-danger" >DELETE</button>
+                <button ng-if="!user_new" ng-click="delete_node(node)" class="btn btn-danger">DELETE</button>
             </div>
         </div>
     </form>
+</div>
+<div class="col-lg-4">
+    <h3>Attributes</h3>
+    <form ng-if="!node_saved_data">
+        <div class="form-group">
+            <label for="login_attribute">Login Attribute</label>
+            <input ng-model="node.attributes.login_attribute" type="text" class="form-control" id="login_attribute"
+                   placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="first_name_attribute">First Name Attribute</label>
+            <input ng-model="node.attributes.first_name_attribute" type="text" class="form-control"
+                   id="first_name_attribute" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="last_name_attribute">Last Name Attribute</label>
+            <input ng-model="node.attributes.last_name_attribute" type="email" class="form-control"
+                   id="last_name_attribute" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="email_attribute">Email Attribute</label>
+            <input ng-model="node.attributes.email_attribute" type="text" class="form-control" id="email_attribute"
+                   placeholder="">
+        </div>
 
+    </form>
 </div>
