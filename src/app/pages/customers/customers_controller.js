@@ -1,5 +1,5 @@
 function _create_customers_controller($scope, $http,
-                                      $window, $stateParams) {
+                                      $window, $stateParams, $q) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.statuses = ['pending', 'complete', 'paid'];
@@ -37,6 +37,8 @@ function _create_customers_controller($scope, $http,
         future_order['products'] = future_products;
         return $http.post(url_prefix + "customer/" + future_order.customer_id + "/order/new/", future_order ).then(function (promise) {
             return promise;
+        }, function (error) {
+            return $q.reject();
         })
     }
 
@@ -114,7 +116,12 @@ function _create_customers_controller($scope, $http,
     $scope.create_customer = function (customer_data) {
         save_customer(customer_data).then(function (promise) {
             $scope.customer_saved_data = promise.data;
-        })
+        }, function (error) {
+            console.log(error);
+            $scope.customer_email_error = {
+                 flag: true,
+                 msg: error.data.message };
+                 })
     };
 
     $scope.reset_password = function (email) {
@@ -164,6 +171,8 @@ function _create_customers_controller($scope, $http,
         }
     }
 
+
+
     $scope.cancel_product_table_error = function () {
         $scope.errors.product_table = {
             flag: false
@@ -174,6 +183,10 @@ function _create_customers_controller($scope, $http,
         $scope.customer_change_password = false;
         $scope.password = null;
     }
+
+    $scope.cancel_email_error = function () {
+        $scope.customer_email_error.flag = false;
+    };
 
     $scope.load_future_product = function (sku, customer_group_id, index) {
         load_product(sku, customer_group_id).then(function (promise) {

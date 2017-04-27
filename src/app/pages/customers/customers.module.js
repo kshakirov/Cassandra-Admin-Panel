@@ -67,8 +67,8 @@
             })
     };
 
-    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
-        _create_customers_controller($scope, $http, $window, $stateParams)
+    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams, $q) {
+        _create_customers_controller($scope, $http, $window, $stateParams, $q)
     })
 
     customers.controller("CustomerGroupController", function ($scope, $http, $window, $stateParams) {

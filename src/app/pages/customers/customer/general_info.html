@@ -1,3 +1,9 @@
+
+<div class="alert bg-danger closeable" role="alert" ng-if="customer_email_error.flag">
+    <button type="button" class="close" aria-label="Close" ng-click="cancel_email_error()"><span
+            aria-hidden="true">&times;</span></button>
+    <center><strong>{{customer_email_error.msg}}</strong></center>
+</div>
 <h4>Customer</h4>
 <form ng-if="!customer_saved_data">
     <div class="form-group">
