@@ -27,8 +27,8 @@
 <body ng-app="AuthApp">
 <main class="auth-main">
   <div class="auth-block" ng-controller="UserLogin" ng-init="init()">
-    <h1>Sign in to Blur Admin</h1>
-    <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>
+    <h1>Sign in  Admin</h1>
+    <center><h2 ng-if="error.flag"><span style="color: #A00000">{{error.msg}}</span></h2></center>
 
     <form class="form-horizontal">
       <div class="form-group">
