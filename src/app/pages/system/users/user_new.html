@@ -8,6 +8,11 @@
                 aria-hidden="true">&times;</span></button>
         <strong>{{success.message}}</strong>
     </div>
+    <div class="alert bg-danger closeable" role="alert" ng-if="error.flag">
+        <button type="button" class="close" aria-label="Close"  ng-click="cancel_alert('error')"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>{{error.message}}</strong>
+    </div>
 
     <h3>CREATE NEW USER</h3>
 

@@ -9,12 +9,18 @@
         <strong>{{success.message}}</strong>
     </div>
 
+    <div class="alert bg-danger closeable" role="alert" ng-if="error.flag">
+        <button type="button" class="close" aria-label="Close"  ng-click="cancel_alert('error')"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>{{error.message}}</strong>
+    </div>
+
     <h3>{{user.name}}</h3>
 
     <form ng-if="!user_saved_data">
         <div class="form-group">
             <label for="firstname">Login</label>
-            <input ng-model="user.login" type="text" class="form-control" id="login" placeholder="">
+            <input ng-model="user.login" type="text" class="form-control" id="login" placeholder="" >
         </div>
         <div class="form-group">
             <label for="lastname">Name</label>

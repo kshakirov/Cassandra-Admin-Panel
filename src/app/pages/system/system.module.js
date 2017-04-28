@@ -89,8 +89,8 @@
     system.controller("TemplatesController", function ($scope, $http, $window, $stateParams) {
         create_template_controller($scope, $http, $window, $stateParams)
     })
-    system.controller("UsersController", function ($scope, $http, $window, $stateParams) {
-        create_users_controller($scope, $http, $window, $stateParams)
+    system.controller("UsersController", function ($scope, $http, $window, $stateParams, $location) {
+        create_users_controller($scope, $http, $window, $stateParams, $location)
     })
     system.controller("NodesController", function ($scope, $http, $window, $stateParams) {
         create_nodes_controller($scope, $http, $window, $stateParams)

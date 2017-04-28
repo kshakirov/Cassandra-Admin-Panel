@@ -1,4 +1,4 @@
-function  create_users_controller($scope, $http, $window, $stateParams) {
+function  create_users_controller($scope, $http, $window, $stateParams, $location) {
     
     $scope.table_size = 5;
     $scope.checkbox_change_password = {
@@ -29,7 +29,7 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
     }
 
     function _update_user(user) {
-        return $http.put(url_prefix + "user/" + user.login, user).then(function (promise) {
+        return $http.put(url_prefix + "user/" + user.id, user).then(function (promise) {
         })
     }
 
@@ -65,6 +65,15 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
         return success;
     }
 
+
+    function notify_error(message) {
+        var error = {
+            flag: true,
+            message: message
+        }
+        return error;
+    }
+
     function notify_update(user) {
         user.password = null;
         user.confirmation = null;
@@ -93,26 +102,28 @@ function  create_users_controller($scope, $http, $window, $stateParams) {
         delete user.confirmation;
         _create_user(user).then(function (promise) {
             $scope.success = notify_success("User Successfully Created")
+            $location.path('/system/user/');
         }, function (error) {
-
+            $scope.error = notify_success(error.data.message)
         })
     }
 
     $scope.update_user = function (user) {
         var user =_remove_null_values(user);
         delete user.confirmation;
-        _create_user(user).then(function (promise) {
+        _update_user(user).then(function (promise) {
             $scope.checkbox_change_password.flag = false;
             notify_update(user)
             $scope.success = notify_success("User Successfully Updated")
         }, function (error) {
-
+            $scope.error = notify_success(error.data.message)
         })
     }
     
     $scope.delete_user = function (user) {
-        return $http.delete(url_prefix + "user/" + user.login).then(function (promise) {
+        return $http.delete(url_prefix + "user/" + user.id).then(function (promise) {
             $scope.success = notify_success("User Successfully Deleted");
+            $location.path('/system/user/');
         }, function (error) {
         })
     }
