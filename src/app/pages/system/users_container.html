@@ -1,6 +1,9 @@
-<div class="row" ng-if="!stage">
+<div class="row" ng-if="!stage && !user_new">
     <div ng-include="'app/pages/system/users/users.html'" ></div>
 </div>
 <div class="row" ng-if="stage">
     <div ng-include="'app/pages/system/users/user.html'"></div>
+</div>
+<div class="row" ng-if="user_new">
+    <div ng-include="'app/pages/system/users/user_new.html'"></div>
 </div>

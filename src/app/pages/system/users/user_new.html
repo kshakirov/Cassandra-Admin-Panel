@@ -9,7 +9,7 @@
         <strong>{{success.message}}</strong>
     </div>
 
-    <h3>{{user.name}}</h3>
+    <h3>CREATE NEW USER</h3>
 
     <form ng-if="!user_saved_data">
         <div class="form-group">
@@ -30,14 +30,9 @@
             </select>
         </div>
 
-        <div  class="checkbox" ng-if="user.authentication_node=='Internal'">
-            <label class="custom-checkbox">
-                <input type="checkbox" ng-model="checkbox_change_password.flag" ng-change="force_change(change_flag)">
-                <span>Change Password</span>
-            </label>
-        </div>
 
-        <div ng-if="checkbox_change_password.flag ">
+
+        <div ng-if="user.authentication_node=='Internal'">
             <div class="form-group">
                 <label for="password">Password</label>
                 <input ng-model="user.password" type="password" class="form-control" id="password" placeholder="">
@@ -66,11 +61,9 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
-                <button ng-click="update_user(user)"   ng-disabled="verify_update_data(user, checkbox_change_password)" class="btn btn-info" >UPDATE</button>
+                <button ng-click="create_user(user)" ng-disabled="verify_create_data(user)" class="btn btn-info">CREATE</button>
             </div>
-            <div class="col-lg-2">
-                <button ng-if="!user_new" ng-click="delete_user(user)"   class="btn btn-danger" >DELETE</button>
-            </div>
+
         </div>
     </form>
 

@@ -1,58 +1,32 @@
 function  create_nodes_controller($scope, $http, $window, $stateParams) {
 
-    $scope.test = "Users Controller"
-
     var url_prefix = '/superuser/';
 
     function _init_list() {
         return $http.get(url_prefix + "authentication_node/").then(function (promise) {
             return promise.data
-        }, function (error) {
-            console.log(error);
-            // $window.location.href = '/auth.html';
         })
     }
 
     function _init_edit(name) {
         return $http.get(url_prefix + "authentication_node/" + name).then(function (promise) {
             return promise.data;
-        }, function (error) {
-            console.log(error);
-            // $window.location.href = '/auth.html';
         })
     }
 
     function _create_node(user) {
         return $http.post(url_prefix + "authentication_node/", user).then(function (promise) {
-        }, function (error) {
-            console.log(error);
-            // $window.location.href = '/auth.html';
         })
     }
 
-    function _update_user(user) {
-        return $http.put(url_prefix + "user/" + user.login, user).then(function (promise) {
-        }, function (error) {
-            console.log(error);
-            // $window.location.href = '/auth.html';
-        })
+    function render_error(error) {
+        var error_object = {
+            flag: true,
+            message: error.data.message
+        }
+        return error_object;
     }
 
-
-    function _init_nodes() {
-        return $http.get(url_prefix + "authentication_node/").then(function (promise) {
-            return promise.data;
-        }, function (error) {
-            console.log(error);
-            // $window.location.href = '/auth.html';
-        })
-    }
-
-    function flatten_nodes(nodes) {
-        return nodes.map(function (node) {
-            return node.name
-        })
-    }
 
     $scope.create_node = function (user) {
         _create_node(user).then(function (promise) {
@@ -96,6 +70,8 @@ function  create_nodes_controller($scope, $http, $window, $stateParams) {
             _init_list().then(function (promise) {
                 $scope.nodes = promise;
                 $scope.nodesReady = true;
+            }, function (error) {
+                $scope.error = render_error((error))
             })
         }
     }

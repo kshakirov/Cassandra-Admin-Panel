@@ -1,4 +1,4 @@
-<div class="col-lg-2">
+<div class="col-lg-2" ng-if="nodesReady">
     <h5>LIST</h5>
     <h5><a ng-href="/#/system/node/new">New</a></h5>
 </div>
@@ -31,5 +31,12 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+<div class="col-lg-6 col-lg-offset-2" ng-if="error.flag">
+    <div class="alert bg-danger closeable" role="alert" >
+        <button type="button" class="close" aria-label="Close" ><span
+                aria-hidden="true">&times;</span></button>
+        <strong>{{error.message}}</strong>
     </div>
 </div>

@@ -1,10 +1,10 @@
-<div class="col-lg-2">
+<div class="col-lg-2" ng-if="customersReady">
     <h5>List</h5>
     <h5><a ng-href="/#/system/user/new">New</a></h5>
 </div>
 <div class="col-lg-10" ng-init="init()">
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-2" ng-if="customersReady">
             <div class="form-group select-page-size-wrap ">
                 <label>Rows on page
                     <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
@@ -68,5 +68,12 @@
                 </tfoot>
             </table>
         </div>
+    </div>
+</div>
+<div class="col-lg-6 col-lg-offset-2" ng-if="error.flag">
+    <div class="alert bg-danger closeable" role="alert" >
+        <button type="button" class="close" aria-label="Close" ><span
+                aria-hidden="true">&times;</span></button>
+        <strong>{{error.message}}</strong>
     </div>
 </div>
