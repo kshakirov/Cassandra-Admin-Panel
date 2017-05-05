@@ -1,14 +1,14 @@
-function  create_users_controller($scope, $http, $window, $stateParams, $location) {
-    
+function create_users_controller($scope, $http, $window, $stateParams, $location) {
+
     $scope.table_size = 5;
     $scope.checkbox_change_password = {
         flag: false
     }
 
-    angular.isUndefinedOrNull = function(val) {
+    angular.isUndefinedOrNull = function (val) {
         return angular.isUndefined(val) || val === null
     }
-    
+
     var url_prefix = '/superuser/';
 
     function _init_list() {
@@ -23,13 +23,22 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
         })
     }
 
-    function _create_user(user) {
-        return $http.post(url_prefix + "user/", user).then(function (promise) {
+
+    function _create_user(user, send_notification) {
+        var url = url_prefix + "user/";
+        if (send_notification) {
+            url = url + "/notify"
+        }
+        return $http.post(url, user).then(function (promise) {
         })
     }
 
-    function _update_user(user) {
-        return $http.put(url_prefix + "user/" + user.id, user).then(function (promise) {
+    function _update_user(user, send_notification) {
+        var url = url_prefix + "user/" + user.id;
+        if (send_notification) {
+            url = url + "/notify"
+        }
+        return $http.put(url, user).then(function (promise) {
         })
     }
 
@@ -47,7 +56,7 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
         nodes.push('Internal')
         return nodes;
     }
-    
+
     function render_error(error) {
         var error_object = {
             flag: true,
@@ -90,17 +99,28 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
     function _remove_null_values(user) {
         var keys = Object.keys(user);
         keys = keys.filter(function (key) {
-            if(!angular.isUndefinedOrNull(user[key])){
+            if (!angular.isUndefinedOrNull(user[key])) {
                 return key
             }
         })
         return _create_object(keys, user);
     }
 
-    $scope.create_user = function (user) {
+    function _prepare_password_2_update(user) {
+
+        if (user.password && user.password.length >= 4 && user.password == user.confirmation) {
+            delete user.confirmation
+        } else {
+            delete user.confirmation;
+            delete user.password;
+        }
+        return user;
+    }
+
+    $scope.create_user = function (user, send_notification) {
         var user = user;
         delete user.confirmation;
-        _create_user(user).then(function (promise) {
+        _create_user(user, send_notification).then(function (promise) {
             $scope.success = notify_success("User Successfully Created")
             $location.path('/system/user/');
         }, function (error) {
@@ -108,10 +128,10 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
         })
     }
 
-    $scope.update_user = function (user) {
-        var user =_remove_null_values(user);
-        delete user.confirmation;
-        _update_user(user).then(function (promise) {
+    $scope.update_user = function (user, send_notification) {
+        var user = _remove_null_values(user);
+        user = _prepare_password_2_update(user);
+        _update_user(user, send_notification).then(function (promise) {
             $scope.checkbox_change_password.flag = false;
             notify_update(user)
             $scope.success = notify_success("User Successfully Updated")
@@ -119,7 +139,7 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
             $scope.error = notify_success(error.data.message)
         })
     }
-    
+
     $scope.delete_user = function (user) {
         return $http.delete(url_prefix + "user/" + user.id).then(function (promise) {
             $scope.success = notify_success("User Successfully Deleted");
@@ -127,28 +147,28 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
         }, function (error) {
         })
     }
-    
+
     $scope.force_change = function (value) {
         $scope.user.password = null;
         $scope.user.confirmation = null;
     }
-    
+
     $scope.change_password = function (user, change_flag) {
-        if (user.authentication_node=='Internal' &&  change_flag)
+        if (user.authentication_node == 'Internal' && change_flag)
             return true;
         return false
     }
-    
+
     $scope.cancel_alert = function (key) {
         this[key]['flag'] = false;
     }
 
 
     function _verify_password(user) {
-        if(angular.isUndefinedOrNull(user.password)){
+        if (angular.isUndefinedOrNull(user.password)) {
             return true;
-        }else{
-            if(user.password==user.confirmation && user.password.length > 0){
+        } else {
+            if (user.password == user.confirmation && user.password.length > 0) {
                 return false
             }
             return true;
@@ -156,18 +176,18 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
     }
 
     $scope.verify_update_data = function (user, checkbox_change_password) {
-        if(user.authentication_node=='Internal'
+        if (user.authentication_node == 'Internal'
             && checkbox_change_password.authentication_node != 'Internal')
             return _verify_password(user);
         return false;
     }
-    
+
     function _check_required_fields(user) {
-        var keys = ['login','name','authentication_node'];
-        for(var i=0;i<3;i++){
-            if(angular.isUndefinedOrNull(user[keys[i]])){
+        var keys = ['login', 'name', 'authentication_node'];
+        for (var i = 0; i < 3; i++) {
+            if (angular.isUndefinedOrNull(user[keys[i]])) {
                 return true;
-            }else if(user[keys[i]].length <= 0){
+            } else if (user[keys[i]].length <= 0) {
                 return true
             }
         }
@@ -175,18 +195,18 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
     }
 
     $scope.verify_create_data = function (user) {
-        if(!angular.isUndefinedOrNull(user)) {
-           if(_check_required_fields(user)){
+        if (!angular.isUndefinedOrNull(user)) {
+            if (_check_required_fields(user)) {
                 return true;
-           }else {
-               if(user.authentication_node!='Internal'){
-                   return false;
-               }else{
-                   return _verify_password(user)
-               }
-           }
+            } else {
+                if (user.authentication_node != 'Internal') {
+                    return false;
+                } else {
+                    return _verify_password(user)
+                }
+            }
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -207,7 +227,7 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
             })
             _init_edit(login).then(function (promise) {
                 $scope.user = promise;
-                $scope.checkbox_change_password.authentication_node= promise.authentication_node;
+                $scope.checkbox_change_password.authentication_node = promise.authentication_node;
             });
             $scope.stage = true
         } else {
@@ -220,5 +240,5 @@ function  create_users_controller($scope, $http, $window, $stateParams, $locatio
             })
         }
     }
-    
+
 }
