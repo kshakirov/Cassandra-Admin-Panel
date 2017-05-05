@@ -3,7 +3,7 @@
  */
 function _create_featured_product_controller($scope, $http, $window) {
     $scope.smartTablePageSize = 10;
-    $scope.newProductsReady = false;
+    $scope.featuredProductsReady = false;
     var url_prefix = '/admin/'
     $scope.error = {
         add: false
@@ -16,10 +16,10 @@ function _create_featured_product_controller($scope, $http, $window) {
     }
 
     function _init_list() {
-        $scope.newProductsReady = false;
+        $scope.featuredProductsReady = false;
         return $http.get(url_prefix + 'featured_product/').then(function (promise) {
-            $scope.newProducts = promise.data;
-            $scope.newProductsReady = true;
+            $scope.featuredProducts = promise.data;
+            $scope.featuredProductsReady = true;
             return true;
         })
     }

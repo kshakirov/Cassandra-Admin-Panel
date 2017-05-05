@@ -34,14 +34,14 @@
 
                     <div class="horizontal-scroll">
 
-                        <table ng-if="newProductsReady" class="table" st-table="featuredProducts">
+                        <table ng-if="featuredProductsReady" class="table" st-table="featuredProducts">
                             <thead>
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="sku">SKU</th>
                                 <th st-sort="part_number">Name</th>
                                 <th st-sort="part_type">Part Type</th>
                                 <th st-sort="order"  >Order</th>
-                                <th st-sort="visibility">Visibility</th>
+                                <th st-sort="visible">Visibility</th>
 
                             </tr>
                             <tr>
@@ -59,7 +59,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="item in newProducts">
+                            <tr ng-repeat="item in featuredProducts">
                                 <td class="table-id"><a ng-href="/#/catalog/product/{{item.sku}}">{{item.sku}}</a></td>
                                 <td>{{item.part_number}}</td>
                                 <td>{{item.part_type}}</td>
