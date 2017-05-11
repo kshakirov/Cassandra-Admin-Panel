@@ -1,0 +1,56 @@
+<div class="col-lg-1">
+    <h5>LIST</h5>
+</div>
+<div class="col-lg-11" ng-init="init()">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="alert bg-danger closeable" role="alert" ng-if="error.flag">
+                <button type="button" class="close" aria-label="Close" ng-click="cancelOperationMessage('error')"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>NOT SAVED</strong></center>
+            </div>
+            <div class="alert bg-success closeable" role="alert" ng-if="success.flag">
+                <button type="button" class="close" aria-label="Close"
+                        ng-click="cancelOperationMessage('success')"><span
+                        aria-hidden="true">&times;</span></button>
+                <center><strong>SUCCESSFULLY SAVED</strong></center>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Internal Name
+                    </th>
+                    <th>Sender Name</th>
+                    <th>Sender Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in admin_emails">
+                    <td>
+                        <input type="text" class="form-control " id="input02"
+                               placeholder="Sku" ng-model="item.internal_name">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control " id="input03"
+                               placeholder="Sku" ng-model="item.sender_name">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control " id="input04"
+                               placeholder="Sku" ng-model="item.sender_email">
+                    </td>
+                    <td><button type="button"  ng-click="update(item)" class="btn btn-success">Update</button></td>
+                    <td><button type="button" class="btn btn-danger" ng-click="deleteProduct(item.code)">Delete</button></td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+

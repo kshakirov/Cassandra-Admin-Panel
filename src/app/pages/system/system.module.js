@@ -76,7 +76,16 @@
             sidebarMeta: {
                 order: 500,
             }
+        }).state('system.email_users', {
+            controller: 'EmailUsersController',
+            url: '/email_user/:name',
+            templateUrl: 'app/pages/system/email_user_container.html',
+            title: 'Manage  Emails',
+            sidebarMeta: {
+                order: 600,
+            }
         })
+
            
     };
 
@@ -94,6 +103,9 @@
     })
     system.controller("NodesController", function ($scope, $http, $window, $stateParams) {
         create_nodes_controller($scope, $http, $window, $stateParams)
+    })
+    system.controller("EmailUsersController", function ($scope, $http, $window, $stateParams) {
+        create_email_user_controller($scope, $http, $window, $stateParams)
     })
 
 

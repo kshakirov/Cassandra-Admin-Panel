@@ -1,6 +1,20 @@
 <div class="row" ng-init="init()">
     <div class="col-lg-10">
-        <div ng-if="!previewFlag" ui-ace="{
+        <div class="row">
+            <div class="col-lg-6">
+                <form>
+                <div class="form-group">
+                    <label for="group">Sender</label>
+                    <select name="group" id ="group" class="form-control selectpicker"     ng-options="option.label for option in admin_emails"
+                            ng-model="fileObject.admin_email" >
+                    </select>
+                </div>
+                    </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div ng-if="!previewFlag" ui-ace="{
         useWrapMode : true,
         showGutter: false,
         theme: 'chrome',
@@ -9,28 +23,29 @@
         onLoad: aceLoaded,
         onChange: aceChanged
         }" style="height: 800px; font-size: 12pt" ng-model="fileObject.file"></div>
-    </div>
+            </div>
 
-    <div class="col-lg-2">
-        <div class="row">
-            <button ng-click="save(fileObject)"
-                    class="btn btn-info">UPDATE     TEMPLATE
-            </button>
-            <br/><br/>
-        </div>
+            <div class="col-lg-2">
+                <div class="row">
+                    <button ng-click="save(fileObject)"
+                            class="btn btn-info">UPDATE TEMPLATE
+                    </button>
+                    <br/><br/>
+                </div>
 
 
-
-        <div ng-if="!previewFlag" class="row">
-            <button ng-click="preview(fileObject)"
-                    class="btn btn-info">PREVIEW TEMPLATE
-            </button>
-        </div>
-        <div ng-if="previewFlag" class="row">
-            <button ng-click="edit()"
-                    class="btn btn-info">EDIT    TEMPLATE
-            </button>
-            <br/><br/>
+                <div ng-if="!previewFlag" class="row">
+                    <button ng-click="preview(fileObject)"
+                            class="btn btn-info">PREVIEW TEMPLATE
+                    </button>
+                </div>
+                <div ng-if="previewFlag" class="row">
+                    <button ng-click="edit()"
+                            class="btn btn-info">EDIT TEMPLATE
+                    </button>
+                    <br/><br/>
+                </div>
+            </div>
         </div>
     </div>
 </div>
