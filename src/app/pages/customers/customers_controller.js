@@ -44,7 +44,7 @@ function _create_customers_controller($scope, $http,
 
     function reset_password(email) {
         var data = {email: email};
-        return $http.put(url_prefix + "customer/password/reset/", data).then(function (promise) {
+        return $http.post(url_prefix + "customer/password/reset/", data).then(function (promise) {
             return promise;
         })
     }
