@@ -4,13 +4,13 @@
 </div>
 <div class="col-lg-6">
     <div class="alert bg-success closeable" role="alert" ng-if="success.flag">
-        <button type="button" class="close" aria-label="Close"  ng-click="cancel_alert('success')"><span
+        <button type="button" class="close" aria-label="Close" ng-click="cancel_alert('success')"><span
                 aria-hidden="true">&times;</span></button>
         <strong>{{success.message}}</strong>
     </div>
 
     <div class="alert bg-danger closeable" role="alert" ng-if="error.flag">
-        <button type="button" class="close" aria-label="Close"  ng-click="cancel_alert('error')"><span
+        <button type="button" class="close" aria-label="Close" ng-click="cancel_alert('error')"><span
                 aria-hidden="true">&times;</span></button>
         <strong>{{error.message}}</strong>
     </div>
@@ -20,7 +20,7 @@
     <form ng-if="!user_saved_data">
         <div class="form-group">
             <label for="firstname">Login</label>
-            <input ng-model="user.login" type="text" class="form-control" id="login" placeholder="" >
+            <input ng-model="user.login" type="text" class="form-control" id="login" placeholder="">
         </div>
         <div class="form-group">
             <label for="lastname">Name</label>
@@ -32,11 +32,17 @@
         </div>
         <div class="form-group">
             <label for="group">Authenticaton Node</label>
-            <select name="group" id ="group" class="form-control selectpicker"     ng-options="option for option in authentication_nodes"      ng-model="user.authentication_node" >
+            <select name="group" id="group" class="form-control selectpicker"
+                    ng-options="option for option in authentication_nodes" ng-model="user.authentication_node">
             </select>
         </div>
 
-        <div  class="checkbox" ng-if="user.authentication_node=='Internal'">
+        <div class="form-group">
+            <label for="group">Load Avatar</label>
+            <input type="file"   class="" nv-file-select uploader="uploader"/><br/>
+        </div>
+
+        <div class="checkbox" ng-if="user.authentication_node=='Internal'">
             <label class="custom-checkbox">
                 <input type="checkbox" ng-model="checkbox_change_password.flag" ng-change="force_change(change_flag)">
                 <span>Change Password</span>
@@ -50,36 +56,44 @@
             </div>
             <div class="form-group">
                 <label for="confirmation">Confirmation</label>
-                <input ng-model="user.confirmation" type="password" class="form-control" id="confirmation" placeholder="">
+                <input ng-model="user.confirmation" type="password" class="form-control" id="confirmation"
+                       placeholder="">
                 <div ng-if="user.password != user.confirmation" style="color:maroon" role="alert">
                     <div class="messages">
-                        <div >Must match the previous entry</div>
+                        <div>Must match the previous entry</div>
                     </div>
                 </div>
             </div>
-            <div  class="checkbox">
+            <div class="checkbox">
                 <label class="custom-checkbox">
                     <input type="checkbox" ng-model="user.must_change">
                     <span>Must Change Password</span>
                 </label>
             </div>
         </div>
-        <div  class="checkbox">
+        <div class="checkbox">
             <label class="custom-checkbox">
                 <input type="checkbox" ng-model="send_notification">
                 <span>Send Information To user</span>
             </label>
         </div>
+
+
+
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
-                <button ng-click="update_user(user, send_notification)"   ng-disabled="verify_update_data(user, checkbox_change_password)" class="btn btn-info" >UPDATE</button>
+                <button ng-click="update_user(user, send_notification)"
+                        ng-disabled="verify_update_data(user, checkbox_change_password)" class="btn btn-info">UPDATE
+                </button>
             </div>
             <div class="col-lg-2">
-                <button ng-if="!user_new" ng-click="delete_user(user)"   class="btn btn-danger" >DELETE</button>
+                <button ng-if="!user_new" ng-click="delete_user(user)" class="btn btn-danger">DELETE</button>
             </div>
         </div>
     </form>
 
 
-
+</div>
+<div class="col-lg-4">
+    <img ng-src="{{image}}">
 </div>

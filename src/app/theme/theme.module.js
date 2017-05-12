@@ -20,13 +20,23 @@
             })
         }
 
+        function _get_user_image(id) {
+            return $http.get("/admin/profile/user/"+id +'/image', {}).then(function (promise) {
+                return promise.data;
+            })
+        }
+
+
         $scope.init = function () {
             _get_user_proile().then(function (promise) {
-                console.log(promise)
                 $scope.image_id = promise.image_id;
                 $scope.name = promise.name;
+                return promise.image_id;
             }, function (error) {
-                console.log(error) 
+            }).then(function (id) {
+                _get_user_image(id).then(function (image) {
+                    $scope.image = 'data:image/jpeg;base64,' +  image;
+                })
             })
         };
 

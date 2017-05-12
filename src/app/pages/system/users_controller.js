@@ -1,4 +1,4 @@
-function create_users_controller($scope, $http, $window, $stateParams, $location) {
+function create_users_controller($scope, $http, $cookies, $stateParams, $location, FileUploader) {
 
     $scope.table_size = 5;
     $scope.checkbox_change_password = {
@@ -117,6 +117,12 @@ function create_users_controller($scope, $http, $window, $stateParams, $location
         return user;
     }
 
+    function _get_user_image(id) {
+        return $http.get("/admin/profile/user/"+id +'/image', {}).then(function (promise) {
+            return promise.data;
+        })
+    }
+
     $scope.create_user = function (user, send_notification) {
         var user = user;
         delete user.confirmation;
@@ -211,9 +217,18 @@ function create_users_controller($scope, $http, $window, $stateParams, $location
         }
     }
 
+    $scope.uploader = new FileUploader();
+    $scope.uploader.headers = {Authorization:  "Bearer " + $cookies.getObject('token')}
+    $scope.uploader.autoUpload = true;
+    $scope.uploader.onSuccessItem  = function (item, response, status, headers){
+        _get_user_image($scope.login).then(function (image) {
+            $scope.image = 'data:image/jpeg;base64,' +  image;
+        })
+    }
 
     $scope.init = function () {
         var login = $stateParams.login;
+        $scope.login = $stateParams.login;
         if (login && login == 'new') {
             $scope.user_new = true;
             _init_nodes().then(function (promise) {
@@ -224,11 +239,15 @@ function create_users_controller($scope, $http, $window, $stateParams, $location
             this.customer_id = login;
             _init_nodes().then(function (promise) {
                 $scope.authentication_nodes = flatten_nodes(promise);
-            })
+            });
             _init_edit(login).then(function (promise) {
                 $scope.user = promise;
                 $scope.checkbox_change_password.authentication_node = promise.authentication_node;
             });
+            _get_user_image(login).then(function (image) {
+                $scope.image = 'data:image/jpeg;base64,' +  image;
+                $scope.uploader.url = ("/superuser/user/"+ login + "/image/upload/");
+            })
             $scope.stage = true
         } else {
             $scope.stage = false;

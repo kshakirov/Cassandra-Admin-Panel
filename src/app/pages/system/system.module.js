@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var system = angular.module('BlurAdmin.pages.system', ['ngCookies', 'ui.ace']);
+    var system = angular.module('BlurAdmin.pages.system', ['ngCookies', 'ui.ace', 'angularFileUpload']);
 
     system.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
@@ -98,8 +98,8 @@
     system.controller("TemplatesController", function ($scope, $http, $window, $stateParams) {
         create_template_controller($scope, $http, $window, $stateParams)
     })
-    system.controller("UsersController", function ($scope, $http, $window, $stateParams, $location) {
-        create_users_controller($scope, $http, $window, $stateParams, $location)
+    system.controller("UsersController", function ($scope, $http, $cookies, $stateParams, $location, FileUploader) {
+        create_users_controller($scope, $http, $cookies, $stateParams, $location, FileUploader)
     })
     system.controller("NodesController", function ($scope, $http, $window, $stateParams) {
         create_nodes_controller($scope, $http, $window, $stateParams)
