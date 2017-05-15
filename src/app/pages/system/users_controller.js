@@ -4,6 +4,9 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
     $scope.checkbox_change_password = {
         flag: false
     }
+    $scope.generate = {
+        flag: false
+    }
 
     angular.isUndefinedOrNull = function (val) {
         return angular.isUndefined(val) || val === null
@@ -24,10 +27,13 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
     }
 
 
-    function _create_user(user, send_notification) {
+    function _create_user(user, send_notification, generate) {
         var url = url_prefix + "user/";
         if (send_notification) {
             url = url + "/notify"
+        }
+        if (generate){
+            url = url + '/password/generate/'
         }
         return $http.post(url, user).then(function (promise) {
         })
@@ -123,10 +129,10 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         })
     }
 
-    $scope.create_user = function (user, send_notification) {
+    $scope.create_user = function (user, send_notification, generate) {
         var user = user;
         delete user.confirmation;
-        _create_user(user, send_notification).then(function (promise) {
+        _create_user(user, send_notification, generate).then(function (promise) {
             $scope.success = notify_success("User Successfully Created")
             $location.path('/system/user/');
         }, function (error) {
@@ -170,9 +176,11 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
     }
 
 
-    function _verify_password(user) {
-        if (angular.isUndefinedOrNull(user.password)) {
+    function _verify_password(user, generate) {
+        if (angular.isUndefinedOrNull(user.password) &&  !generate) {
             return true;
+        }else  if(generate){
+            return false;
         } else {
             if (user.password == user.confirmation && user.password.length > 0) {
                 return false
@@ -200,7 +208,7 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         return false;
     }
 
-    $scope.verify_create_data = function (user) {
+    $scope.verify_create_data = function (user, generate) {
         if (!angular.isUndefinedOrNull(user)) {
             if (_check_required_fields(user)) {
                 return true;
@@ -208,12 +216,19 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
                 if (user.authentication_node != 'Internal') {
                     return false;
                 } else {
-                    return _verify_password(user)
+                    return _verify_password(user,generate)
                 }
             }
             return false;
         } else {
             return true;
+        }
+    };
+
+    $scope.generate_password = function (flag, user) {
+        if(flag && user){
+            delete user.confirmation;
+            delete user.password;
         }
     }
 
