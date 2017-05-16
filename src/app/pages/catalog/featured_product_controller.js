@@ -28,7 +28,7 @@ function _create_featured_product_controller($scope, $http, $window) {
         return{
             sku: item.sku,
             visible: item.visible|| false,
-            ord: item.order || 100
+            ord: item.ord || 100
         }
     }
 
