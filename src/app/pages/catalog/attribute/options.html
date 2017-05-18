@@ -1,0 +1,36 @@
+<div class="horizontal-scroll">
+
+    <table  class="table" st-table="attribute.options">
+        <thead>
+        <tr class="sortable ">
+            <th class="table-id" st-sort="" width="80%">Option</th>
+            <th class="table-id" ></th>
+        </tr>
+        <tr>
+            <th width="80%"><input st-search="" placeholder="Option"
+                       class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><a ng-href="" ng-click="addOption(attribute.options)">ADD</a></th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="option in attribute.options track by $index">
+            <td class="table-id">{{option}}</td>
+
+            <td><button type="button"  ng-click="updateProduct(item)" class="btn btn-success">Update</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="deleteOption(attribute.options, $index)">Delete</button></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6" class="text-center">
+                <div st-pagination="" st-items-by-page="smartTablePageSize"
+                     st-displayed-pages="50"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
