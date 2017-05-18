@@ -20,6 +20,7 @@
                     <th st-sort="label">Frontend Name</th>
                     <th st-sort="attribute_set">Attribute Set</th>
                     <th st-sort="type">Type</th>
+                    <th st-sort="type">Entity</th>
                 </tr>
                 <tr>
                     <th><input st-search="code" placeholder="Search Code" class="input-sm form-control search-input"
@@ -32,6 +33,8 @@
                                type="search"/></th>
                     <th><input st-search="type" placeholder="Search Type" class="input-sm form-control search-input"
                                type="search"/></th>
+                    <th><input st-search="entity" placeholder="Search Type" class="input-sm form-control search-input"
+                               type="search"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +43,7 @@
                     <td>{{item.label}}</td>
                     <td>{{item.attribute_set}}</td>
                     <td>{{item.type}}</td>
+                    <td>{{item.entity}}</td>
                 </tr>
                 </tbody>
                 <tfoot>

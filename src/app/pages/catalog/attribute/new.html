@@ -19,7 +19,7 @@
         <form ng-if="!attribute_saved_data">
             <div class="form-group">
                 <label for="login">Code</label>
-                <input ng-model="attribute.code" type="text" class="form-control" id="login" placeholder="">
+                <input ng-model="attribute.code" type="text" class="form-control" id="login" placeholder="" >
             </div>
             <div class="form-group">
                 <label for="entity">Entity</label>
@@ -36,11 +36,10 @@
             </div>
 
             <div class="form-group">
-                <label for="type">Units</label>
-                <select name="unit" id="unit" class="form-control selectpicker" ng-options="option for option in units"
-                        ng-model="attribute.unit">
-                </select>
+                <label for="label">Label</label>
+                <input ng-model="attribute.label" type="text" class="form-control" id="label" placeholder="" >
             </div>
+
 
             <div class="form-group">
                 <label for="name">Attribute Set</label>
@@ -111,7 +110,11 @@
             <div ng-if="attribute.type=='int'">
                 <div ng-include="'app/pages/catalog/attribute/options.html'"></div>
             </div>
-
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button  ng-click="createAttribute(attribute)" class="btn btn-info" ng-disabled="readyToSubmit(attribute)">CREATE</button>
+                </div>
+            </div>
 
     </form>
 

@@ -15,7 +15,7 @@
             <strong>{{error.message}}</strong>
         </div>
 
-        <h3>CREATE NEW ATTRIBUTE</h3>
+        <h3>{{attribute.label}}</h3>
 
         <form ng-if="!attribute_saved_data">
             <div class="form-group">
@@ -42,12 +42,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="type">Units</label>
-                <select name="unit" id="unit" class="form-control selectpicker" ng-options="option for option in units"
-                        ng-model="attribute.unit">
-                </select>
-            </div>
 
             <div class="form-group">
                 <label for="name">Attribute Set</label>
@@ -118,7 +112,11 @@
             <div ng-if="attribute.type=='int'">
                 <div ng-include="'app/pages/catalog/attribute/options.html'"></div>
             </div>
-
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button  ng-click="createAttribute(attribute)" class="btn btn-info" ng-disabled="readyToSubmit(attribute)">UPDATE</button>
+                </div>
+            </div>
 
         </form>
 

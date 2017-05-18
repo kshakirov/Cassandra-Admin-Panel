@@ -18,7 +18,9 @@
         </thead>
         <tbody>
         <tr ng-repeat="option in attribute.options track by $index">
-            <td class="table-id">{{option}}</td>
+            <td class="table-id">
+                <input ng-model="attribute.options[$index]" type="text" class="form-control" id="login" placeholder=""  width="80%">
+            </td>
 
             <td><button type="button"  ng-click="updateProduct(item)" class="btn btn-success">Update</button></td>
             <td><button type="button" class="btn btn-danger" ng-click="deleteOption(attribute.options, $index)">Delete</button></td>
@@ -28,7 +30,7 @@
         <tr>
             <td colspan="6" class="text-center">
                 <div st-pagination="" st-items-by-page="smartTablePageSize"
-                     st-displayed-pages="50"></div>
+                     st-displayed-pages="5"></div>
             </td>
         </tr>
         </tfoot>
