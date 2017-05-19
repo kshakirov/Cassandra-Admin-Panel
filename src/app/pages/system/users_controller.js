@@ -39,10 +39,13 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         })
     }
 
-    function _update_user(user, send_notification) {
+    function _update_user(user, send_notification, generate) {
         var url = url_prefix + "user/" + user.id;
         if (send_notification) {
             url = url + "/notify"
+        }
+        if (generate){
+            url = url + '/password/generate/'
         }
         return $http.put(url, user).then(function (promise) {
         })
@@ -140,10 +143,10 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         })
     }
 
-    $scope.update_user = function (user, send_notification) {
+    $scope.update_user = function (user, send_notification, generate) {
         var user = _remove_null_values(user);
         user = _prepare_password_2_update(user);
-        _update_user(user, send_notification).then(function (promise) {
+        _update_user(user, send_notification, generate).then(function (promise) {
             $scope.checkbox_change_password.flag = false;
             notify_update(user)
             $scope.success = notify_success("User Successfully Updated")

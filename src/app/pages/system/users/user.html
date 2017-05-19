@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label for="group">Load Avatar</label>
-            <input type="file"   class="" nv-file-select uploader="uploader"/><br/>
+            <input type="file" class="" nv-file-select uploader="uploader"/><br/>
         </div>
 
         <div class="checkbox" ng-if="user.authentication_node=='Internal'">
@@ -52,16 +52,24 @@
         <div ng-if="checkbox_change_password.flag ">
             <div class="form-group">
                 <label for="password">Password</label>
-                <input ng-model="user.password" type="password" class="form-control" id="password" placeholder="">
+                <input ng-model="user.password" type="password" class="form-control"
+                       id="password" placeholder="" ng-disabled="generate.flag">
             </div>
             <div class="form-group">
                 <label for="confirmation">Confirmation</label>
                 <input ng-model="user.confirmation" type="password" class="form-control" id="confirmation"
-                       placeholder="">
+                       placeholder="" ng-disabled="generate.flag">
                 <div ng-if="user.password != user.confirmation" style="color:maroon" role="alert">
                     <div class="messages">
                         <div>Must match the previous entry</div>
                     </div>
+                </div>
+                <div class="checkbox">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" ng-model="generate.flag"
+                               ng-change="generate_password(generate.flag, user)">
+                        <span>Generate Password</span>
+                    </label>
                 </div>
             </div>
             <div class="checkbox">
@@ -79,10 +87,9 @@
         </div>
 
 
-
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
-                <button ng-click="update_user(user, send_notification)"
+                <button ng-click="update_user(user, send_notification,generate.flag)"
                         ng-disabled="verify_update_data(user, checkbox_change_password)" class="btn btn-info">UPDATE
                 </button>
             </div>
