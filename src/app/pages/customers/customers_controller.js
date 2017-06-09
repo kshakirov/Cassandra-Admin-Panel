@@ -112,12 +112,14 @@ function _create_customers_controller($scope, $http,
             if (_is_email(id)) {
                 _init_edit_by_email(id).then(function (promise) {
                     $scope.customer = promise;
+                    $scope.customer_id = $scope.customer.id;
                 }, function (error) {
                     $scope.error = error.data;
                 })
             } else {
                 _init_edit(id).then(function (promise) {
                     $scope.customer = promise;
+                    $scope.customer_id = $scope.customer.id;
                     $scope.future_order = create_future_order(promise)
                 });
             }
