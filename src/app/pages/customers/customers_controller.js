@@ -13,12 +13,14 @@ function _create_customers_controller($scope, $http,
     var url_prefix = '/admin/';
 
     function _init_edit(id) {
-        $scope.stage = true;
-        $scope.customer_id = id;
         return $http.get(url_prefix + 'customer/' + id).then(function (promise) {
-            $scope.customer = promise.data;
-            return $scope.customer;
+            return promise.data;
+        })
+    }
 
+    function _init_edit_by_email(email) {
+        return $http.get(url_prefix + 'customer/email/' + email).then(function (promise) {
+          return promise.data;
         })
     }
 
@@ -26,7 +28,7 @@ function _create_customers_controller($scope, $http,
         this.customer_new = true;
         this.stage = true;
     }
-    
+
     function save_customer(customer_data) {
         return $http.post(url_prefix + "customer/new/", customer_data).then(function (promise) {
             return promise;
@@ -35,7 +37,7 @@ function _create_customers_controller($scope, $http,
 
     function create_order(future_order, future_products) {
         future_order['products'] = future_products;
-        return $http.post(url_prefix + "customer/" + future_order.customer_id + "/order/new/", future_order ).then(function (promise) {
+        return $http.post(url_prefix + "customer/" + future_order.customer_id + "/order/new/", future_order).then(function (promise) {
             return promise;
         }, function (error) {
             return $q.reject();
@@ -91,11 +93,15 @@ function _create_customers_controller($scope, $http,
         })
     }
 
+    function _is_email(id) {
+        return id.search('@') > 0
+    }
+
 
     $scope.init = function () {
         var id = $stateParams.id;
         _init_customer_groups().then(function (promise) {
-            $scope.customerGroups = _group_objs_2_str( promise);
+            $scope.customerGroups = _group_objs_2_str(promise);
         })
         if (id && id == 'new') {
             _init_new.bind($scope)();
@@ -103,9 +109,18 @@ function _create_customers_controller($scope, $http,
         }
         else if (id) {
             this.customer_id = id;
-            _init_edit(id).then(function (promise) {
-                $scope.future_order = create_future_order(promise)
-            });
+            if (_is_email(id)) {
+                _init_edit_by_email(id).then(function (promise) {
+                    $scope.customer = promise;
+                }, function (error) {
+                    $scope.error = error.data;
+                })
+            } else {
+                _init_edit(id).then(function (promise) {
+                    $scope.customer = promise;
+                    $scope.future_order = create_future_order(promise)
+                });
+            }
             $scope.stage = true
         } else {
             $scope.stage = false;
@@ -119,9 +134,10 @@ function _create_customers_controller($scope, $http,
         }, function (error) {
             console.log(error);
             $scope.customer_email_error = {
-                 flag: true,
-                 msg: error.data.message };
-                 })
+                flag: true,
+                msg: error.data.message
+            };
+        })
     };
 
     $scope.reset_password = function (email) {
@@ -137,7 +153,7 @@ function _create_customers_controller($scope, $http,
     };
 
     $scope.create_order = function (future_order, future_products) {
-        if(_check_products(future_products)) {
+        if (_check_products(future_products)) {
             create_order(future_order, future_products).then(function (promise) {
 
                 $scope.success = {
@@ -150,8 +166,8 @@ function _create_customers_controller($scope, $http,
             }, function (error) {
 
             })
-        }else{
-            $scope.errors.product_table ={
+        } else {
+            $scope.errors.product_table = {
                 flag: true
             }
         }
@@ -172,7 +188,6 @@ function _create_customers_controller($scope, $http,
     }
 
 
-
     $scope.cancel_product_table_error = function () {
         $scope.errors.product_table = {
             flag: false
@@ -190,11 +205,11 @@ function _create_customers_controller($scope, $http,
 
     $scope.load_future_product = function (sku, customer_group_id, index) {
         load_product(sku, customer_group_id).then(function (promise) {
-            if(!promise.hasOwnProperty('error')) {
+            if (!promise.hasOwnProperty('error')) {
                 $scope.future_products[index] = promise;
                 calculate_derived_fields($scope.future_products[index])
                 calcullate_all($scope.future_order, $scope.future_products)
-            }else {
+            } else {
                 $scope.errors.product_load = {
                     flag: true,
                     message: promise.error

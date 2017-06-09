@@ -19,6 +19,11 @@
         <input ng-model="customer.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="">
     </div>
     <div class="form-group">
+        <label for="lastname">Company</label>
+        <input ng-model="customer.default_billing_address.company" type="text" class="form-control" id="lastname" placeholder="">
+    </div>
+
+    <div class="form-group">
         <label for="group">Group</label>
         <select name="group" id ="group" class="form-control selectpicker"     ng-options="option for option in customerGroups"      ng-model="customer.group_id" >
         </select>

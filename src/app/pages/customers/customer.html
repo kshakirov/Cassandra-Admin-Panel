@@ -4,9 +4,15 @@
         <h5><a  ng-href="/#/customer/">List</a></h5>
         <h5><a  ng-href="/#/sales/orders/all?customer={{customer_id}}">Orders</a></h5>
     </div>
-    <div class="col-lg-3 col-lg-offset-4">
+    <div class="col-lg-7 col-lg-offset-1">
         <h3><span style="color: #6f1400">{{customer.firstname}} {{customer.lastname}}</span></h3>
+        <div class="alert bg-danger closeable" role="alert" ng-if="error">
+            <button type="button" class="close" aria-label="Close" ng-click="cancel_product_error()"><span
+                    aria-hidden="true">&times;</span></button>
+            <center><strong>{{error.message}}</strong></center>
+        </div>
     </div>
+
     <div class="col-lg-11" ng-init="">
 
         <uib-accordion>
