@@ -25,7 +25,8 @@
                             <thead>
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                                <th st-sort="lastname">Name</th>
+                                <th st-sort="lastname">Last Name</th>
+                                <th st-sort="firstname">First Name</th>
                                 <th st-sort="email">Email</th>
                                 <th st-sort="default_billing_address.company">Company</th>
                                 <th st-sort="group_id">Group</th>
@@ -36,7 +37,10 @@
                             </tr>
                             <tr>
                                 <th></th>
-                                <th><input st-search="lastname" placeholder="Search Name"
+                                <th><input st-search="lastname" placeholder="Search LN"
+                                           class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="firstname" placeholder="Search FN"
                                            class="input-sm form-control search-input"
                                            type="search"/></th>
                                 <th><input st-search="email" placeholder="Search Email"
@@ -66,6 +70,7 @@
                             <tr ng-repeat="item in customers">
                                 <td class="table-id"><a ng-href="/#/customer/{{item.id}}">{{item.id}}</a></td>
                                 <td>{{item.lastname}}</td>
+                                <td>{{item.firstname}}</td>
                                 <td>{{item.email}}</td>
                                 <td>{{item.default_billing_address.company}}</td>
                                 <td>{{item.group_id}}</td>
