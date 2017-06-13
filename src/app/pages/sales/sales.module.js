@@ -3,9 +3,10 @@
 
     'use strict';
 
-    var sales = angular.module('BlurAdmin.pages.sales', ['ngCookies']);
-
-
+    var sales = angular.module('BlurAdmin.pages.sales', ['ngCookies', 'angularSpinner']);
+    sales.config(['usSpinnerConfigProvider', function (usSpinnerConfigProvider) {
+        usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
+    }]);
 
 
     sales.config(routeConfig);
@@ -56,8 +57,8 @@
        // $urlRouterProvider.when('/catalog','/catalog/attribute');
     };
 
-    sales.controller('OrdersController', function ($scope, $http, $stateParams,  $rootScope, $window){
-        create_controller($scope, $http, $stateParams,  $rootScope, $window);
+    sales.controller('OrdersController', function ($scope, $http, $stateParams,  $rootScope, $window, usSpinnerService){
+        create_controller($scope, $http, $stateParams,  $rootScope, $window, usSpinnerService);
     }).controller('ShipmentsController', function ($scope, $http, $stateParams,  $rootScope, $window){
         create_shipment_controller($scope, $http, $stateParams,  $rootScope, $window);
     });

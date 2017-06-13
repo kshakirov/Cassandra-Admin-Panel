@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var customers = angular.module('BlurAdmin.pages.customers', ['ngCookies']);
+    var customers = angular.module('BlurAdmin.pages.customers', ['ngCookies', 'angularSpinner']);
 
     customers.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
@@ -67,8 +67,8 @@
             })
     };
 
-    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams, $q) {
-        _create_customers_controller($scope, $http, $window, $stateParams, $q)
+    customers.controller("CustomerController", function ($scope, $http, $window, $stateParams, $q, usSpinnerService) {
+        _create_customers_controller($scope, $http, $window, $stateParams, $q, usSpinnerService)
     })
 
     customers.controller("CustomerGroupController", function ($scope, $http, $window, $stateParams) {

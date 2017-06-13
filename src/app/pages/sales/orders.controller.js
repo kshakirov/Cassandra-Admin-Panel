@@ -1,4 +1,4 @@
-function create_controller($scope, $http, $stateParams, $rootScope, $window) {
+function create_controller($scope, $http, $stateParams, $rootScope, $window, usSpinnerService) {
     $scope.test = "Test"
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
@@ -8,6 +8,7 @@ function create_controller($scope, $http, $stateParams, $rootScope, $window) {
         'EUR' : '€',
         'GBP' : '£'
     }
+
 
     function not_authorized (error) {
         if (error.status == 401) {
@@ -48,6 +49,7 @@ function create_controller($scope, $http, $stateParams, $rootScope, $window) {
     $scope.init = function () {
         if ($stateParams.id) {
             if($stateParams.id=='all' && $stateParams.customer){
+                usSpinnerService.spin('spinner-1');
                 _init_list_by_customer($stateParams.customer).then(function () {
 
                 }, function (error) {
@@ -65,8 +67,9 @@ function create_controller($scope, $http, $stateParams, $rootScope, $window) {
 
         } else {
             $scope.stage=false;
-            _init_list().then(function () {
 
+            _init_list().then(function () {
+                usSpinnerService.stop('spinner-1');
             }, function (error) {
                 not_authorized(error);
             });

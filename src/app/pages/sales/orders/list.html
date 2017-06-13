@@ -2,64 +2,67 @@
     <div class="col-lg-1">
         <h5>List</h5>
     </div>
-    <div class="col-lg-11" ng-init="init()" >
-        <div class="horizontal-scroll">
-            <div class="form-group select-page-size-wrap ">
-                <label>Rows on page
-                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-                    </select>
-                </label>
+    <div class="col-lg-11">
+        <div ng-init="init()">
+            <div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>Rows on page
+                        <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
+                </div>
+                <table ng-if="ordersReady" class="table" st-table="orders">
+                    <thead>
+                    <tr class="sortable ">
+                        <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
+                        <th st-sort="billing_name">Bill To Name</th>
+                        <th st-sort="shipping_name">Ship To Name</th>
+                        <th st-sort="data.grand_total">G.T. (based)</th>
+                        <th st-sort="data.grand_total">G.T. (purchased)</th>
+                        <th st-sort="data.updated_at">Date</th>
+                    </tr>
+                    <tr>
+                        <th><input st-search="order_id" placeholder="Search ID"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        </th>
+                        <th><input st-search="billing_name" placeholder="Search  Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="shipping_name" placeholder="Search Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="subtotal" placeholder="Search Total"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="base_total" placeholder="Search Total"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="updated_at" placeholder="Search Date"
+                                   class="input-sm form-control search-input" type="search"/>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in orders">
+                        <td class="table-id"><a ng-href="/#/sales/orders/{{item.order_id}}">{{item.order_id}}</a></td>
+                        <td>{{item.billing_name}}</td>
+                        <td>{{item.shipping_name}}</td>
+                        <td>{{render_currency(item.currency_code)}} {{item.subtotal}}</td>
+                        <td>{{render_currency(item.currency_code)}} {{item.grand_total}}</td>
+                        <td>{{item.updated_at}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
-            <table ng-if="ordersReady" class="table" st-table="orders">
-                <thead>
-                <tr class="sortable ">
-                    <th class="table-id" st-sort="order_id" st-sort-default="true">Id</th>
-                    <th st-sort="billing_name">Bill To Name</th>
-                    <th st-sort="shipping_name">Ship To Name</th>
-                    <th st-sort="data.grand_total">G.T. (based)</th>
-                    <th st-sort="data.grand_total">G.T. (purchased)</th>
-                    <th st-sort="data.updated_at">Date</th>
-                </tr>
-                <tr>
-                    <th><input st-search="order_id" placeholder="Search ID" class="input-sm form-control search-input"
-                               type="search"/></th>
-                    </th>
-                    <th><input st-search="billing_name" placeholder="Search  Name"
-                               class="input-sm form-control search-input"
-                               type="search"/></th>
-                    <th><input st-search="shipping_name" placeholder="Search Name"
-                               class="input-sm form-control search-input"
-                               type="search"/></th>
-                    <th><input st-search="subtotal" placeholder="Search Total"
-                               class="input-sm form-control search-input"
-                               type="search"/></th>
-                    <th><input st-search="base_total" placeholder="Search Total"
-                               class="input-sm form-control search-input"
-                               type="search"/></th>
-                    <th><input st-search="updated_at" placeholder="Search Date"
-                               class="input-sm form-control search-input" type="search"/>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in orders">
-                    <td class="table-id"><a  ng-href="/#/sales/orders/{{item.order_id}}" >{{item.order_id}}</a></td>
-                    <td>{{item.billing_name}}</td>
-                    <td>{{item.shipping_name}}</td>
-                    <td>{{render_currency(item.currency_code)}}  {{item.subtotal}}</td>
-                    <td>{{render_currency(item.currency_code)}} {{item.grand_total}}</td>
-                    <td>{{item.updated_at}}</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="6" class="text-center">
-                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
         </div>
     </div>
 </div>

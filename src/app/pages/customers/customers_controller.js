@@ -1,5 +1,5 @@
 function _create_customers_controller($scope, $http,
-                                      $window, $stateParams, $q) {
+                                      $window, $stateParams, $q, usSpinnerService) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
     $scope.statuses = ['pending', 'complete', 'paid'];
@@ -126,7 +126,9 @@ function _create_customers_controller($scope, $http,
             $scope.stage = true
         } else {
             $scope.stage = false;
-            _init_list();
+            _init_list().then(function (promise) {
+                usSpinnerService.stop('spinner-2');
+            });
         }
     }
 
