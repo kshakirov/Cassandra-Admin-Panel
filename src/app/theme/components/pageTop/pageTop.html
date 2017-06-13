@@ -1,6 +1,6 @@
 <div ng-controller="PageTopController">
     <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}" ng-init="init()">
-        <a href="#/dashboard" class="al-logo clearfix"><span>Turbo Admin </span> {{name}} </a>
+        <a href="#/dashboard" class="al-logo clearfix"><span>Turbo Admin </span> {{name}}(<span style="font-size: small">{{login}}</span>)</a>
         <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a href>
 
         <div class="search">
@@ -18,6 +18,8 @@
                 </a>
                 <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
                     <li><i class="dropdown-arr"></i></li>
+                    <li><center><i class="fa fa-user"> <b> {{login}}</b></i></center></li>
+                    <hr>
                     <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
                     <li><a href><i class="fa fa-cog"></i>Settings</a></li>
                     <li><a href ng-click="logout()" class="signout"><i class="fa fa-power-off"></i>Sign out </a></li>

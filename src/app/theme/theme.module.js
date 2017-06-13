@@ -30,6 +30,7 @@
         $scope.init = function () {
             _get_user_proile().then(function (promise) {
                 $scope.name = promise.name;
+                $scope.login = promise.image_id;
                 return promise.image_id;
             }, function (error) {
             }).then(function (id) {
