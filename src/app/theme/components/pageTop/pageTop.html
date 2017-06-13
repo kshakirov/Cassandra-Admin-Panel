@@ -13,6 +13,9 @@
                 <a uib-dropdown-toggle class="profile-toggle-link" ng-if="image_id">
                     <img ng-src="{{image}}">
                 </a>
+                <a uib-dropdown-toggle class="profile-toggle-link" ng-if="!image_id">
+                    <img src="assets/img/theme/empty_avatar.jpg">
+                </a>
                 <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
                     <li><i class="dropdown-arr"></i></li>
                     <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>

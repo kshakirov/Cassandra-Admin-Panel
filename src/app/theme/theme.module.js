@@ -29,13 +29,18 @@
 
         $scope.init = function () {
             _get_user_proile().then(function (promise) {
-                $scope.image_id = promise.image_id;
                 $scope.name = promise.name;
                 return promise.image_id;
             }, function (error) {
             }).then(function (id) {
                 _get_user_image(id).then(function (image) {
-                    $scope.image = 'data:image/jpeg;base64,' +  image;
+                    if(image.length > 100) {
+                        $scope.image = 'data:image/jpeg;base64,' + image;
+                        $scope.image_id = id;
+                    }else{
+                        $scope.image_id = false;
+                    }
+
                 })
             })
         };
