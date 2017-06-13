@@ -91,10 +91,10 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        Customer Name
+                                         Bill To Name
                                     </td>
                                     <td>
-                                        {{order.billing_address.firstname}} {{order.billing_address.customer_name}}
+                                        {{order.billing_address.name ||order.billing_address.lastname}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -159,10 +159,10 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        Customer Name
+                                        Ship To Name
                                     </td>
                                     <td>
-                                        {{order.shipping_address.firstname}} {{order.shipping_address.customer_name}}
+                                        {{order.shipping_address.name || order.shipping_address.lastname}}
                                     </td>
                                 </tr>
                                 <tr>
