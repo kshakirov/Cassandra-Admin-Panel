@@ -72,6 +72,12 @@
                 <span>Send Information To user</span>
             </label>
         </div>
+        <div  class="checkbox">
+            <label class="custom-checkbox">
+                <input type="checkbox" ng-model="user.superuser">
+                <span>Superuser</span>
+            </label>
+        </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
                 <button ng-click="create_user(user,send_notification, generate.flag)" ng-disabled="verify_create_data(user, generate.flag)" class="btn btn-info">CREATE</button>
