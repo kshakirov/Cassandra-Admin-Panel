@@ -1,4 +1,5 @@
 
+
 <div class="alert bg-danger closeable" role="alert" ng-if="customer_email_error.flag">
     <button type="button" class="close" aria-label="Close" ng-click="cancel_email_error()"><span
             aria-hidden="true">&times;</span></button>
@@ -19,8 +20,8 @@
         <input ng-model="customer.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="">
     </div>
     <div class="form-group">
-        <label for="lastname">Company</label>
-        <input ng-model="customer.default_billing_address.company" type="text" class="form-control" id="lastname" placeholder="">
+        <label for="company">Company</label>
+        <input ng-model="customer.default_billing_address.company" type="text" class="form-control" id="company" placeholder="">
     </div>
 
     <div class="form-group">
@@ -36,7 +37,7 @@
     </div>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button ng-if="!customer_new" class="btn btn-info" disabled>UPDATE</button>
+            <button ng-if="!customer_new" class="btn btn-info" ng-click="update_customer_info(customer.id, customer)">UPDATE</button>
             <button ng-if="customer_new" ng-click="create_customer(customer)" class="btn btn-info">CREATE</button>
         </div>
     </div>

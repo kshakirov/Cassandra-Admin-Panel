@@ -1,14 +1,47 @@
-<form class="form-horizontal">
-    <div class="form-group" ng-repeat="(key,value) in customer.default_billing_address">
-        <label for="inputEmail3" class="col-lg-2 control-label">{{key}}</label>
-        <div class="col-lg-10">
-            <input ng-model="customer.default_billing_address[key]" type="email" class="form-control" id="inputEmail3" placeholder="">
-        </div>
+<form>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input ng-model="customer.default_shipping_address.city" type="text" class="form-control" id="city"
+               placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="country_id">Country</label>
+        <input ng-model="customer.default_shipping_address.country_id" type="text" class="form-control"
+               id="country_id" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input ng-model="customer.default_shipping_address.name" type="text" class="form-control" id="name"
+               placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="postcode">PostCode</label>
+        <input ng-model="customer.default_shipping_address.postcode" type="text" class="form-control" id="postcode"
+               placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="region_id">Region</label>
+        <input ng-model="customer.default_shipping_address.region_id" type="text" class="form-control"
+               id="region_id"
+               placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="street">Street</label>
+        <input ng-model="customer.default_shipping_address.street" type="text" class="form-control" id="street"
+               placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="telephone">Telephone</label>
+        <input ng-model="customer.default_shipping_address.telephone" type="text" class="form-control"
+               id="telephone"
+               placeholder="">
     </div>
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button type="submit" class="btn btn-info" disabled>UPDATE</button>
+            <button type="submit" class="btn btn-info"
+                    ng-click="update_customer_shipping_address(customer.id, customer.default_shipping_address)">UPDATE
+            </button>
         </div>
     </div>
 </form>

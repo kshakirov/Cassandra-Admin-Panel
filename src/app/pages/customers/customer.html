@@ -14,7 +14,17 @@
     </div>
 
     <div class="col-lg-11" ng-init="">
+        <div class="alert bg-success closeable" role="alert" ng-if="customer_update.success">
+            <button type="button" class="close" aria-label="Close" ng-click="cancel_update_msg('success')"><span
+                    aria-hidden="true">&times;</span></button>
+            <center><strong>{{customer_update.msg}}</strong></center>
+        </div>
 
+        <div class="alert bg-danger closeable" role="alert" ng-if="customer_update.error">
+            <button type="button" class="close" aria-label="Close" ng-click="cancel_update_msg('error')"><span
+                    aria-hidden="true">&times;</span></button>
+            <center><strong>{{customer_update.msg}}</strong></center>
+        </div>
         <uib-accordion>
             <uib-accordion-group heading="General Info" panel-class="panel-info bootstrap-panel accordion-panel" >
                 <div ng-include="'app/pages/customers/customer/general_info.html'"></div>

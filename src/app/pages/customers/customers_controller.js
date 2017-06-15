@@ -9,6 +9,9 @@ function _create_customers_controller($scope, $http,
     ]
     $scope.errors = {}
     $scope.success = {}
+    $scope.customer_update = {
+
+    }
 
     var url_prefix = '/admin/';
 
@@ -16,6 +19,15 @@ function _create_customers_controller($scope, $http,
         return $http.get(url_prefix + 'customer/' + id).then(function (promise) {
             return promise.data;
         })
+    }
+
+    function get_customer_genrl_info(customer_data) {
+        var keys =['lastname', 'firstname', 'group_id', 'email','company'];
+        var custom_data = {}
+        angular.forEach(keys, function (key) {
+            custom_data[key] = customer_data[key];
+        })
+        return custom_data;
     }
 
     function _init_edit_by_email(email) {
@@ -31,6 +43,12 @@ function _create_customers_controller($scope, $http,
 
     function save_customer(customer_data) {
         return $http.post(url_prefix + "customer/new/", customer_data).then(function (promise) {
+            return promise;
+        })
+    }
+
+    function update_customer(customer_id, custom_data) {
+        return $http.put(url_prefix + "customer/" + customer_id, custom_data).then(function (promise) {
             return promise;
         })
     }
@@ -136,13 +154,44 @@ function _create_customers_controller($scope, $http,
         save_customer(customer_data).then(function (promise) {
             $scope.customer_saved_data = promise.data;
         }, function (error) {
-            console.log(error);
             $scope.customer_email_error = {
                 flag: true,
                 msg: error.data.message
             };
         })
     };
+
+    $scope.base_update_customer = function (customer_id, custom_data) {
+        update_customer(customer_id, custom_data).then(function (promise) {
+            $scope.customer_update.success = true;
+            $scope.customer_update.msg = "Succesfully Updated";
+        }, function (error) {
+            $scope.customer_update.error = true;
+            $scope.customer_update.msg = error.data.message;
+        })
+    }
+
+    $scope.update_customer_info = function (customer_id, customer_data) {
+        var custom_data = get_customer_genrl_info(customer_data);
+        $scope.base_update_customer(customer_id, custom_data);
+
+    }
+
+    $scope.update_customer_billing_address = function (customer_id, customer_data) {
+        var custom_data = {
+            default_billing_address: customer_data
+        };
+        $scope.base_update_customer(customer_id, custom_data);
+    }
+
+    $scope.update_customer_shipping_address = function (customer_id, customer_data) {
+        var custom_data = {
+            default_shipping_address: customer_data
+        };
+        $scope.base_update_customer(customer_id, custom_data);
+    }
+
+
 
     $scope.reset_password = function (email) {
         reset_password(email).then(function (promise) {
@@ -205,6 +254,10 @@ function _create_customers_controller($scope, $http,
 
     $scope.cancel_email_error = function () {
         $scope.customer_email_error.flag = false;
+    };
+    
+    $scope.cancel_update_msg = function (flag) {
+        $scope.customer_update[flag] = false;
     };
 
     $scope.load_future_product = function (sku, customer_group_id, index) {
