@@ -6,8 +6,9 @@
     </div>
     <div class="form-group">
         <label for="country_id">Country</label>
-        <input ng-model="customer.default_billing_address.country_id" type="text" class="form-control"
-               id="country_id" placeholder="">
+        <!--<input ng-model="customer.default_billing_address.country_id" type="text" class="form-control"-->
+               <!--id="country_id" placeholder="">-->
+        <country-select ng-if="customer.id" data-ng-model="customer.default_billing_address.country_id" id="country_id" class ="form-control  selectpicker"></country-select>
     </div>
     <div class="form-group">
         <label for="name">Name</label>
@@ -21,9 +22,11 @@
     </div>
     <div class="form-group">
         <label for="region_id">Region</label>
-        <input ng-model="customer.default_billing_address.region_id" type="text" class="form-control"
+        <input ng-if="customer.default_billing_address.country_id!='US'"
+               ng-model="customer.default_billing_address.region_id" type="text" class="form-control"
                id="region_id"
                placeholder="">
+        <ang-select-usstates ng-if="customer.default_billing_address.country_id=='US'" ng-model="customer.default_billing_address.region_id"  class ="form-control  selectpicker"></ang-select-usstates>
     </div>
     <div class="form-group">
         <label for="street">Street</label>

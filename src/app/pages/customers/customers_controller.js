@@ -115,6 +115,45 @@ function _create_customers_controller($scope, $http,
         return id.search('@') > 0
     }
 
+    function _check_main_fields(address) {
+        var fields = ['country_id', 'city', 'postcode', 'street', 'name'];
+        var result = {verified: true, field: null};
+        for (var i = 0; i < 5; i++) {
+            if (!address.hasOwnProperty(fields[i]) ||
+                address[fields[i]].length < 1) {
+                result.verified = false;
+                result.field = fields[i];
+                return result;
+            }
+        }
+        return result
+    }
+
+    function _check_us_address(address) {
+        var verified = {verified: true};
+        if(address.country_id=='US'){
+            if(address.region_id.length < 2)
+                verified.verified=false;
+                verified.field = "State Is Required";
+                verified.address = "Address";
+        }
+        return verified;
+    }
+
+    function _check_address(address) {
+        var verified = _check_main_fields(address);
+        if (!verified.verified) {
+            verified.address = "Address";
+            return verified
+        }
+        verified = _check_us_address(address);
+        return verified;
+
+    }
+
+    function _compose_err(verified) {
+        return "Check " + verified.address + ": " + verified.field;
+    }
 
     $scope.init = function () {
         var id = $stateParams.id;
@@ -178,6 +217,13 @@ function _create_customers_controller($scope, $http,
     }
 
     $scope.update_customer_billing_address = function (customer_id, customer_data) {
+        var verified_ba = _check_address(customer_data);
+        if (!verified_ba.verified) {
+            $scope.customer_update.error = true;
+            $scope.customer_update.msg = _compose_err(verified_ba);
+            console.log()
+            return false;
+        }
         var custom_data = {
             default_billing_address: customer_data
         };
@@ -185,6 +231,12 @@ function _create_customers_controller($scope, $http,
     }
 
     $scope.update_customer_shipping_address = function (customer_id, customer_data) {
+        var verified_sa = _check_address(customer_data);
+        if (!verified_sa.verified) {
+            $scope.customer_update.error = true;
+            $scope.customer_update.msg = _compose_err(verified_sa);
+            return false;
+        }
         var custom_data = {
             default_shipping_address: customer_data
         };

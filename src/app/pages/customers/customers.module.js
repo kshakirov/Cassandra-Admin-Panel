@@ -2,7 +2,8 @@
 (function () {
     'use strict';
 
-    var customers = angular.module('BlurAdmin.pages.customers', ['ngCookies', 'angularSpinner']);
+    var customers = angular.module('BlurAdmin.pages.customers', ['ngCookies', 'angularSpinner', 'countrySelect',
+        'angular-directive-select-usstates']);
 
     customers.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
