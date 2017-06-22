@@ -32,7 +32,7 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         if (send_notification) {
             url = url + "/notify"
         }
-        if (generate){
+        if (generate) {
             url = url + '/password/generate/'
         }
         return $http.post(url, user).then(function (promise) {
@@ -44,10 +44,11 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         if (send_notification) {
             url = url + "/notify"
         }
-        if (generate){
+        if (generate) {
             url = url + '/password/generate/'
         }
         return $http.put(url, user).then(function (promise) {
+            return promise.data;
         })
     }
 
@@ -79,6 +80,14 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         var success = {
             flag: true,
             message: message
+        }
+        return success;
+    }
+
+    function notify_success_pass_generated(message, promise) {
+        var success = {
+            flag: true,
+            message: message + promise[0]
         }
         return success;
     }
@@ -127,7 +136,7 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
     }
 
     function _get_user_image(id) {
-        return $http.get("/admin/profile/user/"+id +'/image', {}).then(function (promise) {
+        return $http.get("/admin/profile/user/" + id + '/image', {}).then(function (promise) {
             return promise.data;
         })
     }
@@ -148,8 +157,12 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
         user = _prepare_password_2_update(user);
         _update_user(user, send_notification, generate).then(function (promise) {
             $scope.checkbox_change_password.flag = false;
-            notify_update(user)
-            $scope.success = notify_success("User Successfully Updated")
+            notify_update(user);
+            if (generate)
+                $scope.success = notify_success_pass_generated("User Successfully Updated. New Password: ", promise);
+            else
+                $scope.success = notify_success("User Successfully Updated");
+
         }, function (error) {
             $scope.error = notify_success(error.data.message)
         })
@@ -180,9 +193,9 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
 
 
     function _verify_password(user, generate) {
-        if (angular.isUndefinedOrNull(user.password) &&  !generate) {
+        if (angular.isUndefinedOrNull(user.password) && !generate) {
             return true;
-        }else  if(generate){
+        } else if (generate) {
             return false;
         } else {
             if (user.password == user.confirmation && user.password.length > 0) {
@@ -219,7 +232,7 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
                 if (user.authentication_node != 'Internal') {
                     return false;
                 } else {
-                    return _verify_password(user,generate)
+                    return _verify_password(user, generate)
                 }
             }
             return false;
@@ -229,18 +242,18 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
     };
 
     $scope.generate_password = function (flag, user) {
-        if(flag && user){
+        if (flag && user) {
             delete user.confirmation;
             delete user.password;
         }
     }
 
     $scope.uploader = new FileUploader();
-    $scope.uploader.headers = {Authorization:  "Bearer " + $cookies.getObject('token')}
+    $scope.uploader.headers = {Authorization: "Bearer " + $cookies.getObject('token')}
     $scope.uploader.autoUpload = true;
-    $scope.uploader.onSuccessItem  = function (item, response, status, headers){
+    $scope.uploader.onSuccessItem = function (item, response, status, headers) {
         _get_user_image($scope.login).then(function (image) {
-            $scope.image = 'data:image/jpeg;base64,' +  image;
+            $scope.image = 'data:image/jpeg;base64,' + image;
         })
     }
 
@@ -263,8 +276,8 @@ function create_users_controller($scope, $http, $cookies, $stateParams, $locatio
                 $scope.checkbox_change_password.authentication_node = promise.authentication_node;
             });
             _get_user_image(login).then(function (image) {
-                $scope.image = 'data:image/jpeg;base64,' +  image;
-                $scope.uploader.url = ("/superuser/user/"+ login + "/image/upload/");
+                $scope.image = 'data:image/jpeg;base64,' + image;
+                $scope.uploader.url = ("/superuser/user/" + login + "/image/upload/");
             })
             $scope.stage = true
         } else {
