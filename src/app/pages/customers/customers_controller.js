@@ -155,6 +155,10 @@ function _create_customers_controller($scope, $http,
         return "Check " + verified.address + ": " + verified.field;
     }
 
+    function normalize_email(customer_data) {
+        customer_data['email'] = customer_data['email'].toLowerCase();
+    }
+
     $scope.init = function () {
         var id = $stateParams.id;
         _init_customer_groups().then(function (promise) {
@@ -190,6 +194,7 @@ function _create_customers_controller($scope, $http,
     }
 
     $scope.create_customer = function (customer_data) {
+        normalize_email(customer_data)
         save_customer(customer_data).then(function (promise) {
             $scope.customer_saved_data = promise.data;
         }, function (error) {
@@ -211,6 +216,7 @@ function _create_customers_controller($scope, $http,
     }
 
     $scope.update_customer_info = function (customer_id, customer_data) {
+        normalize_email(customer_data);
         var custom_data = get_customer_genrl_info(customer_data);
         $scope.base_update_customer(customer_id, custom_data);
 
