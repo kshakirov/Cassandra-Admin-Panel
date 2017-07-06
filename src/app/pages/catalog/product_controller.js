@@ -70,8 +70,9 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
         $scope.stage = true
         $http.get(url_prefix + 'product/' + id).then(function (promise) {
             $scope.product = promise.data;
+            _get_price($scope.product.sku);
         })
-        _get_price(id);
+
     }
 
     function _init_list(request) {
