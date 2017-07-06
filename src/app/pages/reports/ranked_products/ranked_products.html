@@ -1,0 +1,59 @@
+<div class="row" ng-init="init()">
+    <div class="col-lg-1">
+        <h5><a ng-click="nextPage()" href="">NEXT</a></h5>
+    </div>
+    <div class="col-lg-11">
+        <div class="row">
+            <div class="col-lg-4">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="sender"
+                               placeholder="SKU ">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-3">
+                <button ng-click="search(sender)"   class="btn btn-info">SEARCH </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-lg-offset-3">
+            <div class="alert bg-success closeable" role="alert" ng-if="success.new_product">
+                <button type="button" class="close" aria-label="Close"
+                        ng-click="cancel_alert('success', 'new_product')"><span aria-hidden="true">&times;</span>
+                </button>
+                <center><strong>Success!</strong></center>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-1">
+
+    </div>
+    <div class="col-lg-11" ng-init="init()">
+        <div class="horizontal-scroll">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>PRODUCT SKU</th>
+                    <th>VISITED TIMES</th>
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in products">
+                    <td>{{item['_source'].sku}}</td>
+                    <td>{{item['_source'].times}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

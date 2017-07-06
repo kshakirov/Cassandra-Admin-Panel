@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var reports = angular.module('BlurAdmin.pages.reports', ['ngCookies']);
+    var reports = angular.module('BlurAdmin.pages.reports', ['ngCookies','elasticsearch']);
 
     reports.factory('sessionInjector', function ($cookies) {
         var sessionInjector = {
@@ -37,75 +37,40 @@
                     order: 400
                 }
             })
-            .state('reports.carts', {
-                //controller: 'CustomerController',
+            .state('reports.visitors', {
+                controller: 'VisitorController',
                 url: '/carts/:id',
-               //templateUrl: 'app/pages/customers/customer_container.html',
-                title: 'Shopping Cart',
+               templateUrl: 'app/pages/reports/visitors/visitors.html',
+                title: 'Visitors Stats',
                 sidebarMeta: {
                     order: 500,
                 },
             })
             .state('reports.products', {
-                //controller: 'CustomerController',
+                controller: 'ProductRankController',
                 url: '/products/:id',
-               //templateUrl: 'app/pages/customers/customer_container.html',
-                title: 'Products',
+               templateUrl: 'app/pages/reports/ranked_products/ranked_products.html',
+                title: 'Ranked Products',
                 sidebarMeta: {
                     order: 600,
                 },
             })
-        //     .state('report.carts.carts', {
-        //         title: 'Product in Carts',
-        //         //controller: 'CustomerNew',
-        //         url: '/group/',
-        //         templateUrl: 'app/pages/customers/group.html',
-        //         sidebarMeta: {
-        //             order: 600,
-        //         }
-        //
-        //     })
-        //     .state('report.carts.abandoned', {
-        //         title: 'Abandoned Carts',
-        //         //  controller: 'CustomerOrderController',
-        //         url: '/online/',
-        //         templateUrl: 'app/pages/customers/online.html',
-        //         sidebarMeta: {
-        //             order: 700,
-        //         }
-        //
-        //     })
-        // baSidebarServiceProvider.addStaticItem({
-        //     state: 'reports',
-        //     url: '/report',
-        //     title: 'Reports',
-        //     icon: 'ion-ios-more',
-        //     subMenu: [{
-        //         title: 'Orders',
-        //         disabled: true
-        //     }, {
-        //         title: "Shopping Cart",
-        //         subMenu: [{
-        //             state: 'reports.cart.carts',
-        //             url: '/group/',
-        //             templateUrl: 'app/pages/customers/group.html',
-        //             title: 'Product in Carts',
-        //             disabled: false
-        //         },
-        //             {
-        //                 title: 'Abandoned Carts',
-        //                 url: '/online/',
-        //                 templateUrl: 'app/pages/customers/online.html',
-        //                 disabled: false
-        //             }
-        //         ]
-        //     }]
-        // });
+
     };
 
-    // reports.controller("CustomerController", function ($scope, $http, $window, $stateParams) {
-    //     _create_customers_controller($scope, $http, $window, $stateParams)
-    // })
+    reports.service('ElasticSearchService', function (esFactory) {
+        return esFactory({
+            host: 'https://admin.localhost'
+        });
+    });
+
+    reports.controller("ProductRankController", function ($scope, $http, $window, $stateParams, ElasticSearchService) {
+        _create_rank_products_controller($scope, $http, $window, $stateParams, ElasticSearchService)
+    })
+
+    reports.controller("VisitorController", function ($scope, $http, $window, $stateParams, ElasticSearchService) {
+        _create_visitors_controller($scope, $http, $window, $stateParams, ElasticSearchService)
+    })
 
 
 })();
