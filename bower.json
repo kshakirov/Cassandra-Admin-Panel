@@ -59,7 +59,8 @@
     "angular-file-upload": "2.5.0",
     "angular-spinner": "1.0.1",
     "ng-country-select": "^0.1.4",
-    "angular-directive-select-usstate": "^0.2.1"
+    "angular-directive-select-usstate": "^0.2.1",
+    "elasticsearch": "^13.2.0"
   },
   "resolutions": {
     "angular": "~1.4.8"
