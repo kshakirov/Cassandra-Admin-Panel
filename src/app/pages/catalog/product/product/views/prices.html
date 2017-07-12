@@ -1,39 +1,39 @@
 <div class="row">
-<div class="col-lg-6">
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Attributes</th>
-            <th>Values</th>
+    <div class="col-lg-8">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Group</th>
+                <th>Price</th>
 
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(key, value) in prices" ng-if="key!=prices">
-            <td width="20%">{{key}}</td>
-            <td width="80%">{{value}}</td>
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Standard</td>
+                <td><input type="number" ng-model="prices.standardprice" class="form-control"></td>
+            </tr>
+            <tr ng-repeat="(key, value) in prices.prices">
+                <td width="20%">{{key}}</td>
+                <td width="80%"><input type="number" ng-model="prices.prices[key]" class="form-control"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
 </div>
-    <div class="col-lg-1"></div>
-<div class="col-lg-4">
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Group</th>
-            <th>Price</th>
-
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(key, value) in prices.prices">
-            <td width="20%">{{key}}</td>
-            <td width="80%">{{value}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<div class="row">
+    <div class="col-lg-offset-2">
+        <form>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-info"
+                            ng-click="update_prices(prices)">
+                        UPDATE
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

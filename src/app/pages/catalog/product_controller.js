@@ -66,6 +66,12 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
         })
     }
 
+    function _update_prices(prices) {
+        return $http.post(url_prefix + 'price/group/', prices).then(function (promise) {
+            return promise.data;
+        })
+    }
+
     function _init_edit(id) {
         $scope.stage = true
         $http.get(url_prefix + 'product/' + id).then(function (promise) {
@@ -148,6 +154,12 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
             })
 
         }
+    }
+
+    $scope.update_prices = function (prices) {
+        _update_prices(prices).then(function (promise) {
+            console.log("Updated");
+        })
     }
 
     $scope.cancel_alert = function (object, property) {
