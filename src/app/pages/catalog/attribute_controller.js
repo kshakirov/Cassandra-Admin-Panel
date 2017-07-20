@@ -2,7 +2,7 @@ function _create_attribute_controller($scope, $http, $stateParams, $window) {
     $scope.smartTablePageSize = 10;
     $scope.stage = false;
 
-    $scope.types = ['decimal', 'int', 'text']
+    $scope.types = ['decimal', 'int', 'text', 'boolean']
     $scope.entities = ['product', 'order', 'customer']
     $scope.units = ['INCHES', 'DEGREES', 'gr']
 
