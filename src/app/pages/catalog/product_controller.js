@@ -21,10 +21,8 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
         }
     }
 
-    function _create_request(manufacturer, part_type, page_size, paging_state) {
+    function _create_request(page_size, paging_state) {
         return {
-            manufacturer: [manufacturer],
-            part_type: [part_type],
             page_size: page_size,
             paging_state: paging_state
         }
@@ -119,9 +117,7 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
     }
 
     $scope.nextPage = function (filter_key, filter_value, other_key, other_value) {
-        var request = _create_request($scope.manufacturer,
-            $scope.productPartType, $scope.productPageSize, $scope.paging_state);
-        _base_search(filter_key, filter_value, other_key, other_value, request);
+        var request = _create_request($scope.productPageSize, $scope.paging_state);
         _init_list(request);
     }
 
@@ -137,22 +133,8 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
             $scope.stage = true
         } else {
             $scope.stage = false;
-            var request = _create_request($scope.manufacturer,
-                $scope.part_type, $scope.productPageSize, null);
-            _get_manufacturers().then(function (promise) {
-                $scope.manufacturers = promise;
-                $scope.manufacturers.push("ALL")
-            },function (error) {
-               not_authorized(error);
-            }).then(function (promise) {
-                _get_parts().then(function (promise) {
-                    $scope.part_types = promise;
-                    $scope.part_types.push("ALL")
-                })
-            }).then(function (promise) {
+            var request = _create_request($scope.productPageSize, null);
                 _init_list(request);
-            })
-
         }
     }
 
