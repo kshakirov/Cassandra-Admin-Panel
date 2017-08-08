@@ -72,7 +72,7 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
 
     function _init_edit(id) {
         $scope.stage = true
-        $http.get(url_prefix + 'product/' + id).then(function (promise) {
+        $http.get(url_prefix + 'products/' + id).then(function (promise) {
             $scope.product = promise.data;
             _get_price($scope.product.sku);
         })
@@ -80,7 +80,7 @@ function _create_product_controller($scope, $http, $stateParams, $location, $win
     }
 
     function _init_list(request) {
-        $http.post(url_prefix + 'product/paginate/', request).then(function (promise) {
+        $http.post(url_prefix + 'products/paginate/', request).then(function (promise) {
             $scope.products = promise.data.results;
             $scope.last_page = promise.data.last;
             $scope.paging_state = promise.data.paging_state;
