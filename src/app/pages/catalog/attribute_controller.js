@@ -47,14 +47,14 @@ function _create_attribute_controller($scope, $http, $stateParams, $window) {
 
 
 function _init_edit(id) {
-        $http.get('/admin/attribute/' + id).then(function (promise) {
+        $http.get('/admin/attributes/' + id).then(function (promise) {
             $scope.attribute = promise.data;
         })
     }
     
 
     function _init_list() {
-        $http.get("/admin/attribute/").then(function (promise) {
+        $http.get("/admin/attributes").then(function (promise) {
             $scope.attributes = promise.data;
             $scope.attributesReady = true;
         },function (error) {
@@ -64,7 +64,7 @@ function _init_edit(id) {
     }
 
     function _create(attribute) {
-        return $http.post('/admin/attribute/', attribute).then(function (promise) {
+        return $http.post('/admin/attributes', attribute).then(function (promise) {
             return promise.data;
         })
     }
