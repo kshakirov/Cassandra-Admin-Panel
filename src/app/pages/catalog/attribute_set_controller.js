@@ -4,7 +4,7 @@ function _create_attribte_set_controller($scope, $http, $window, $stateParams) {
 
 
     function _init_list() {
-        $http.get("/admin/attribute_set/").then(function (promise) {
+        $http.get("/admin/attribute-sets/").then(function (promise) {
             $scope.attributeSets = promise.data;
             $scope.attributeSetsReady = true;
             $scope.editAttributeSet = false;
@@ -14,7 +14,7 @@ function _create_attribte_set_controller($scope, $http, $window, $stateParams) {
     }
 
     function _init_item(id) {
-        $http.get("/admin/attribute_set/" + id).then(function (promise) {
+        $http.get("/admin/attribute-sets/" + id).then(function (promise) {
             $scope.attribute_set = promise.data;
             $scope.editAttributeSet = true;
             return promise.data.attributes;
@@ -22,7 +22,7 @@ function _create_attribte_set_controller($scope, $http, $window, $stateParams) {
             $window.location.href = '/auth.html';
         }).then(function (attributes) {
             var data = attributes;
-            $http.post('/admin/attribute/list/', data).then(function (promise) {
+            $http.post('/admin/attribute-sets/'+ id + "/attributes/", data).then(function (promise) {
                 console.log(promise.data);
                 $scope.attributes = promise.data;
             })
